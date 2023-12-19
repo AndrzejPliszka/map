@@ -3,3 +3,6 @@
     height: 800px;
     border: 2px solid black;
 }
+object{
+    position: relative;
+}
