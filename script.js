@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
     for(let i = 0; i < textFiles.length; i++){
         const objectElement = document.createElement("object");
         objectElement.type = "image/svg+xml";
+        console.log(textFiles[i]);
         objectElement.data = `maps/${textFiles[i]}.svg`;
         svgContainer.appendChild(objectElement);
     }    
