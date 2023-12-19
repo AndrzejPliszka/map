@@ -5,10 +5,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let textData;
     fetch(url)
     .then(response => response.text())
-    .then(data => textData = data)
-    .catch(error => console.error('error:', error));
-    console.log(textData)
-    //extract file names from setup.txt
+    .then((data) => {
+        textData = data;
+        //extract file names from setup.txt
     let textFiles = textData.match(/[^;]*/g);
     console.log(textFiles);
     //display svg with extracted names 
@@ -19,4 +18,6 @@ document.addEventListener("DOMContentLoaded", function() {
         objectElement.data = `maps/${textFiles[i]}.svg`;
         svgContainer.appendChild(objectElement);
     }    
+    })
+    .catch(error => console.error('error:', error));
 });
