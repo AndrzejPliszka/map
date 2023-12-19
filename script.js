@@ -1,22 +1,22 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const svgContainer = document.getElementById("svg-container");
-    const objectElement = document.createElement("object");
 
+    //get data from setup.txt
     const url = 'maps/file.txt';
-
+    let textData;
     fetch(url)
     .then(response => response.text())
-    .then(data => {
-        console.log('Zawartość pliku:', data);
-        // Tutaj możesz dalej przetwarzać lub wyświetlać zawartość pliku
-    })
-    .catch(error => console.error('Błąd pobierania pliku:', error));
-
-
-    // Set the type and data attributes for the SVG file
-    objectElement.type = "image/svg+xml";
-    objectElement.data = "mapa2.svg";
-
-    // Append the object element to the container
-    svgContainer.appendChild(objectElement);
+    .then(data => textData = data)
+    .catch(error => console.error('error:', error));
+    console.log(data)
+    //extract file names from setup.txt
+    let textFiles = textData.match(/[^;]*/g);
+    console.log(textFiles);
+    //display svg with extracted names
+    const svgContainer = document.getElementById("svg-container");
+    for(let i = 0; i < textFiles.length; i++){
+        const objectElement = document.createElement("object");
+        objectElement.type = "image/svg+xml";
+        objectElement.data = `maps/${textFiles[i]}.svg`;
+        svgContainer.appendChild(objectElement);
+    }    
 });
