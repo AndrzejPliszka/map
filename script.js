@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
     .then(response => response.text())
     .then(data => textData = data)
     .catch(error => console.error('error:', error));
-    console.log(data)
+    console.log(textData)
     //extract file names from setup.txt
     let textFiles = textData.match(/[^;]*/g);
     console.log(textFiles);
