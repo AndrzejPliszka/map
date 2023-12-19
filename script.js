@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     //get data from setup.txt
-    const url = 'maps/file.txt';
+    const url = 'setup.txt';
     let textData;
     fetch(url)
     .then(response => response.text())
