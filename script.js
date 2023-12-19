@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //extract file names from setup.txt
     let textFiles = textData.match(/[^;]*/g);
     console.log(textFiles);
-    //display svg with extracted names
+    //display svg with extracted names 
     const svgContainer = document.getElementById("svg-container");
     for(let i = 0; i < textFiles.length; i++){
         const objectElement = document.createElement("object");
