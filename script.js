@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const objectElement = document.createElement("object");
         objectElement.type = "image/svg+xml";
         console.log(textFiles[i]);
-        objectElement.data = `maps/${textFiles[i]}.svg`;
+        objectElement.data = `maps/${textFiles[i]}`;
         svgContainer.appendChild(objectElement);
     }    
     })
