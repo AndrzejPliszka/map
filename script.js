@@ -6,19 +6,20 @@ document.addEventListener("DOMContentLoaded", function() {
     fetch(url)
     .then(response => response.text())
     .then((data) => {
-        textData = data;
         //extract file names from setup.txt
-    let textFiles = textData.match(/[^;]*/g);
-    console.log(textFiles);
-    //display svg with extracted names 
-    const svgContainer = document.getElementById("svg-container");
-    for(let i = 0; i < textFiles.length; i++){
-        const objectElement = document.createElement("object");
-        objectElement.type = "image/svg+xml";
-        console.log(textFiles[i]);
-        objectElement.data = `maps/${textFiles[i]}`;
-        svgContainer.appendChild(objectElement);
-    }    
+        let objectData = data.match(/[^;]*/g);
+        console.log(objectData);
+        //display svg with extracted names 
+        const svgContainer = document.getElementById("svg-container");
+        for(let i = 0; i < objectData.length; i++){
+            let objectProperty = objectData[i].match(/[^ ]*/g);
+            console.log(objectProperty);
+            const objectElement = document.createElement("object");
+            objectElement.type = "image/svg+xml";
+            console.log(objectData[i]);
+            objectElement.data = `maps/${objectData[i]}`;
+            svgContainer.appendChild(objectElement);
+        }    
     })
     .catch(error => console.error('error:', error));
 });
