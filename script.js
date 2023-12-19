@@ -13,12 +13,19 @@ document.addEventListener("DOMContentLoaded", function() {
         const svgContainer = document.getElementById("svg-container");
         for(let i = 0; i < objectData.length; i++){
             let objectProperty = objectData[i].split(/\s+/);
-            console.log(objectProperty);
-            const objectElement = document.createElement("object");
-            objectElement.type = "image/svg+xml";
-            console.log(objectData[i]);
-            objectElement.data = `maps/${objectData[i]}`;
-            svgContainer.appendChild(objectElement);
+            let name = objectProperty[0];
+            let xPos = objectProperty[1];
+            let yPos = objectProperty[2];
+            let width = objectProperty[3];
+            const svgElement = document.createElement("object");
+            svgElement.type = "image/svg+xml";
+            svgElement.data = `maps/${name}`;
+            svgElement.style = {
+                left: xPos;
+                top: yPos;
+                width: width;
+            }
+            svgContainer.appendChild(svgElement);
         }    
     })
     .catch(error => console.error('error:', error));
