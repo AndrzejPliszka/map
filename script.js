@@ -7,12 +7,12 @@ document.addEventListener("DOMContentLoaded", function() {
     .then(response => response.text())
     .then((data) => {
         //extract file names from setup.txt
-        let objectData = data.match(/[^;]+/g);
+        let objectData = data.split(/;\s*/);
         console.log(objectData);
         //display svg with extracted names 
         const svgContainer = document.getElementById("svg-container");
         for(let i = 0; i < objectData.length; i++){
-            let objectProperty = objectData[i].match(/[^ ]+/g);
+            let objectProperty = objectData[i].split(/\s+/);
             console.log(objectProperty);
             const objectElement = document.createElement("object");
             objectElement.type = "image/svg+xml";
