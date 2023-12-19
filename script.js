@@ -20,11 +20,9 @@ document.addEventListener("DOMContentLoaded", function() {
             const svgElement = document.createElement("object");
             svgElement.type = "image/svg+xml";
             svgElement.data = `maps/${name}`;
-            svgElement.style = {
-                left: xPos,
-                top: yPos,
-                width: width
-            }
+            svgElement.style.left = xPos;
+            svgElement.style.top = yPos;
+            svgElement.style.width = width;
             console.log(svgElement.style);
             svgContainer.appendChild(svgElement);
         }    
