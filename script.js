@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", function() {
             svgElement.type = "image/svg+xml";
             svgElement.data = `maps/${name}`;
             svgElement.style = {
-                left: xPos;
-                top: yPos;
-                width: width;
+                left: xPos,
+                top: yPos,
+                width: width
             }
             svgContainer.appendChild(svgElement);
         }    
