@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 top: yPos,
                 width: width
             }
+            console.log(svgElement.style);
             svgContainer.appendChild(svgElement);
         }    
     })
