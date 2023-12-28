@@ -6,5 +6,6 @@
     position: absolute;
 }
 object{
-    position: realtive;
+    position: relative;
+    pointer-events: none;
 }
