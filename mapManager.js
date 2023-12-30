@@ -7,7 +7,7 @@ let zoomLevel = 1;
 for(let i = 0; i < draggableElements.length; i++){
   offsetsX.push("");
   offsetsY.push("");
-} 
+}
 
 function test(){
     console.log('test czy moge kliknac na obiekt');
