@@ -17,6 +17,7 @@ container.addEventListener('mousedown', (event) => {
   console.log('test czy moge kliknac na kontener');
     isDragging = true;
     for(let i = 0; i < draggableElements.length; i++){
+      const containerRect = container.getBoundingClientRect();
       offsetsX[i] = event.clientX - (draggableElements[i].getBoundingClientRect().left - containerRect.left);
       offsetsY[i] = event.clientY - (draggableElements[i].getBoundingClientRect().top - containerRect.top);
       draggableElements[i].style.cursor = 'grabbing';
