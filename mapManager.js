@@ -1,4 +1,4 @@
-const draggableElements = document.getElementsByTagName('object');
+const draggableElements = document.querySelectorAll('svg');
 var container = document.getElementById('svg-container');
 let isDragging = false;
 let offsetsX = [], offsetsY = [];
@@ -7,10 +7,12 @@ let zoomLevel = 1;
 for(let i = 0; i < draggableElements.length; i++){
   offsetsX.push("");
   offsetsY.push("");
+  console.log(draggableElements[i])
+  draggableElements[i].addEventListener('click', () => registerClick(i));
 }
 
-function test(){
-    console.log('test czy moge kliknac na obiekt');
+function registerClick(index){
+  console.log(`Kliknięto obiekt o indeksie ${index}`);
 }
 
 container.addEventListener('mousedown', (event) => {
@@ -20,7 +22,6 @@ container.addEventListener('mousedown', (event) => {
       const containerRect = container.getBoundingClientRect();
       offsetsX[i] = event.clientX - (draggableElements[i].getBoundingClientRect().left - containerRect.left);
       offsetsY[i] = event.clientY - (draggableElements[i].getBoundingClientRect().top - containerRect.top);
-      draggableElements[i].style.cursor = 'grabbing';
       }
     }
 );
@@ -39,7 +40,6 @@ document.addEventListener('mousemove', (event) => {
 document.addEventListener('mouseup', () => {
   isDragging = false;
   for(let i = 0; i < draggableElements.length; i++){
-    draggableElements[i].style.cursor = 'grab';
   }
 });
 
