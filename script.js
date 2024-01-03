@@ -1,31 +1,21 @@
 document.addEventListener("DOMContentLoaded", function() {
-
-    //get data from setup.txt
-    const url = 'setup.txt';
-    let textData;
-    fetch(url)
-    .then(response => response.text())
-    .then((data) => {
-        //extract file names from setup.txt
-        let objectData = data.split(/;\s*/);
-        console.log(objectData);
-        //display svg with extracted names 
-        const svgContainer = document.getElementById("svg-container");
-        for(let i = 0; i < objectData.length; i++){
-            let objectProperty = objectData[i].split(/\s+/);
-            let name = objectProperty[0];
-            let xPos = objectProperty[1];
-            let yPos = objectProperty[2];
-            let width = objectProperty[3];
-            const svgElement = document.createElement("object");
-            svgElement.type = "image/svg+xml";
-            svgElement.data = `maps/${name}`;
-            svgElement.style.left = `${xPos}px`;
-            svgElement.style.top = `${yPos}px`;
-            svgElement.style.width = `${width}px`;
-            console.log(svgElement.style);
-            svgContainer.appendChild(svgElement);
-        }    
+    const apiUrl = "http://127.0.0.1:3000/";
+    fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json'}
     })
-    .catch(error => console.error('error:', error));
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        const resultElement = document.getElementById('result');
+        resultElement.innerHTML = `<p>${JSON.stringify(data.message)}</p>`;
+      })
+      .catch(error => {
+        console.error('Fetch error:', error.message);
+      });
 });
