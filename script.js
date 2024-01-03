@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const apiUrl = "http://127.0.0.1:3000/";
+    const apiUrl = "https://quilled-nervous-leopon.glitch.me/";
     fetch(apiUrl, {
       method: 'POST',
       headers: {
