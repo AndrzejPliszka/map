@@ -1,6 +1,6 @@
-const draggableElements = document.getElementsByTagName("svg");
+const svgElements = document.getElementsByTagName("svg");
 for(let i = 0; i < draggableElements.length; i++){
-  draggableElements[i].addEventListener('click', () => getCountryInfoFromServ(draggableElements[i]));
+  svgElements[i].addEventListener('click', () => getCountryInfoFromServ(svgElements[i]));
 }
 
 
