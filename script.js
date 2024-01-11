@@ -1,9 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
     const apiUrl = "https://quilled-nervous-leopon.glitch.me/";
     fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-      'Content-Type': 'application/json'}
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          tag: "Belgium";  
+        })
     })
       .then(response => {
         if (!response.ok) {
