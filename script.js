@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
         headers: {
           'Content-Type': 'application/json'},
         body: JSON.stringify({
-          tag: "Belgium"
+          tag: "Netherlands"
         })
     })
       .then(response => {
