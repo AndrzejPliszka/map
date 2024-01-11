@@ -1,4 +1,4 @@
-const svgElements = document.getElementsByTagName("svg");
+const svgElements = document.querySelectorAll("svg > g").children;
 for(let i = 0; i < draggableElements.length; i++){
   svgElements[i].addEventListener('click', () => getCountryInfoFromServ(svgElements[i]));
 }
