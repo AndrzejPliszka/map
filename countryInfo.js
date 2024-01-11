@@ -5,6 +5,7 @@ for(let i = 0; i < draggableElements.length; i++){
 
 
 function getCountryInfoFromServ(clickedElement) {
+  console.log(clickedElement);
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/";
   console.log(clickedElement.className);
   fetch(apiUrl, {
