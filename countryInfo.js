@@ -1,10 +1,3 @@
-const svgElements = document.querySelectorAll("svg > g").children;
-for(let i = 0; i < draggableElements.length; i++){
-  console.log(svgElements);
-  svgElements[i].addEventListener('click', () => getCountryInfoFromServ(svgElements[i]));
-}
-
-
 function getCountryInfoFromServ(clickedElement) {
   console.log(clickedElement);
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/";
