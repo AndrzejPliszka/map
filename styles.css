@@ -4,6 +4,7 @@
     border: 2px solid black;
     overflow: hidden;
     position: relative;
+    float: left;
 }
 svg{
     position: absolute;
