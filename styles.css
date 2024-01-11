@@ -1,5 +1,5 @@
 #svg-container{
-    width: 1000px;
+    width: 60%;
     height: 800px;
     border: 2px solid black;
     overflow: hidden;
@@ -18,10 +18,10 @@ svg{
     left: 500px;
     width: 100px;
 }
-#obiekt3{
-    top: 0;
-    left: 0;
-    width: 10000px;
+#historic-info{
+    float: right;
+    width: 35%;
+    border: 1px solid black;
 }
 .Belgium:hover{
     fill: orange;
