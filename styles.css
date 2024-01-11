@@ -22,7 +22,7 @@ svg{
 #historic-info{
     float: right;
     width: 35%;
-    border: 1px solid black;
+    border: 2px solid black;
 }
 .Belgium:hover{
     fill: orange;
