@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return response.json();
       })
       .then(data => {
-        const resultElement = document.getElementById('result');
+        const resultElement = document.getElementById('historic-info');
         resultElement.innerHTML = `<p>${JSON.stringify(data.message)}</p>`;
       })
       .catch(error => {
