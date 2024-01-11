@@ -17,14 +17,14 @@ function getCountryInfoFromServ(clickedElement) {
       return response.json();
     })
     .then(data => {
-      displayCountryInfo()
+      displayCountryInfo(data)
     })
     .catch(error => {
       console.error('Fetch error:', error.message);
     });
 }
 
-function displayCountryInfo(){
+function displayCountryInfo(data){
     const resultElement = document.getElementById('historic-info');
     const info = data.message;
     resultElement.innerHTML = `<h1>${JSON.stringify(info[0].name)}</h1>`;
