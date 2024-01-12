@@ -24,10 +24,8 @@ function getCountryInfoFromServ(clickedElement) {
 }
 
 function displayCountryInfo(data){
-    console.log(data.message);
-  console.log(JSON.parse(data.message));
     const resultElement = document.getElementById('historic-info');
-    const info = JSON.parse(data.message);
+    const info = data.message;
     console.log(info);
     resultElement.innerHTML = `<h1>${JSON.stringify(info[0].name)}</h1>`;
 }
