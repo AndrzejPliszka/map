@@ -6,7 +6,7 @@ function getCountryInfoFromServ(clickedElement) {
       headers: {
         'Content-Type': 'application/json'},
       body: JSON.stringify({
-        tag: `${clickedElement.className}`
+        tag: `${clickedElement.className.baseVal}`
       })
   })
     .then(response => {
