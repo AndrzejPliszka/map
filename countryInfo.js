@@ -27,7 +27,7 @@ function displayCountryInfo(data){
     const resultElement = document.getElementById('historic-info');
     const info = data.message;
     const graphicsUrl = "https://cdn.glitch.global/ba2d6357-bf92-45f0-aa0b-d4c301cb3d49";
-    console.log(info);
+    console.log("no  nie");
     resultElement.innerHTML = `<div id="country-name">
             <h1>${info[0].name}</h1>
             <h2>${info[0].native_name}</h2>
