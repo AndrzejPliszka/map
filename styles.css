@@ -23,7 +23,15 @@ svg{
     float: right;
     width: 35%;
     border: 2px solid black;
+    text-align: center;
+}
+#political-system, #national-symbols{
+    display: flex;
+    justify-content:space-evenly;
 }
 .Belgium:hover{
     fill: orange;
+}
+img{
+    height: 100px;
 }
