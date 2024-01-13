@@ -26,6 +26,7 @@ function getCountryInfoFromServ(clickedElement) {
 function displayCountryInfo(data){
     const resultElement = document.getElementById('historic-info');
     const info = data.message;
+    const graphicsUrl = "https://cdn.glitch.global/ba2d6357-bf92-45f0-aa0b-d4c301cb3d49";
     console.log(info);
     resultElement.innerHTML = `<div id="country-name">
             <h1>${info[0].name}</h1>
@@ -34,7 +35,7 @@ function displayCountryInfo(data){
         <hr>
         <div id="national-symbols">
             <div id="flag">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg">
+                <img src="${graphicsUrl}/${info[0].tag}_Flag.png">
                 <p>Flag (placeholder)</p>
             </div>
             <div id="coat">
@@ -59,7 +60,7 @@ function displayCountryInfo(data){
             </div>
             <div id="secondary-leader">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Pieter_Cort_van_der_Linden.jpg"><br>
-                <p>${info[0].secondary_leader_position}<br>${info[0].secondary_leader_name}</p>
+                <p>${info[0].second_leader_position}<br>${info[0].second_leader_name}</p>
                 
             </div>
             <div id="parliament">
