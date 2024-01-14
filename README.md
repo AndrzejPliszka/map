@@ -4,4 +4,5 @@ If you:<br>
 -Know some editing tricks to make my videos decent<br>
 -Found a bug (somehow)<br>
 -Or want to ask me question/help me<br>
-Contact \_gnom\_ on discord
+I will be very gratefull if you<br>
+contact \_gnom\_ on discord
