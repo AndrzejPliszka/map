@@ -1,7 +1,7 @@
-Hi welcome to my project.
-If you:
--See some inefficient or bad code
--Know some editing tricks to make my videos decent
--Found a bug (somehow)
--Or want to ask me question/somehow help me
-Contact _gnom_ on discord
+Hi welcome to my project.<br>
+If you:<br>
+-See some inefficient or bad code<br>
+-Know some editing tricks to make my videos decent<br>
+-Found a bug (somehow)<br>
+-Or want to ask me question/help me<br>
+Contact \_gnom\_ on discord
