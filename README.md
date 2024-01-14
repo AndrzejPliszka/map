@@ -5,4 +5,5 @@ If you:<br>
 -Found a bug (somehow)<br>
 -Or want to ask me question/help me<br>
 I will be very gratefull if you<br>
-contact \_gnom\_ on discord
+contact me on discord. Tag: \_gnom\_
+
