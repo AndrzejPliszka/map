@@ -7,7 +7,6 @@ function initializeMapManager(){
   for(let i = 0; i < draggableElements.length; i++){
     offsetsX.push("");
     offsetsY.push("");
-    draggableElements[i].addEventListener('click', () => registerClick(i));
 };
   
 initializeMapManager();
