@@ -1,19 +1,16 @@
-const draggableElements = document.querySelectorAll('svg');
-var container = document.getElementById('svg-container');
-let isDragging = false;
-let offsetsX = [], offsetsY = [];
-let zoomLevel = 1;
-
-for(let i = 0; i < draggableElements.length; i++){
-  offsetsX.push("");
-  offsetsY.push("");
-  console.log(draggableElements[i])
-  draggableElements[i].addEventListener('click', () => registerClick(i));
+function initializeMapManager(){
+  const draggableElements = document.querySelectorAll('svg');
+  var container = document.getElementById('svg-container');
+  let isDragging = false;
+  let offsetsX = [], offsetsY = [];
+  let zoomLevel = 1;
+  for(let i = 0; i < draggableElements.length; i++){
+    offsetsX.push("");
+    offsetsY.push("");
+    draggableElements[i].addEventListener('click', () => registerClick(i));
 }
-
-function registerClick(index){
-  console.log(`Kliknięto obiekt o indeksie ${index}`);
-}
+  
+initializeMapManager()
 
 container.addEventListener('mousedown', (event) => {
   console.log('test czy moge kliknac na kontener');
