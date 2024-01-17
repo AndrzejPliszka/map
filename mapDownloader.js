@@ -27,5 +27,5 @@ function displayMap(data){
     const resultElement = document.getElementById('svg-container');
     const info = data.message;
     console.log(info);
-    resultElement.InnerHtml = info[0].svg_code;
+    resultElement.InnerHTML = info[0].svg_code;
 }
