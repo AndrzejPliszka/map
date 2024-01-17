@@ -28,5 +28,5 @@ function displayMap(data){
     const info = data.message;
     console.log(info[0].svg_code);
     console.log(resultElement)
-    resultElement.InnerHTML = info[0].svg_code;
+    resultElement.innerHTML = info[0].svg_code;
 }
