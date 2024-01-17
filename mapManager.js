@@ -8,9 +8,9 @@ function initializeMapManager(){
     offsetsX.push("");
     offsetsY.push("");
     draggableElements[i].addEventListener('click', () => registerClick(i));
-}
+};
   
-initializeMapManager()
+initializeMapManager();
 
 container.addEventListener('mousedown', (event) => {
   console.log('test czy moge kliknac na kontener');
@@ -73,3 +73,4 @@ container.addEventListener('wheel', (e) => {
   }
   
 });
+}
