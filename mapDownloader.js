@@ -1,4 +1,5 @@
 function downloadMap(date) {
+  console.log("downloadingMap has begun")
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-map";
   fetch(apiUrl, {
       method: 'POST',
