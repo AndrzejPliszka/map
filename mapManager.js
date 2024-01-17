@@ -8,8 +8,6 @@ function initializeMapManager(){
     offsetsX.push("");
     offsetsY.push("");
 };
-  
-initializeMapManager();
 
 container.addEventListener('mousedown', (event) => {
   console.log('test czy moge kliknac na kontener');
