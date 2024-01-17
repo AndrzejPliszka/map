@@ -1,12 +1,11 @@
-function downloadMap(clickedElement) {
+function downloadMap(date) {
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-map";
-  console.log(clickedElement.className);
   fetch(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'},
       body: JSON.stringify({
-        map: `1914-06-28`
+        date: `${date}`
       })
   })
     .then(response => {
