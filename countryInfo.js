@@ -1,5 +1,5 @@
 function getCountryInfoFromServ(clickedElement) {
-  const apiUrl = "https://quilled-nervous-leopon.glitch.me/";
+  const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-country-data";
   console.log(clickedElement.className);
   fetch(apiUrl, {
       method: 'POST',
