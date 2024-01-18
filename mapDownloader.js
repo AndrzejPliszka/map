@@ -25,10 +25,11 @@ function downloadMap(date) {
 
 function displayMap(data){
     const resultElement = document.getElementById('svg-container');
-    const info = data.message;
+    const svgMaps = data.svg_maps;
     resultElement.innerHTML = "";
-    for(let i = 0; i < info.length; i++){
-      resultElement.insertAdjacentHTML('beforeend', info[i].svg_code);
+    for(let i = 0; i < svgMaps.length; i++){
+      let test = resultElement.insertAdjacentHTML('beforeend', info[i].svg_code);
+      console.log(test)
     }
     
     initializeMapManager()
