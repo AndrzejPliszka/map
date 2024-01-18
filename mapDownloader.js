@@ -30,7 +30,7 @@ function displayMap(data){
     resultElement.innerHTML = "";
     for(let i = 0; i < svgMaps.length; i++){
     const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "span");
-    svgElement.innerHTML = info[i].svg_code;
+    svgElement.innerHTML = svgMaps[i].svg_code;
     resultElement.appendChild(svgElement);
       
     }
