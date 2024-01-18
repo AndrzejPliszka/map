@@ -28,7 +28,7 @@ function displayMap(data){
     const info = data.message;
     resultElement.innerHTML = "";
     for(let i = 0; i < info.length; i++){
-      resultElement.appendChild(info[i].svg_code);
+      resultElement.insertAdjacentHTML('beforeend', info[i].svg_code);
     }
     
     initializeMapManager()
