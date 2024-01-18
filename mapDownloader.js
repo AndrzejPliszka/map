@@ -29,7 +29,7 @@ function displayMap(data){
     console.log(svgMaps);
     resultElement.innerHTML = "";
     for(let i = 0; i < svgMaps.length; i++){
-      let test = resultElement.insertAdjacentHTML('beforeend', svgmaps[i].svg_code);
+      let test = resultElement.insertAdjacentHTML('beforeend', svgMaps[i].svg_code);
       console.log(test)
     }
     
