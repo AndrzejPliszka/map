@@ -26,6 +26,10 @@ function downloadMap(date) {
 function displayMap(data){
     const resultElement = document.getElementById('svg-container');
     const info = data.message;
-    resultElement.innerHTML = info[0].svg_code;
+    resultElement.innerHTML = "";
+    for(let i = 0; i < info.length; i++){
+      resultElement.appendChild(info[i].svg_code);
+    }
+    
     initializeMapManager()
 }
