@@ -29,10 +29,8 @@ function displayMap(data){
     console.log(svgMaps);
     resultElement.innerHTML = "";
     for(let i = 0; i < svgMaps.length; i++){
-    const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "span");
-    svgElement.innerHTML = svgMaps[i].svg_code;
-    resultElement.appendChild(svgElement);
-      
+      resultElement.insertAdjacentHTML('beforeend', svgMaps[i].svg_code);
+      console.log(resultElement.lastElementChild);
     }
     
     initializeMapManager()
