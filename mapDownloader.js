@@ -25,7 +25,13 @@ function downloadMap() {
 
 function displayMap(data){
     const resultElement = document.getElementById('svg-container');
-    resultElement.innerHTML = JSON.stringify(data);
+    for(let i = 0; i < data.tag.length; i++){
+      resultElement.insertAdjacentHTML('beforeend', data.svg_code[i]);
+      let svgElement = resultElement.lastChild();
+      svgElement.style.left = data.x_pos[i];
+      svgElement.style.top = data.y_pos[i];
+      svgElement.style.width = data.width[i];
+    }
     
     initializeMapManager()
 }
