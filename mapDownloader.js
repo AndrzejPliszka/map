@@ -1,4 +1,4 @@
-function downloadMap(date) {
+function downloadMap() {
   console.log("downloadingMap has begun")
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-map";
   fetch(apiUrl, {
@@ -6,7 +6,7 @@ function downloadMap(date) {
       headers: {
         'Content-Type': 'application/json'},
       body: JSON.stringify({
-        date: `${date}`
+        date: `${"1914-06-28"}`
       })
   })
     .then(response => {
