@@ -25,17 +25,7 @@ function downloadMap(date) {
 
 function displayMap(data){
     const resultElement = document.getElementById('svg-container');
-    const svgMaps = data.svg_maps;
-    const mapTags = data.tag_info;
-    console.log(svgMaps);
-    resultElement.innerHTML = "";
-    for(let i = 0; i < svgMaps.length; i++){
-      let countryTag = svgMaps[i].map_tag;
-      resultElement.insertAdjacentHTML('beforeend', svgMaps[i].svg_code);
-      resultElement.lastChild.style.left = mapTags[1-i].x_pos;
-      resultElement.lastChild.style.top = mapTags[1-i].y_pos;
-      resultElement.lastChild.style.width = mapTags[1-i].width;
-    }
+    resultElement.innerHTML = JSON.stringify(data);
     
     initializeMapManager()
 }
