@@ -32,7 +32,7 @@ function displayMap(data){
       let svgElement = resultElement.lastChild;
       svgElement.style.left = data.x_pos[i];
       svgElement.style.top = data.y_pos[i];
-      svgElement.style.width = data.width[i];
+      svgElement.style.width = `${data.width[i] * zoomLevel}px`;
     }
     
     initializeMapManager()
