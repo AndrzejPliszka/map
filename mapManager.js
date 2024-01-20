@@ -1,16 +1,16 @@
+let offsetsX = [], offsetsY = [];
+let zoomLevel = 1;
+for(let i = 0; i < draggableElements.length; i++){
+    offsetsX.push("");
+    offsetsY.push("");
+  
 function initializeMapManager(){
   const draggableElements = document.querySelectorAll('svg');
   var container = document.getElementById('svg-container');
   let isDragging = false;
-  let offsetsX = [], offsetsY = [];
-  let zoomLevel = 1;
-  for(let i = 0; i < draggableElements.length; i++){
-    offsetsX.push("");
-    offsetsY.push("");
 };
 
 container.addEventListener('mousedown', (event) => {
-  console.log('test czy moge kliknac na kontener');
     isDragging = true;
     for(let i = 0; i < draggableElements.length; i++){
       const containerRect = container.getBoundingClientRect();
