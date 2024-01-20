@@ -3,7 +3,7 @@ function changeTime(time_amount, should_increase){
   let date = new Date(dateObject.value);
   switch(time_amount){
       case "day":
-        date = should_increase ? date.setDate(date.getDate() + 1) : date.setDate(date.getDate() - 1);
+        should_increase ? date.setDate(date.getDate() + 1) : date.setDate(date.getDate() - 1);
         break;
   }
   dateObject.value = date.toISOString().slice(0, 10);
