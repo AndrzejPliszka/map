@@ -1,12 +1,13 @@
 function downloadMap() {
   console.log("downloadingMap has begun")
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-map";
+  const date = document.getElementById("date_input").value;
   fetch(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'},
       body: JSON.stringify({
-        date: `${"1914-06-28"}`
+        date: date
       })
   })
     .then(response => {
