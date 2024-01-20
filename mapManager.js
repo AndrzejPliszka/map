@@ -29,7 +29,6 @@ document.addEventListener('mousemove', (event) => {
       draggableElements[i].style.top = `${y}px`;
     }
   }
-    console.log(offsetsX, offsetsY);
 });
 
 document.addEventListener('mouseup', () => {
