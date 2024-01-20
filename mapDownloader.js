@@ -26,9 +26,15 @@ function downloadMap() {
 
 function displayMap(data){
     const resultElement = document.getElementById('svg-container');
+    if(resultElement.firstChild){
+      let offsetX = resultElement.getBoundingClientRect().firstChild.left;
+      let offsetY = resultElement.getBoundingClientRect().firstChild.top;
+    }
+    else{
+      let offsetX = 0;
+      let offsetY = 0;
+    }
     
-    let offsetX = resultElement.firstChild.style.left;
-    let offsetY = resultElement.firstChild.style.top;
     resultElement.innerHTML = "";
     for(let i = 0; i < data.tag.length; i++){
       resultElement.insertAdjacentHTML('beforeend', data.svg_code[i]);
