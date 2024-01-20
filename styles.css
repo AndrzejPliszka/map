@@ -29,6 +29,10 @@ svg{
     display: flex;
     justify-content:space-evenly;
 }
+#settings{
+    border: 1px solid black;
+    clear: both;
+}
 .Belgium:hover{
     fill: orange;
 }
