@@ -11,3 +11,12 @@ function changeTime(time_amount, should_increase){
   
   console.log(time_amount, should_increase);
 }
+
+document.addEventListener("keydown", (event) => {
+  if(event.keyCode === 39){
+    changeTime("day", true);
+  }
+  if(event.keyCode === 37){
+    changeTime("day", false);
+  }
+});
