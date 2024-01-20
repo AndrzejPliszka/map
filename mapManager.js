@@ -1,10 +1,10 @@
+let zoomLevel = 1;
 
 function initializeMapManager(){
   const draggableElements = document.querySelectorAll('svg');
   var container = document.getElementById('svg-container');
   let isDragging = false;
   let offsetsX = [], offsetsY = [];
-  let zoomLevel = 1;
   for(let i = 0; i <  document.querySelectorAll('svg').length; i++){
       offsetsX.push("");
       offsetsY.push("");
