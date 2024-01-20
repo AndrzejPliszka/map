@@ -26,14 +26,17 @@ function downloadMap() {
 
 function displayMap(data){
     const resultElement = document.getElementById('svg-container');
+    
+    let offsetX = resultElement.firstChild.style.left;
+    let offsetY = resultElement.firstChild.style.top;
     resultElement.innerHTML = "";
     for(let i = 0; i < data.tag.length; i++){
       resultElement.insertAdjacentHTML('beforeend', data.svg_code[i]);
       let svgElement = resultElement.lastChild;
-      svgElement.style.left = data.x_pos[i];
-      svgElement.style.top = data.y_pos[i];
+      svgElement.style.left = `${data.x_pos[i] + offsetX}`;
+      svgElement.style.top = `${data.y_pos[i] + offsetY}`;
       console.log(data.width[i] * zoomLevel, zoomLevel);
-      svgElement.style.width = `${data.width[i] * zoomLevel}px`;
+      svgElement.style.width = data.width[i];
     }
     
     initializeMapManager()
