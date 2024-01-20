@@ -1,6 +1,6 @@
 let offsetsX = [], offsetsY = [];
 let zoomLevel = 1;
-for(let i = 0; i < draggableElements.length; i++){
+for(let i = 0; i <  document.querySelectorAll('svg').length; i++){
     offsetsX.push("");
     offsetsY.push("");
   
