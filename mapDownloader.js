@@ -27,8 +27,8 @@ function downloadMap() {
 function displayMap(data){
     const resultElement = document.getElementById('svg-container');
     if(resultElement.firstChild){
-      let offsetX = resultElement.firstChild.getBoundingClientRect().left;
-      let offsetY = resultElement.firstChild.getBoundingClientRect().top;
+      let offsetX = getComputedStyle(resultElement.firstChild).left;
+      let offsetY = getComputedStyle(resultElement.firstChild).right;
     }
     else{
       let offsetX = 0;
