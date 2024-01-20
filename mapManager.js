@@ -67,6 +67,8 @@ container.addEventListener('wheel', (e) => {
 
     draggableElements[i].style.left = `${newLeft}px`;
     draggableElements[i].style.top = `${newTop}px`;
+
+    console.log(zoomLevel)
   }
   
 });
