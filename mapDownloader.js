@@ -26,13 +26,14 @@ function downloadMap() {
 
 function displayMap(data){
     const resultElement = document.getElementById('svg-container');
+      let offsetX, offsetY;
     if(resultElement.firstChild){
-      let offsetX = 0;
-      let offsetY = 0;
+      offsetX = 0;
+      offsetY = 0;
     }
     else{
-      let offsetX = 0;
-      let offsetY = 0;
+      offsetX = 0;
+      offsetY = 0;
     }
     
     resultElement.innerHTML = "";
