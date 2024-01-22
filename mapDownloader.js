@@ -28,8 +28,8 @@ function displayMap(data){
     const resultElement = document.getElementById('svg-container');
       let offsetX, offsetY;
     if(resultElement.firstChild){
-      offsetX = 0;
-      offsetY = 0;
+      offsetX = resultElement.firstChild.offsetLeft;
+      offsetY = resultElement.firstChild.offsetTop;
     }
     else{
       offsetX = 0;
