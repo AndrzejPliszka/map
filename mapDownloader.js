@@ -26,15 +26,17 @@ function downloadMap() {
 
 function displayMap(data){
     const resultElement = document.getElementById('svg-container');
-      let offsetX, offsetY;
+      let offsetX, offsetY, widthOffset;
     console.log(resultElement.firstElementChild);
     if(resultElement.firstElementChild){
       offsetX = (resultElement.firstElementChild.getBoundingClientRect().left - resultElement.getBoundingClientRect().left);
       offsetY = (resultElement.firstElementChild.getBoundingClientRect().top - resultElement.getBoundingClientRect().top);
+      widthOffset = resultElement.firstElementChild.style.width / Number(data.width[0]);
     }
     else{
       offsetX = 0;
       offsetY = 0;
+      widthOffset = 1;
     }
     console.log(offsetX, offsetY);
     resultElement.innerHTML = "";
@@ -45,7 +47,7 @@ function displayMap(data){
       console.log(data.x_pos[i] + offsetX, data.x_pos[i], offsetX);
       svgElement.style.top = `${Number(data.y_pos[i]) + offsetY}px`;
       console.log(data.width[i] * zoomLevel, zoomLevel);
-      svgElement.style.width = data.width[i];
+      svgElement.style.width = `${data.width[i] * widthOffset}`;
     }
     
     initializeMapManager()
