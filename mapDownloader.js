@@ -27,6 +27,7 @@ function downloadMap() {
 function displayMap(data){
     const resultElement = document.getElementById('svg-container');
       let offsetX, offsetY;
+    console.log(resultElement.firstChild);
     if(resultElement.firstChild){
       offsetX = resultElement.firstChild.offsetLeft;
       offsetY = resultElement.firstChild.offsetTop;
