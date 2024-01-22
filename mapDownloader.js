@@ -50,7 +50,7 @@ function displayMap(data){
       svgElement.style.top = `${Number(data.y_pos[i]) + offsetY}px`;
       console.log(data.width[i] * zoomLevel, zoomLevel);
       svgElement.style.width = `${data.width[i] * widthOffset}px`;
-      console.log(`${data.width[i] * widthOffset}px`;
+      console.log(`${data.width[i] * widthOffset}px`);
     }
     
     initializeMapManager()
