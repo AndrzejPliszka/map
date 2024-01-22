@@ -14,8 +14,8 @@ container.addEventListener('mousedown', (event) => {
     isDragging = true;
     for(let i = 0; i < draggableElements.length; i++){
       const containerRect = container.getBoundingClientRect();
-      offsetsX[i] = event.clientX - (draggableElements[i].getBoundingClientRect().left - containerRect.left);
-      offsetsY[i] = event.clientY - (draggableElements[i].getBoundingClientRect().top - containerRect.top);
+      offsetsX[i] = event.clientX - (draggableElements[i].getBoundingClientRect().left - containerRect.left - 2);
+      offsetsY[i] = event.clientY - (draggableElements[i].getBoundingClientRect().top - containerRect.top - 2);
       }
     }
 );
