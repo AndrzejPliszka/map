@@ -28,9 +28,9 @@ function displayMap(data){
     const resultElement = document.getElementById('svg-container');
       let offsetX, offsetY;
     console.log(resultElement.firstElementChild);
-    if(resultElement.firstChild){
-      offsetX = resultElement.firstElementChild.offsetLeft;
-      offsetY = resultElement.firstElementChild.offsetTop;
+    if(resultElement.firstElementChild){
+      offsetX = resultElement.firstElementChild.getBoundingClientRect().left;
+      offsetY = resultElement.firstElementChild.getBoundingClientRect().top;
     }
     else{
       offsetX = 0;
