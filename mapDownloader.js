@@ -44,9 +44,9 @@ function displayMap(data){
     for(let i = 0; i < data.tag.length; i++){
       resultElement.insertAdjacentHTML('beforeend', data.svg_code[i]);
       let svgElement = resultElement.lastChild;
-      svgElement.style.left = `${Number(data.x_pos[i]) + offsetX}px`;
+      svgElement.style.left = `${Number(data.x_pos[i])*widthOffset + offsetX}px`;
       console.log(data.x_pos[i] + offsetX, data.x_pos[i], offsetX);
-      svgElement.style.top = `${Number(data.y_pos[i]) + offsetY}px`;
+      svgElement.style.top = `${Number(data.y_pos[i])*widthOffset + offsetY}px`;
       svgElement.style.width = `${data.width[i] * widthOffset}px`;
       console.log(`${data.width[i] * widthOffset}px`);
     }
