@@ -31,8 +31,7 @@ function displayMap(data){
     if(resultElement.firstElementChild){
       offsetX = (resultElement.firstElementChild.getBoundingClientRect().left - resultElement.getBoundingClientRect().left);
       offsetY = (resultElement.firstElementChild.getBoundingClientRect().top - resultElement.getBoundingClientRect().top);
-      widthOffset = resultElement.firstElementChild.style.width / Number(data.width[0]);
-      console.log(resultElement.firstElementChild,resultElement.firstElementChild.style, resultElement.firstElementChild.style.width, Number(data.width[0]))
+      widthOffset = resultElement.firstElementChild.getBoundingClientRect().width / Number(data.width[0]);
       console.log(widthOffset)
     }
     else{
