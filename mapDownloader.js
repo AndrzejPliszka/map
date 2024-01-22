@@ -29,8 +29,8 @@ function displayMap(data){
       let offsetX, offsetY;
     console.log(resultElement.firstElementChild);
     if(resultElement.firstElementChild){
-      offsetX = resultElement.firstElementChild.getBoundingClientRect().left;
-      offsetY = resultElement.firstElementChild.getBoundingClientRect().top;
+      offsetX = (resultElement.firstElementChild.getBoundingClientRect().left - resultElement.getBoundingClientRect().left);
+      offsetY = (resultElement.firstElementChild.getBoundingClientRect().top - resultElement.getBoundingClientRect().top);
     }
     else{
       offsetX = 0;
