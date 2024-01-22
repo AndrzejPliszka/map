@@ -35,12 +35,13 @@ function displayMap(data){
       offsetX = 0;
       offsetY = 0;
     }
-    
+    console.log(offsetX, offsetY);
     resultElement.innerHTML = "";
     for(let i = 0; i < data.tag.length; i++){
       resultElement.insertAdjacentHTML('beforeend', data.svg_code[i]);
       let svgElement = resultElement.lastChild;
       svgElement.style.left = `${Number(data.x_pos[i]) + offsetY}px`;
+      console.log(data.x_pos[i] + offsetY, data.x_pos[i], offsetY);
       svgElement.style.top = `${Number(data.y_pos[i]) + offsetX}px`;
       console.log(data.width[i] * zoomLevel, zoomLevel);
       svgElement.style.width = data.width[i];
