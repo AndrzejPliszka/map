@@ -32,7 +32,7 @@ function displayMap(data){
       offsetX = (resultElement.firstElementChild.getBoundingClientRect().left - resultElement.getBoundingClientRect().left);
       offsetY = (resultElement.firstElementChild.getBoundingClientRect().top - resultElement.getBoundingClientRect().top);
       widthOffset = resultElement.firstElementChild.style.width / Number(data.width[0]);
-      console.log(resultElement.firstElementChild.style.width, Number(data.width[0]))
+      console.log(resultElement.firstElementChild,resultElement.firstElementChild.style, resultElement.firstElementChild.style.width, Number(data.width[0]))
       console.log(widthOffset)
     }
     else{
@@ -48,7 +48,6 @@ function displayMap(data){
       svgElement.style.left = `${Number(data.x_pos[i]) + offsetX}px`;
       console.log(data.x_pos[i] + offsetX, data.x_pos[i], offsetX);
       svgElement.style.top = `${Number(data.y_pos[i]) + offsetY}px`;
-      console.log(data.width[i] * zoomLevel, zoomLevel);
       svgElement.style.width = `${data.width[i] * widthOffset}px`;
       console.log(`${data.width[i] * widthOffset}px`);
     }
