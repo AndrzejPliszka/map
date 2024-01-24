@@ -1,4 +1,6 @@
+let currentlyClickedCountry = "None";
 function getCountryInfoFromServ(clickedElement) {
+  currentlyClickedCountry = clickedElement.className.baseVal;
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-country-data";
   console.log(clickedElement.className);
   fetch(apiUrl, {
