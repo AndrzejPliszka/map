@@ -51,21 +51,21 @@ function displayCountryInfo(data){
             <p>Anthem "${info.anthem}"  (does not come from serv)</p>
         </div>
         <hr>
-        <h3>${info[0].goverment_type}</h3>
+        <h3>${info.goverment_type}</h3>
         <div id="political-system">
             <div id="leader">
                 <img src="${graphicsUrl}/${info.tag}_Leader.png"><br>
-                <p>${info[0].leader_position}<br>${info.leader_name}</p>
+                <p>${info.leader_position}<br>${info.leader_name}</p>
                 
             </div>
             <div id="secondary-leader">
                 <img src="${graphicsUrl}/${info.tag}_SecondLeader.png"><br>
-                <p>${info[0].second_leader_position}<br>${info.second_leader_name}</p>
+                <p>${info.second_leader_position}<br>${info.second_leader_name}</p>
                 
             </div>
             <div id="parliament">
                 <img src="${graphicsUrl}/${info.tag}_Parliament.png"><br>
-                <p>${info[0].parlament}</p>
+                <p>${info.parlament}</p>
             </div>
         </div>
         <hr>
