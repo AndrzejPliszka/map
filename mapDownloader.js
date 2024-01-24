@@ -52,4 +52,5 @@ function displayMap(data){
     }
     
     initializeMapManager()
+    getCountryInfoFromServ(document.getElementsByClassName(currentlyClickedCountry)[0])
 }
