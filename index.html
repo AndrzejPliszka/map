@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hosted Map</title>
     <link rel="stylesheet" href="styles.css">
     <script src="mapDownloader.js"></script>
 </head>
 <body onload='downloadMap("1914-06-28")'>
     <h1>Github pages test</h1>
     <div id="svg-container"></div>
-    <div id="historic-info">note  that I am using free server, so if you click <br> and nothing happenes it is because server did not turned on yet. If you wait 5-10 seconds <br> and restart website it should load, but if not here is link to server <br> (if you see cannot get / go back to website everything should work): <br>  https://quilled-nervous-leopon.glitch.me<br>  </div>
+    <div id="historic-info">note  that I am using free server, so if you click <br> and nothing happenes it is because server did not turned on yet. If you wait 5-10 seconds <br> and restart website it should load, but if not here is link to server <br> (if you see cannot get / go back to website everything should work): <br>  https://quilled-nervous-leopon.glitch.me<br>  
+        <div id="buttons">
+            <input type="button" value="Current Events" class="active"/>
+            <input type="button" value="Country Description"/>
+            <input type="button" value="Country Info"/>
+        </div>
+    </div>
     <br><div id="settings">
         <input type="button" value="<=" onclick="changeTime('day', false)">
         <input id="date_input" type="text" value="1914-06-28" placeholder="RRRR-MM-DD" onchange=downloadMap()>
