@@ -1,7 +1,7 @@
 let currentlyClickedCountry = undefined;
 console.log("czy nas slyszycie")
 function getCountryInfoFromServ(clickedElement) {
-  typeof clickedElement == "undefined" ? clickedElement = currentlyClickedCountry;
+  typeof clickedElement == "undefined" ? clickedElement = currentlyClickedCountry : null;
   currentlyClickedCountry = clickedElement;
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-country-data";
   fetch(apiUrl, {
