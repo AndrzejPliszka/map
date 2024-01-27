@@ -1,8 +1,10 @@
 let currentlyClickedCountry = undefined;
-console.log("czy nas slyszycie")
+
 function getCountryInfoFromServ(clickedElement) {
+  console.log(currentlyClickedCountry);
   typeof clickedElement == "undefined" ? clickedElement = currentlyClickedCountry : null;
   currentlyClickedCountry = clickedElement;
+  console.log(currentlyClickedCountry);
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-country-info";
   fetch(apiUrl, {
       method: 'POST',
@@ -83,6 +85,7 @@ function displayCountryInfo(data){
 
 
 function getCountryDescription(){
+  console.log(currentlyClickedCountry);
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-country-description";
   fetch(apiUrl, {
       method: 'POST',
