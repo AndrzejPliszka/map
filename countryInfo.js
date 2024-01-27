@@ -1,7 +1,7 @@
-let currentlyClickedCountry = "None";
+let currentlyClickedCountry = undefined;
 function getCountryInfoFromServ(clickedElement) {
   typeof clickedElement == "undefined" ? clickedElement = currentlyClickedCountry;
-  currentlyClickedCountry = clickedElement.className.baseVal;
+  currentlyClickedCountry = clickedElement;
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-country-data";
   fetch(apiUrl, {
       method: 'POST',
