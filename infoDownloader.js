@@ -83,15 +83,13 @@ function displayCountryInfo(data){
 
 
 function getCountryDescription(){
-  typeof clickedElement == "undefined" ? clickedElement = currentlyClickedCountry : null;
-  currentlyClickedCountry = clickedElement;
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-country-description";
   fetch(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'},
       body: JSON.stringify({
-        tag: `${clickedElement.className.baseVal}`,
+        tag: `${currentlyClickedCountry.className.baseVal}`,
         date: `${document.getElementById("date_input").value}`
       })
   })
