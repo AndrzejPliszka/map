@@ -3,7 +3,7 @@ console.log("czy nas slyszycie")
 function getCountryInfoFromServ(clickedElement) {
   typeof clickedElement == "undefined" ? clickedElement = currentlyClickedCountry : null;
   currentlyClickedCountry = clickedElement;
-  const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-country-data";
+  const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-country-info";
   fetch(apiUrl, {
       method: 'POST',
       headers: {
@@ -83,6 +83,34 @@ function displayCountryInfo(data){
 
 
 function getCountryDescription(){
+  typeof clickedElement == "undefined" ? clickedElement = currentlyClickedCountry : null;
+  currentlyClickedCountry = clickedElement;
+  const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-country-description";
+  fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        tag: `${clickedElement.className.baseVal}`,
+        date: `${document.getElementById("date_input").value}`
+      })
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      document.getElementById('historic-info').innerHTML = data.message.description;
+    })
+    .catch(error => {
+      console.error('Fetch error:', error.message);
+    });
+}
+
+function getWorldEvents(){
   const resultElement = document.getElementById('historic-info');
   resultElement.innerHTML = "";
 }
+
