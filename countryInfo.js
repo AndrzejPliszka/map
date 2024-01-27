@@ -1,4 +1,5 @@
 let currentlyClickedCountry = undefined;
+console.log("czy nas slyszycie")
 function getCountryInfoFromServ(clickedElement) {
   typeof clickedElement == "undefined" ? clickedElement = currentlyClickedCountry;
   currentlyClickedCountry = clickedElement;
