@@ -79,3 +79,9 @@ function displayCountryInfo(data){
         
     </div>`;
 }
+
+
+function getCountryDescription(){
+  const resultElement = document.getElementById('historic-info');
+  resultElement.innerHTML = "";
+}
