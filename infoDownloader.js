@@ -128,7 +128,7 @@ function getWorldEvents(){
     })
     .then(data => {
       console.log(data.battles)
-      console.log(date.wars)
+      console.log(data.wars)
       document.getElementById('historic-info').innerHTML = `
         <h2>Current Events:</h2>
         <li><ul>${data.events.join("</ul><ul>")}</ul></li>
