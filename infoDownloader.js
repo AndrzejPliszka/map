@@ -3,7 +3,10 @@ let currentlyClickedCountry = undefined;
 function getCountryInfoFromServ(clickedElement) {
   console.log(currentlyClickedCountry);
   typeof clickedElement == "undefined" ? clickedElement = currentlyClickedCountry : currentlyClickedCountry = clickedElement;
-  if(currentlyClickedCountry == undefined) {getWorldEvents(); break;}
+  if(currentlyClickedCountry == undefined) {
+    getWorldEvents(); 
+    return 0;
+  }
   console.log(currentlyClickedCountry);
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-country-info";
   fetch(apiUrl, {
@@ -87,7 +90,10 @@ function displayCountryInfo(data){
 
 function getCountryDescription(){
   console.log(currentlyClickedCountry);
-  f(currentlyClickedCountry == undefined) {getWorldEvents(); break;}
+  if(currentlyClickedCountry == undefined) {
+    getWorldEvents(); 
+    return 0;
+  }
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-country-description";
   fetch(apiUrl, {
       method: 'POST',
