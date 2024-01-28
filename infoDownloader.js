@@ -22,7 +22,8 @@ function getCountryInfoFromServ(clickedElement) {
       return response.json();
     })
     .then(data => {
-      displayCountryInfo(data)
+      data.message.length !== 0 ? displayCountryInfo(data) : getCountryDescription();
+      
     })
     .catch(error => {
       console.error('Fetch error:', error.message);
@@ -103,7 +104,7 @@ function getCountryDescription(){
       return response.json();
     })
     .then(data => {
-      document.getElementById('historic-info').innerHTML = data.message.description;
+      data.message.length !== 0 ? document.getElementById('historic-info').innerHTML = data.message.description : getWorldEvents();
     })
     .catch(error => {
       console.error('Fetch error:', error.message);
