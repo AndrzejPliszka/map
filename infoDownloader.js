@@ -127,7 +127,9 @@ function getWorldEvents(){
       return response.json();
     })
     .then(data => {
-      document.getElementById('historic-info').innerHTML = data.events;
+      document.getElementById('historic-info').innerHTML = `
+        <h2>Current Events:</h2>
+        <li><ul>${data.events.join("</ul><ul>")}</ul></li>`
     })
     .catch(error => {
       console.error('Fetch error:', error.message);
