@@ -127,9 +127,17 @@ function getWorldEvents(){
       return response.json();
     })
     .then(data => {
+      console.log(data.battles)
+      console.log(date.wars)
       document.getElementById('historic-info').innerHTML = `
         <h2>Current Events:</h2>
-        <li><ul>${data.events.join("</ul><ul>")}</ul></li>`
+        <li><ul>${data.events.join("</ul><ul>")}</ul></li>
+        <hr>
+        <h2>Current Battles</h2><br>
+        ${data.battles}
+        <hr>
+        <h2>Current Wars</h2><br>
+        ${data.wars}`
     })
     .catch(error => {
       console.error('Fetch error:', error.message);
