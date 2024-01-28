@@ -25,7 +25,7 @@ function getCountryInfoFromServ(clickedElement) {
       return response.json();
     })
     .then(data => {
-      data.message.length !== 0 ? displayCountryInfo(data) : getCountryDescription();
+      data.message !== undefined ? displayCountryInfo(data) : getCountryDescription();
       
     })
     .catch(error => {
@@ -111,7 +111,7 @@ function getCountryDescription(){
       return response.json();
     })
     .then(data => {
-      data.message.length !== 0 ? document.getElementById('historic-info').innerHTML = data.message.description : getWorldEvents();
+      data.message !== undefined ? document.getElementById('historic-info').innerHTML = data.message.description : getWorldEvents();
     })
     .catch(error => {
       console.error('Fetch error:', error.message);
