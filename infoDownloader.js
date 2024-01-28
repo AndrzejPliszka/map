@@ -139,7 +139,7 @@ function getWorldEvents(){
         <hr>
         <h2>Current Wars</h2><br>
         <li><ul>${data.wars == [] ? data.wars.join("</ul><ul>") : "There was no wars on this day"}</ul></li>
-        <hr>
+        <hr>`
     })
     .catch(error => {
       console.error('Fetch error:', error.message);
