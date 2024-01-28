@@ -127,6 +127,7 @@ function getWorldEvents(){
       return response.json();
     })
     .then(data => {
+      console.log(data.events)
       console.log(data.battles)
       console.log(data.wars)
       document.getElementById('historic-info').innerHTML = `
