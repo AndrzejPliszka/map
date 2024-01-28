@@ -132,13 +132,13 @@ function getWorldEvents(){
       console.log(data.wars)
       document.getElementById('historic-info').innerHTML = `
         <h2>Current Events:</h2>
-        <li><ul>${data.events == [] ? data.events.join("</ul><ul>") : "Nothing interesting happened on this day"}</ul></li>
+        <li><ul>${data.events != [] ? data.events.join("</ul><ul>") : "Nothing interesting happened on this day"}</ul></li>
         <hr>
         <h2>Current Battles</h2><br>
-        <li><ul>${data.battles == [] ? data.battles.join("</ul><ul>") : "There was no battles on this day"}</ul></li>
+        <li><ul>${data.battles != [] ? data.battles.join("</ul><ul>") : "There was no battles on this day"}</ul></li>
         <hr>
         <h2>Current Wars</h2><br>
-        <li><ul>${data.wars == [] ? data.wars.join("</ul><ul>") : "There was no wars on this day"}</ul></li>
+        <li><ul>${data.wars != [] ? data.wars.join("</ul><ul>") : "There was no wars on this day"}</ul></li>
         <hr>`
     })
     .catch(error => {
