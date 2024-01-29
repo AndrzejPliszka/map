@@ -25,7 +25,10 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-function setTimelineIntervals(){
+const timelineElement = document.getElementById("timeline");
+console.log(timelineElement)
+timelineElement.addEventListener("load" ,(event) => {
+  console.log("no wez sie pojaw")
   var startDate = new Date(timelineStartDate);
   var endDate = new Date(timelineEndDate);
   var daysDifference = Math.ceil(Math.abs(endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
