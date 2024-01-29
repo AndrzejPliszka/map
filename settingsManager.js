@@ -25,7 +25,8 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-document.addEventListener("load" ,(event) => {
+//set up timeline
+document.addEventListener("DOMContentLoaded", (event) => {
   console.log("no wez sie pojaw")
   var startDate = new Date(timelineStartDate);
   var endDate = new Date(timelineEndDate);
