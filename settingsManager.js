@@ -35,6 +35,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
   timelineInput.max = daysDifference;
   timelineInput.addEventListener("input", (e) => {
       var currentDate = startDate;
+      console.log(currentDate)
+      console.log(timelineInput.value)
       currentDate.setDate(currentDate.getDate() + timelineInput.value);
       console.log(currentDate);
       document.getElementById("date_input").value = currentDate.toISOString().slice(0, 10);
