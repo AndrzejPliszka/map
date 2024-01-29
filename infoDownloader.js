@@ -5,7 +5,7 @@ function infoboxManager(clickedElement) {
   if(clickedElement !== undefined){currentlyClickedCountry = clickedElement}
   switch(currentInfoboxInfo){
     case "events":
-      clickedElement !== undefined ? getWorldEvents() : getCountryInfo();
+      clickedElement == undefined ? getWorldEvents() : getCountryInfo();
       break;
     case "description":
       getCountryDescription();
