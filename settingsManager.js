@@ -31,5 +31,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   var startDate = new Date(timelineStartDate);
   var endDate = new Date(timelineEndDate);
   var daysDifference = Math.ceil(Math.abs(endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
-  console.log(daysDifference);
+  const timelineInput = document.getElementById("timeline");
+  timelineInput.min = 0;
+  timelineInput.max = daysDifference;
 });
