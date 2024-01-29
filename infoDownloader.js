@@ -9,10 +9,10 @@ function infoboxManager(clickedElement) {
       break;
     case "description":
       getCountryDescription();
-      break();
+      break;
     case "country-info":
       getCountryInfo();
-      break();
+      break;
   }
 }
 
