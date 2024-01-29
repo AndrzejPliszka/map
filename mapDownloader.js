@@ -51,6 +51,6 @@ function displayMap(data){
       console.log(`${data.width[i] * widthOffset}px`);
     }
     
-    initializeMapManager()
-    getCountryInfoFromServ()
+    initializeMapManager();
+    infoboxManager();
 }
