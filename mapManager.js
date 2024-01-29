@@ -33,8 +33,6 @@ document.addEventListener('mousemove', (event) => {
 
 document.addEventListener('mouseup', () => {
   isDragging = false;
-  for(let i = 0; i < draggableElements.length; i++){
-  }
 });
 
 container.addEventListener('wheel', (e) => {
@@ -67,8 +65,6 @@ container.addEventListener('wheel', (e) => {
 
     draggableElements[i].style.left = `${newLeft}px`;
     draggableElements[i].style.top = `${newTop}px`;
-
-    console.log(zoomLevel)
   }
   
 });
