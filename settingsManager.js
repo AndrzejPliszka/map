@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   var daysDifference = Math.ceil(Math.abs(endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
   timelineInput.min = 0;
   timelineInput.max = daysDifference;
+  timelineInput.value = 0;
   timelineInput.addEventListener("input", (e) => {
       var currentDate = new Date(startDate);
       currentDate.setDate(startDate.getDate() + parseInt(timelineInput.value));
