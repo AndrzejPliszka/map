@@ -18,9 +18,14 @@
         <input type="button" value="Country Info" onclick="getCountryInfo()"/>
     </div>
     <div id="settings">
-        <input type="button" value="<=" onclick="changeTime('day', false)">
-        <input id="date_input" type="text" value="1914-06-28" placeholder="RRRR-MM-DD" onchange=downloadMap()>
-        <input type="button" value="=>" onclick="changeTime('day', true)">
+        <span>
+            <input type="button" value="<=" onclick="changeTime('day', false)">
+            <input id="date_input" type="text" value="1914-06-28" placeholder="RRRR-MM-DD" onchange=downloadMap()>
+            <input type="button" value="=>" onclick="changeTime('day', true)">
+        </span>
+        <span>
+            <input type="range" id="timeline" onload="setTimelineIntervals()">
+        </span>
     </div>
 </body>
 </html> 
