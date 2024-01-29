@@ -1,20 +1,34 @@
 let currentlyClickedCountry = undefined;
+let currentInfoboxInfo = "events";
 
-function getCountryInfoFromServ(clickedElement) {
-  console.log(currentlyClickedCountry);
-  typeof clickedElement == "undefined" ? clickedElement = currentlyClickedCountry : currentlyClickedCountry = clickedElement;
+function infoboxManager(clickedElement) {
+  if(clickedElement !== undefined){currentlyClickedCountry = clickedElement}
+  switch(currentInfoboxInfo){
+    case "events":
+      clickedElement !== undefined ? getWorldEvents() : getCountryInfo();
+      break;
+    case "description":
+      getCountryDescription();
+      break();
+    case "country-info":
+      getCountryInfo();
+      break();
+  }
+}
+
+function getCountryInfo() {
+  currentInfoboxInfo = "country-info";
   if(currentlyClickedCountry == undefined) {
     getWorldEvents(); 
     return 0;
   }
-  console.log(currentlyClickedCountry);
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-country-info";
   fetch(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'},
       body: JSON.stringify({
-        tag: `${clickedElement.className.baseVal}`,
+        tag: `${currentlyClickedCountry.className.baseVal}`,
         date: `${document.getElementById("date_input").value}`
       })
   })
@@ -89,6 +103,7 @@ function displayCountryInfo(data){
 
 
 function getCountryDescription(){
+  currentInfoboxInfo = "description";
   console.log(currentlyClickedCountry);
   if(currentlyClickedCountry == undefined) {
     getWorldEvents(); 
@@ -119,6 +134,7 @@ function getCountryDescription(){
 }
 
 function getWorldEvents(){
+  currentInfoboxInfo = "events";
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-current-events";
   fetch(apiUrl, {
       method: 'POST',
