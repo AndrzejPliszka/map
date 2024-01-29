@@ -35,11 +35,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
   timelineInput.max = daysDifference;
   timelineInput.addEventListener("input", (e) => {
       var currentDate = new Date(startDate);
-      console.log(currentDate)
-      console.log(timelineInput.value)
       currentDate.setDate(startDate.getDate() + parseInt(timelineInput.value));
-      console.log(currentDate);
       document.getElementById("date_input").value = currentDate.toISOString().slice(0, 10);
+      downloadMap();
   })
 });
 
