@@ -27,11 +27,17 @@ document.addEventListener("keydown", (event) => {
 
 //set up timeline
 document.addEventListener("DOMContentLoaded", (event) => {
-  console.log("no wez sie pojaw")
+  const timelineInput = document.getElementById("timeline");
   var startDate = new Date(timelineStartDate);
   var endDate = new Date(timelineEndDate);
   var daysDifference = Math.ceil(Math.abs(endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
-  const timelineInput = document.getElementById("timeline");
   timelineInput.min = 0;
   timelineInput.max = daysDifference;
+  timelineInput.addEventListener("input", (e) => {
+      var currentDate = startDate;
+      currentDate.setDate(currentDate.getDate() + timelineInput.value);
+      console.log(currentDate);
+      document.getElementById("date_input").value = currentDate.toISOString().slice(0, 10);
+  })
 });
+
