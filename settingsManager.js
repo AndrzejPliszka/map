@@ -54,8 +54,6 @@ function setupMapDisplaySettings(mapTags){
   mapDispaySettings = "";
   for(let i = 0; i < mapTags.length; i++){
     console.log(mapTags[i])
-    mapDispaySettings.insertAdjacentHTML('beforeend', `
-    <input type="checkbox"> ${mapTags[i]}
-    `]);
+    mapDispaySettings.insertAdjacentHTML('beforeend', `<input type="checkbox"> ${mapTags[i]}`);
   }
 }
