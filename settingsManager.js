@@ -1,7 +1,7 @@
 let timelineStartDate = "1914-06-28";
 let timelineEndDate = "1914-06-30";
 
-
+ 
 function changeTime(time_amount, should_increase){
   const dateObject = document.getElementById("date_input");
   let date = new Date(dateObject.value);
