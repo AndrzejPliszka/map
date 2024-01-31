@@ -42,3 +42,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
   })
 });
 
+function changeTimeline(){
+  currentDate = new Date(document.getElementById("date_input").value);
+  startDate = new Date(timelineStartDate);
+  var daysDifference = Math.ceil(Math.abs(currentDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
+  document.getElementById("timeline").value = daysDifference;
+}
