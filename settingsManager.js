@@ -53,8 +53,8 @@ function setupMapDisplaySettings(mapTags){
   let mapDisplaySettings = document.getElementById("map-display-settings");
   mapDisplaySettings.innerHTML = "";
   for(let i = 0; i < mapTags.length; i++){
-    console.log(mapTags[i])
     mapDisplaySettings.insertAdjacentHTML('beforeend', `<input type="checkbox" value="${mapTags[i]}" checked> ${mapTags[i]}`);
+    console.log(mapDisplaySettings.lastElementChild)
     mapDisplaySettings.lastElementChild.addEventListner("change", () => {
       if(mapDisplaySettings.lastElementChild.checked){
         document.getElementById(mapDisplaySettings.lastElementChild.value).style.display = "none";
