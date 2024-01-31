@@ -1,7 +1,3 @@
-let timelineStartDate = "1914-06-28";
-let timelineEndDate = "1914-06-30";
-
- 
 function changeTime(time_amount, should_increase){
   const dateObject = document.getElementById("date_input");
   let date = new Date(dateObject.value);
@@ -26,6 +22,9 @@ document.addEventListener("keydown", (event) => {
 });
 
 function setupTimeline() {
+  let timelineStartDate = document.getElementById("start_date").value;
+  let timelineEndDate = document.getElementById("end_date").value;
+
   const timelineInput = document.getElementById("timeline");
   var startDate = new Date(timelineStartDate);
   var endDate = new Date(timelineEndDate);
@@ -43,7 +42,7 @@ function setupTimeline() {
 
 function changeTimeline(){
   currentDate = new Date(document.getElementById("date_input").value);
-  startDate = new Date(timelineStartDate);
+  startDate = new Date(document.getElementById("start_date").value);
   var daysDifference = Math.ceil(Math.abs(currentDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
   document.getElementById("timeline").value = daysDifference;
 }
