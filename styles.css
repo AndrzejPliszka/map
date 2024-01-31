@@ -35,6 +35,11 @@ svg{
 #settings{
     border: 1px solid black;
     clear: both;
+    display: flex;
+    justify-content: space-between;
+}
+#end_date, #start_date{
+    width: 80px;
 }
 #buttons{
     display: flex;
