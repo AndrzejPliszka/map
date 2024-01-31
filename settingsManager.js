@@ -26,14 +26,14 @@ document.addEventListener("keydown", (event) => {
 });
 
 //set up timeline
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", const setupTimeline = (event) => {
   const timelineInput = document.getElementById("timeline");
   var startDate = new Date(timelineStartDate);
   var endDate = new Date(timelineEndDate);
   var daysDifference = Math.ceil(Math.abs(endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
   timelineInput.min = 0;
   timelineInput.max = daysDifference;
-  timelineInput.value = 0;
+  changeTimeline();
   timelineInput.addEventListener("input", (e) => {
       var currentDate = new Date(startDate);
       currentDate.setDate(startDate.getDate() + parseInt(timelineInput.value));
