@@ -50,10 +50,17 @@ function changeTimeline(){
 document.addEventListener("DOMContentLoaded", setupTimeline());
 
 function setupMapDisplaySettings(mapTags){
-  let mapDispaySettings = document.getElementById("map-display-settings");
+  let mapDisplaySettings = document.getElementById("map-display-settings");
   mapDispaySettings.innerHTML = "";
   for(let i = 0; i < mapTags.length; i++){
     console.log(mapTags[i])
-    mapDispaySettings.insertAdjacentHTML('beforeend', `<input type="checkbox"> ${mapTags[i]}`);
+    mapDisplaySettings.insertAdjacentHTML('beforeend', `<input type="checkbox" value="${mapTags[i]}" checked> ${mapTags[i]}`);
+    mapDisplaySettings.lastElementChild.addEventListner("change", () => {
+      if(mapDisplaySettings.lastElementChild.checked){
+        document.getElementById(mapDisplaySettings.lastElementChild.value).style.display = "none";
+      } else{
+        document.getElementById(mapDisplaySettings.lastElementChild.value).style.display = "absolute";
+      }
+    })
   }
 }
