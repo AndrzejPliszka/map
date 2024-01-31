@@ -57,9 +57,9 @@ function setupMapDisplaySettings(mapTags){
     console.log(mapDisplaySettings.lastElementChild)
     mapDisplaySettings.lastElementChild.addEventListener("change", (e) => {
       if(e.target.checked){
-        document.getElementById(e.target.value).style.display = "none";
+        document.getElementById(e.target.value).style.display = "initial";
       } else{
-        document.getElementById(e.target.value).style.display = "absolute";
+        document.getElementById(e.target.value).style.display = "none";
       }
     })
   }
