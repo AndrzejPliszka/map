@@ -8,7 +8,7 @@
     <script src="mapDownloader.js"></script>
 </head>
 <body onload='downloadMap("1914-06-28")'>
-    <h1>Github pages test</h1>
+    <h1>Interactive History Map Prototype</h1>
     <div id="svg-container"></div>
     <div id="historic-info">note  that I am using free server, so if you click <br> and nothing happenes it is because server did not turned on yet. If you wait 5-10 seconds <br> and restart website it should load, but if not here is link to server <br> (if you see cannot get / go back to website everything should work): <br>  https://quilled-nervous-leopon.glitch.me<br>  
     </div>
@@ -19,12 +19,14 @@
     </div>
     <div id="settings">
         <span>
-            <input type="button" value="<=" onclick="changeTime('day', false)">
+            <input type="button" value="<=" onclick="changeTime('day', false)" />
             <input id="date_input" type="text" value="1914-06-28" placeholder="RRRR-MM-DD" onchange=downloadMap()>
-            <input type="button" value="=>" onclick="changeTime('day', true)">
+            <input type="button" value="=>" onclick="changeTime('day', true)" />
         </span>
         <span>
+            <input id="start_date" type="text" onclick="setupTimeline()" value="1914-06-28"/>
             <input type="range" id="timeline" onload="setTimelineIntervals()">
+            <input id="end_date" type="text" onclick="setupTimeline()" value="1914-06-30"/>
         </span>
     </div>
 </body>
