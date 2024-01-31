@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", setupTimeline());
 
 function setupMapDisplaySettings(mapTags){
   let mapDispaySettings = document.getElementById("map-display-settings");
-  mapDispaySettings = "";
+  mapDispaySettings.innerHTML = "";
   for(let i = 0; i < mapTags.length; i++){
     console.log(mapTags[i])
     mapDispaySettings.insertAdjacentHTML('beforeend', `<input type="checkbox"> ${mapTags[i]}`);
