@@ -49,17 +49,21 @@ function changeTimeline(){
 
 document.addEventListener("DOMContentLoaded", setupTimeline());
 
+let mapDisplaySettings = {};
 function setupMapDisplaySettings(mapTags){
   let mapDisplaySettings = document.getElementById("map-display-settings");
   mapDisplaySettings.innerHTML = "";
   for(let i = 0; i < mapTags.length; i++){
-    mapDisplaySettings.insertAdjacentHTML('beforeend', `<input type="checkbox" value="${mapTags[i]}" checked> ${mapTags[i]}`);
+    if(!mapDisplaySettings.hasOwnProperty(mapTags[i])) {mapDisplaySettings[mapTags[i]] = "checked"}
+    mapDisplaySettings.insertAdjacentHTML('beforeend', `<input type="checkbox" value="${mapTags[i]}" ${mapDisplaySettings[mapTags[i]]}> ${mapTags[i]}`);
     console.log(mapDisplaySettings.lastElementChild)
     mapDisplaySettings.lastElementChild.addEventListener("change", (e) => {
       if(e.target.checked){
         document.getElementById(e.target.value).style.visibility = "visible";
+        mapDisplaySettings[e.target.value] = "checked";
       } else{
         document.getElementById(e.target.value).style.visibility = "hidden";
+        mapDisplaySettings[e.target.value] = "";
       }
     })
   }
