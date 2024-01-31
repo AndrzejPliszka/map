@@ -48,3 +48,7 @@ function changeTimeline(){
 }
 
 document.addEventListener("DOMContentLoaded", setupTimeline());
+
+function setupMapDisplaySettings(mapTags){
+  console.log(mapTags);
+}
