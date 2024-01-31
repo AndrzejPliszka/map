@@ -25,8 +25,7 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-//set up timeline
-document.addEventListener("DOMContentLoaded", const setupTimeline = (event) => {
+function setupTimeline() {
   const timelineInput = document.getElementById("timeline");
   var startDate = new Date(timelineStartDate);
   var endDate = new Date(timelineEndDate);
@@ -39,8 +38,7 @@ document.addEventListener("DOMContentLoaded", const setupTimeline = (event) => {
       currentDate.setDate(startDate.getDate() + parseInt(timelineInput.value));
       document.getElementById("date_input").value = currentDate.toISOString().slice(0, 10);
       downloadMap();
-  })
-});
+  }
 
 function changeTimeline(){
   currentDate = new Date(document.getElementById("date_input").value);
@@ -48,3 +46,5 @@ function changeTimeline(){
   var daysDifference = Math.ceil(Math.abs(currentDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
   document.getElementById("timeline").value = daysDifference;
 }
+
+document.addEventListener("DOMContentLoaded", setupTimeline());
