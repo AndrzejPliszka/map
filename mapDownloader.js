@@ -53,4 +53,5 @@ function displayMap(data){
     
     initializeMapManager();
     infoboxManager();
+    changeTimeline();
 }
