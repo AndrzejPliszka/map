@@ -43,12 +43,19 @@ function setupTimeline() {
 function changeTimeline(){
   currentDate = new Date(document.getElementById("date_input").value);
   startDate = new Date(document.getElementById("start_date").value);
-  var daysDifference = Math.ceil(Math.abs(currentDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
+  let daysDifference = Math.ceil(Math.abs(currentDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
   document.getElementById("timeline").value = daysDifference;
 }
 
 document.addEventListener("DOMContentLoaded", setupTimeline());
 
 function setupMapDisplaySettings(mapTags){
-  console.log(mapTags);
+  let mapDispaySettings = document.getElementById("map-display-settings");
+  mapDispaySettings = "";
+  for(let i = 0; i < mapTags.length; i++){
+    console.log(mapTags[i])
+    mapDispaySettings.insertAdjacentHTML('beforeend', `
+    <input type="checkbox"> ${mapTags[i]}
+    `]);
+  }
 }
