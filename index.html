@@ -24,9 +24,9 @@
             <input type="button" value="=>" onclick="changeTime('day', true)" />
         </span>
         <span>
-            <input id="start_date" type="text" onclick="setupTimeline()" value="1914-06-28"/>
+            <input id="start_date" type="text" onchange="setupTimeline()" value="1914-06-28"/>
             <input type="range" id="timeline" onload="setTimelineIntervals()">
-            <input id="end_date" type="text" onclick="setupTimeline()" value="1914-06-30"/>
+            <input id="end_date" type="text" onchange="setupTimeline()" value="1914-06-30"/>
         </span>
     </div>
 </body>
