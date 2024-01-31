@@ -50,8 +50,9 @@ function displayMap(data){
       svgElement.style.width = `${data.width[i] * widthOffset}px`;
       console.log(`${data.width[i] * widthOffset}px`);
     }
-    
+
     initializeMapManager();
     infoboxManager();
     changeTimeline();
+    setupMapDisplaySettings(data.tag);
 }
