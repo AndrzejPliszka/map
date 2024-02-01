@@ -43,10 +43,11 @@ function makeElementsClickable() {
     })
     .then(data => {
       console.log(data.countries)
-      console.log(document.getElementById(data.countries[0].tag))
-      //make countries that have infobox description clickable
-      data.countries.forEach((element) => {console.log(document.getElementById(element.tag));
-        document.getElementById(element.tag).addEventListener("click", infoboxManager(element));});
+
+      for(let i = 0; i < data.countries.length; i++){
+        console.log(document.getElementById(data.countries[i].tag))
+        document.getElementById(data.countries[i].tag).addEventListener("click", infoboxManager(this));
+      }
     })
     .catch(error => {
       console.error('Fetch error:', error.message);
