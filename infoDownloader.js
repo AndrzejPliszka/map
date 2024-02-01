@@ -2,6 +2,7 @@ let currentlyClickedCountry = undefined;
 let currentInfoboxInfo = "events";
 
 function infoboxManager(clickedElement) {
+  console.log("infobox manager started" + clickedElement);
   if(clickedElement !== undefined){currentlyClickedCountry = clickedElement}
   switch(currentInfoboxInfo){
     case "events":
