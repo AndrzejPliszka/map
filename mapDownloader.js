@@ -46,7 +46,7 @@ function makeElementsClickable() {
 
       for(let i = 0; i < data.countries.length; i++){
         console.log(document.getElementById(data.countries[i].tag))
-        document.getElementById(data.countries[i].tag).addEventListener("click", infoboxManager(this));
+        document.getElementById(data.countries[i].tag).addEventListener("click", infoboxManager(document.getElementById(data.countries[i].tag)));
       }
     })
     .catch(error => {
