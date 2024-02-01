@@ -10,7 +10,7 @@ function initializeMapManager(){
       offsetsY.push("");
 };
 
-container.addEventListener('mousedown', (event) => {
+container.addEventListener('pointerdown', (event) => {
     isDragging = true;
     for(let i = 0; i < draggableElements.length; i++){
       const containerRect = container.getBoundingClientRect();
@@ -20,7 +20,7 @@ container.addEventListener('mousedown', (event) => {
     }
 );
 
-document.addEventListener('mousemove', (event) => {
+document.addEventListener('pointermove', (event) => {
   if (isDragging) {
     for(let i = 0; i < draggableElements.length; i++){
       const x = event.clientX - offsetsX[i];
@@ -31,7 +31,7 @@ document.addEventListener('mousemove', (event) => {
   }
 });
 
-document.addEventListener('mouseup', () => {
+document.addEventListener('pointerup', () => {
   isDragging = false;
 });
 
