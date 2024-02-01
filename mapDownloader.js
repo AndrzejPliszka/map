@@ -45,7 +45,8 @@ function makeElementsClickable() {
       console.log(data.countries)
       console.log(document.getElementById(data.countries[0].tag))
       //make countries that have infobox description clickable
-      data.countries.forEach((element) => document.getElementById(element.tag).addEventListener("click", infoboxManager(element)));
+      data.countries.forEach((element) => {console.log(document.getElementById(element.tag));
+        document.getElementById(element.tag).addEventListener("click", infoboxManager(element));});
     })
     .catch(error => {
       console.error('Fetch error:', error.message);
