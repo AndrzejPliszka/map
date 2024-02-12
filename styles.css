@@ -1,6 +1,35 @@
+*{margin: 0; padding: 0;}
+body{
+    overflow: hidden;
+}
+#header{
+    position: fixed;
+    background-color: cornflowerblue;
+    width: 100vw;
+    height: 100px;
+    z-index: 1;
+}
+#historic-info-button{
+    position: absolute;
+    right: 35%;
+    bottom: 50%;
+    z-index: 2;
+}
+#settings-button{
+    position: absolute;
+    left: 50%;
+    bottom: 40px;
+    z-index: 2;
+}
+#header-button{
+    position: absolute;
+    left: 35%;
+    top: 100px;
+    z-index: 2;
+}
 #svg-container{
-    width: 60%;
-    height: 800px;
+    width: 100vw;
+    height: 100vh;
     border: 2px solid black;
     overflow: hidden;
     position: relative;
@@ -9,23 +38,18 @@
 svg{
     position: absolute;
 }
-#Benelux{
-    top: 0;
-    left: 0;
-    width: 1000px;
-}
-#obiekt2{
-    top: 500px;
-    left: 500px;
-    width: 100px;
-}
 #historic-info{
     float: right;
     width: 35%;
     border: 2px solid black;
     text-align: center;
     height: 750px;
-    position: relative;
+    position: fixed;
+    top:100px;
+    right: 0;
+    height: calc(100vh - 150px);
+    background-color: burlywood;
+    opacity: 100%;
     overflow-y: scroll;
 }
 #political-system, #national-symbols{
@@ -35,8 +59,13 @@ svg{
 #settings{
     border: 1px solid black;
     clear: both;
+    position: fixed;
     display: flex;
     justify-content: space-between;
+    bottom: 0;
+    width: calc(65% - 6px);
+    height: 40px;
+    background-color: darkseagreen;
 }
 #end_date, #start_date{
     width: 80px;
@@ -49,8 +78,9 @@ svg{
     height: 50px;
     margin-right: 1px;
     justify-content: space-between;
-    position: sticky;
+    position: absolute;
     bottom: 0;
+    right: 0;
 }
 #buttons>*{
     width: calc(100%/3);
