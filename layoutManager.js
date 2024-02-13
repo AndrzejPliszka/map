@@ -19,7 +19,7 @@ function hideOrShowPanel(panelName){
                 document.getElementById("settings").style.width = "calc(65% - 6px)";
             }
             break;
-        case "timeline":
+        case "timeline-div":
             if(panel.style.bottom == 0 || panel.style.bottom == "0px"){
                 panel.style.bottom = "-10000px";
                 button.style.bottom = 0;
