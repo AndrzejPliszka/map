@@ -20,8 +20,8 @@
         <input type="button" value="Country Description" onclick="getCountryDescription()"/>
         <input type="button" value="Country Info" onclick="getCountryInfo()"/>
     </div>
-    <input id="settings-button" value="↓" type="button" onclick="hideOrShowPanel('settings')">
-    <div id="settings">
+    <input id="timeline" value="↓" type="button" onclick="hideOrShowPanel('timeline')">
+    <div id="timeline">
         <span>
             <input type="button" value="<=" onclick="changeTime('day', false)" />
             <input id="date_input" type="text" value="1914-06-28" placeholder="RRRR-MM-DD" onchange=downloadMap()>
@@ -41,4 +41,4 @@
 <script src="mapManager.js"></script>
 <script src="infoDownloader.js"></script>
 <script src="settingsManager.js"></script>
-<script src="templateManager.js"></script>
+<script src="layoutManager.js"></script>
