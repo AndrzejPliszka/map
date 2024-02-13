@@ -47,6 +47,18 @@ function hideOrShowPanel(panelName){
                 document.getElementById("historic-info").style.height = "calc(100vh - 50px)";
             }
             break;
+        case "settings":
+            if(panel.style.left == 0 || panel.style.left == "0px"){
+                panel.style.left = "-10000px";
+                button.style.left = 0;
+                button.value = "->";
+            }
+            else{
+                panel.style.left = 0;
+                button.style.left = "100px";
+                button.value = "<-";
+            }
+            break;
     }
     
     
