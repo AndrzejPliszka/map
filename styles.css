@@ -56,7 +56,7 @@ svg{
     display: flex;
     justify-content:space-evenly;
 }
-#timeline{
+#timeline-div{
     border: 1px solid black;
     clear: both;
     position: fixed;
