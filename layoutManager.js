@@ -9,14 +9,14 @@ function hideOrShowPanel(panelName){
                 panelButtons.style.right = "-10000px";
                 button.style.right = 0;
                 button.value = "<="
-                document.getElementById("settings").style.width = "100%";
+                document.getElementById("timeline-div").style.width = "100%";
             }
             else{
                 panel.style.right = 0;
                 panelButtons.style.right = 0;
                 button.style.right = "35%";
                 button.value = "=>";
-                document.getElementById("settings").style.width = "calc(65% - 6px)";
+                document.getElementById("timeline-div").style.width = "calc(65% - 6px)";
             }
             break;
         case "timeline-div":
