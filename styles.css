@@ -63,8 +63,9 @@ svg{
     justify-content:space-evenly;
 }
 #settings{
+    top: 100px;
     left: 0;
-    psoition: fixed;
+    position: fixed;
     border: 1px solid black;
     width: 100px;
     height: calc(100vh - 150px);
