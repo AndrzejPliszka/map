@@ -1,9 +1,9 @@
 *{margin: 0; padding: 0;}
 :root{
-    --header-height: 100px;
-    --historic-info-width: 35%;
-    --timeline-height: 40px;
-    --settings-width: 100px;
+    --header-height: 10%;
+    --historic-info-width: 30%;
+    --timeline-height: 10%;
+    --settings-width: 10%;
 }
 body{
     overflow: hidden;
