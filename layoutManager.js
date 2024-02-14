@@ -65,7 +65,7 @@ function hideOrShowPanel(panelName){
             }
             else{
                 panel.style.left = 0;
-                button.style.left = var(--settingsWidth);
+                button.style.left = settingsWidth;
                 button.value = "<-";
             }
             break;
