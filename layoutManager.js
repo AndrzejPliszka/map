@@ -4,7 +4,7 @@ function hideOrShowPanel(panelName){
     let historicInfoWidth = window.getComputedStyle(panel).getPropertyValue("--historic-info-width");
     let headerHeight = window.getComputedStyle(panel).getPropertyValue("--header-height");
     let settingsWidth = window.getComputedStyle(panel).getPropertyValue("--settings-width");
-    let settingsWidth = window.getComputedStyle(panel).getPropertyValue("--timeline-height");
+    let timelineHeight = window.getComputedStyle(panel).getPropertyValue("--timeline-height");
     switch(panelName){
         case "historic-info":
             panelButtons = document.getElementById("buttons");
@@ -33,8 +33,8 @@ function hideOrShowPanel(panelName){
                 panel.style.bottom = 0;
                 button.style.bottom = "40px";
                 button.value = "↓";
-                document.getElementById("historic-info").style.height = `calc(100vh - (${headerHeight} + ${settingsWidth} + 50px))`;
-                document.getElementById("settings").style.height = `calc(100vh - (${headerHeight} + ${settingsWidth}))`;
+                document.getElementById("historic-info").style.height = `calc(100vh - (${headerHeight} + ${timelineHeight} + 50px))`;
+                document.getElementById("settings").style.height = `calc(100vh - (${headerHeight} + ${timelineHeight}))`;
             }
             break;
         case "header":
@@ -42,18 +42,18 @@ function hideOrShowPanel(panelName){
                 panel.style.top = "-10000px";
                 button.style.top = 0;
                 button.value = "↓";
-                document.getElementById("historic-info").style.height = `calc(100vh + (${settingsWidth} + 50px))`;
+                document.getElementById("historic-info").style.height = `calc(100vh + (${timelineHeight} + 50px))`;
                 document.getElementById("historic-info").style.top = 0;
-                document.getElementById("settings").style.height = `calc(100vh + (${settingsWidth}))`;
+                document.getElementById("settings").style.height = `calc(100vh + (${timelineHeight}))`;
                 document.getElementById("settings").style.top = 0;
             }
             else{
                 panel.style.top = 0;
                 button.style.top = "100px";
                 button.value = "↑";
-                document.getElementById("historic-info").style.height = `calc(100vh - (${settingsWidth} + ${headerHeight} + 50px))`;
+                document.getElementById("historic-info").style.height = `calc(100vh - (${timelineHeight} + ${headerHeight} + 50px))`;
                 document.getElementById("historic-info").style.top = headerHeight;
-                document.getElementById("settings").style.height = `calc(100vh - (${settingsWidth} + ${headerHeight} ))`;
+                document.getElementById("settings").style.height = `calc(100vh - (${timelineHeight} + ${headerHeight} ))`;
                 document.getElementById("settings").style.top = headerHeight;
             }
             break;
