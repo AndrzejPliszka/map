@@ -1,10 +1,10 @@
 function hideOrShowPanel(panelName){
-    panel = document.getElementById(panelName);
-    button = document.getElementById(panelName + "-button");
-    historic-info-width = panel.style.getPropertyValue("--historic-info-width");
-    header-height = panel.style.getPropertyValue("--header-height");
-    settings-width = panel.style.getPropertyValue("--settings-width");
-    timeline-height = panel.style.getPropertyValue("--timeline-height");
+    let panel = document.getElementById(panelName);
+    let button = document.getElementById(panelName + "-button");
+    let historic-info-width = panel.style.getPropertyValue("--historic-info-width");
+    let header-height = panel.style.getPropertyValue("--header-height");
+    let settings-width = panel.style.getPropertyValue("--settings-width");
+    let timeline-height = panel.style.getPropertyValue("--timeline-height");
     switch(panelName){
         case "historic-info":
             panelButtons = document.getElementById("buttons");
