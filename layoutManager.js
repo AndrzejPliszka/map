@@ -28,6 +28,7 @@ function hideOrShowPanel(panelName){
                 button.value = "↑"
                 document.getElementById("historic-info").style.height = `calc(100vh - (${headerHeight} + 50px))`;
                 document.getElementById("settings").style.height = `calc(100vh - (${headerHeight}))`;
+                document.getElementById("buttons").style.bottom = `0`;
             }
             else{
                 panel.style.bottom = 0;
@@ -35,6 +36,7 @@ function hideOrShowPanel(panelName){
                 button.value = "↓";
                 document.getElementById("historic-info").style.height = `calc(100vh - (${headerHeight} + ${timelineHeight} + 50px))`;
                 document.getElementById("settings").style.height = `calc(100vh - (${headerHeight} + ${timelineHeight}))`;
+                document.getElementById("buttons").style.bottom = timelineHeight;
             }
             break;
         case "header":
