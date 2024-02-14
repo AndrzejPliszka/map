@@ -56,7 +56,7 @@ function hideOrShowPanel(panelName){
                 document.getElementById("settings").style.top = 0;
             }
             else{
-                console.log(${currentTimelineHeight} + ${headerHeight})
+                console.log(`${currentTimelineHeight} + ${headerHeight}`)
                 panel.style.top = 0;
                 button.style.top = "100px";
                 button.value = "↑";
