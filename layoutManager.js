@@ -22,7 +22,7 @@ function hideOrShowPanel(panelName){
             }
             break;
         case "timeline-div":
-            let currentHeaderHeight = document.getElementById("header").style.top == 0 || document.getElementById("header").styles.top == '0px' ? headerHeight : 0;
+            let currentHeaderHeight = document.getElementById("header").style.top == 0 || document.getElementById("header").style.top == '0px' ? headerHeight : 0;
             
             if(panel.style.bottom == 0 || panel.style.bottom == "0px"){
                 panel.style.bottom = "-10000px";
@@ -42,22 +42,23 @@ function hideOrShowPanel(panelName){
             }
             break;
         case "header":
+            let currentTimelineHeight = document.getElementById("timeline").style.top == 0 || document.getElementById("timeline").style.top == '0px' ? timelineHeight : 0;
             if(panel.style.top == 0 || panel.style.top == "0px"){
                 panel.style.top = "-10000px";
                 button.style.top = 0;
                 button.value = "↓";
-                document.getElementById("historic-info").style.height = `calc(100vh - (${timelineHeight} + 50px))`;
+                document.getElementById("historic-info").style.height = `calc(100vh - (${currentTimelineHeight} + 50px))`;
                 document.getElementById("historic-info").style.top = 0;
-                document.getElementById("settings").style.height = `calc(100vh - (${timelineHeight}))`;
+                document.getElementById("settings").style.height = `calc(100vh - (${currentTimelineHeight}))`;
                 document.getElementById("settings").style.top = 0;
             }
             else{
                 panel.style.top = 0;
                 button.style.top = "100px";
                 button.value = "↑";
-                document.getElementById("historic-info").style.height = `calc(100vh - (${timelineHeight} + ${headerHeight} + 50px))`;
+                document.getElementById("historic-info").style.height = `calc(100vh - (${currentTimelineHeight} + ${headerHeight} + 50px))`;
                 document.getElementById("historic-info").style.top = headerHeight;
-                document.getElementById("settings").style.height = `calc(100vh - (${timelineHeight} + ${headerHeight} ))`;
+                document.getElementById("settings").style.height = `calc(100vh - (${currentTimelineHeight} + ${headerHeight} ))`;
                 document.getElementById("settings").style.top = headerHeight;
             }
             break;
