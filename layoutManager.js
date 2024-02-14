@@ -35,7 +35,7 @@ function hideOrShowPanel(panelName){
             }
             else{
                 panel.style.bottom = 0;
-                button.style.bottom = "40px";
+                button.style.bottom = timelineHeight;
                 button.value = "↓";
                 document.getElementById("historic-info").style.height = `calc(100vh - (${currentHeaderHeight} + ${timelineHeight} + 50px))`;
                 document.getElementById("settings").style.height = `calc(100vh - (${currentHeaderHeight} + ${timelineHeight}))`;
