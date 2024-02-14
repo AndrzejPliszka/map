@@ -42,7 +42,7 @@ function hideOrShowPanel(panelName){
             }
             break;
         case "header":
-            let currentTimelineHeight = document.getElementById("timeline-div").style.top == 0 || document.getElementById("timeline-div").style.top == '0px' ? timelineHeight : 0;
+            let currentTimelineHeight = document.getElementById("timeline-div").style.down == 0 || document.getElementById("timeline-div").style.down == '0px' ? timelineHeight : 0;
             if(panel.style.top == 0 || panel.style.top == "0px"){
                 panel.style.top = "-10000px";
                 button.style.top = 0;
