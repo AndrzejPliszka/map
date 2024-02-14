@@ -58,7 +58,7 @@ svg{
     position: fixed;
     top: var(--header-height);
     right: 0;
-    height: calc(100vh - (var(--header-height) + var(--timeline-height)));
+    height: calc(100vh - (var(--header-height) + var(--timeline-height) + 50px));
     background-color: burlywood;
     opacity: 100%;
     overflow-y: scroll;
@@ -73,7 +73,7 @@ svg{
     position: fixed;
     border: 1px solid black;
     width: var(--settings-width);
-    height: calc(100vh - (var(--header-height) + var(--timeline-height) + 50px));
+    height: calc(100vh - (var(--header-height) + var(--timeline-height)));
     background-color: tomato;
 }
 #timeline-div{
@@ -99,7 +99,7 @@ svg{
     margin-right: 1px;
     justify-content: space-between;
     position: absolute;
-    bottom: 0;
+    bottom: var(--timeline-height);
     right: 0;
 }
 #buttons>*{
