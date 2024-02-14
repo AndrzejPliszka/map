@@ -71,3 +71,4 @@ function hideOrShowPanel(panelName){
             break;
     }
     
+}
