@@ -22,20 +22,22 @@ function hideOrShowPanel(panelName){
             }
             break;
         case "timeline-div":
+            let currentHeaderHeight = document.getElementById("header").styles.top == 0 || document.getElementById("header").styles.top == '0px' ? headerHeight : 0;
+            
             if(panel.style.bottom == 0 || panel.style.bottom == "0px"){
                 panel.style.bottom = "-10000px";
                 button.style.bottom = 0;
                 button.value = "↑"
-                document.getElementById("historic-info").style.height = `calc(100vh - (${headerHeight} + 50px))`;
-                document.getElementById("settings").style.height = `calc(100vh - (${headerHeight}))`;
+                document.getElementById("historic-info").style.height = `calc(100vh - (${currentHeaderHeight} + 50px))`;
+                document.getElementById("settings").style.height = `calc(100vh - (${currentHeaderHeight}))`;
                 document.getElementById("buttons").style.bottom = `0`;
             }
             else{
                 panel.style.bottom = 0;
                 button.style.bottom = "40px";
                 button.value = "↓";
-                document.getElementById("historic-info").style.height = `calc(100vh - (${headerHeight} + ${timelineHeight} + 50px))`;
-                document.getElementById("settings").style.height = `calc(100vh - (${headerHeight} + ${timelineHeight}))`;
+                document.getElementById("historic-info").style.height = `calc(100vh - (${currentHeaderHeight} + ${timelineHeight} + 50px))`;
+                document.getElementById("settings").style.height = `calc(100vh - (${currentHeaderHeight} + ${timelineHeight}))`;
                 document.getElementById("buttons").style.bottom = timelineHeight;
             }
             break;
