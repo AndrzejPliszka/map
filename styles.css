@@ -1,4 +1,10 @@
 *{margin: 0; padding: 0;}
+:root{
+    --header-height: 100px;
+    --historic-info-width: 35%;
+    --timeline-height: 40px;
+    --settings-width: 100px;
+}
 body{
     overflow: hidden;
 }
@@ -6,31 +12,31 @@ body{
     position: fixed;
     background-color: cornflowerblue;
     width: 100vw;
-    height: 100px;
+    height: var(--header-height);
     z-index: 1;
 }
 #settings-button{
     position: absolute;
-    left: 100px;
+    left: var(--settings-width);
     bottom: 50%;
     z-index: 2;
 }
 #historic-info-button{
     position: absolute;
-    right: 35%;
+    right: var(--historic-info-width);
     bottom: 50%;
     z-index: 2;
 }
 #timeline-div-button{
     position: absolute;
     left: 50%;
-    bottom: 40px;
+    bottom: var(--timeline-height);
     z-index: 2;
 }
 #header-button{
     position: absolute;
     left: 35%;
-    top: 100px;
+    top: var(--header-height);
     z-index: 2;
 }
 #svg-container{
@@ -46,14 +52,13 @@ svg{
 }
 #historic-info{
     float: right;
-    width: 35%;
+    width: var(--historic-info-width);
     border: 2px solid black;
     text-align: center;
-    height: 750px;
     position: fixed;
-    top:100px;
+    top: var(--header-height);
     right: 0;
-    height: calc(100vh - 150px);
+    height: calc(100vh - (var(--header-height) + var(--timeline-height)));
     background-color: burlywood;
     opacity: 100%;
     overflow-y: scroll;
@@ -63,13 +68,13 @@ svg{
     justify-content:space-evenly;
 }
 #settings{
-    top: 100px;
+    top: var(--header-height);
     left: 0;
     position: fixed;
     border: 1px solid black;
-    width: 100px;
-    height: calc(100vh - 150px);
-    background-color: lightpurple;
+    width: var(--settings-width);
+    height: calc(100vh - (var(--header-height) + var(--timeline-height) + 50px));
+    background-color: tomato;
 }
 #timeline-div{
     border: 1px solid black;
@@ -78,8 +83,8 @@ svg{
     display: flex;
     justify-content: space-between;
     bottom: 0;
-    width: calc(65% - 6px);
-    height: 40px;
+    width: 100vw;
+    height: var(--timeline-height);
     background-color: darkseagreen;
 }
 #end_date, #start_date{
@@ -88,7 +93,7 @@ svg{
 #buttons{
     display: flex;
     float: right;
-    width: 35%;
+    width: var(--historic-info-width);
     border: 1px solid black;
     height: 50px;
     margin-right: 1px;
