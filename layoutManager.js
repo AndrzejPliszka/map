@@ -23,6 +23,7 @@ function hideOrShowPanel(panelName){
             break;
         case "timeline-div":
             let currentHeaderHeight = document.getElementById("header").style.top == 0 || document.getElementById("header").style.top == '0px' ? headerHeight : 0;
+            console.log(currentHeaderHeight);
             
             if(panel.style.bottom == 0 || panel.style.bottom == "0px"){
                 panel.style.bottom = "-10000px";
@@ -43,6 +44,7 @@ function hideOrShowPanel(panelName){
             break;
         case "header":
             let currentTimelineHeight = document.getElementById("timeline-div").style.bottom == 0 || document.getElementById("timeline-div").style.bottom == '0px' ? timelineHeight : 0;
+            console.log(currentTimelineHeight);
             if(panel.style.top == 0 || panel.style.top == "0px"){
                 panel.style.top = "-10000px";
                 button.style.top = 0;
