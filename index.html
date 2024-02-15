@@ -6,9 +6,17 @@
     <title>Hosted Map</title>
     <link rel="stylesheet" href="styles.css">
     <script src="mapDownloader.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body onload='downloadMap("1914-06-28")'>
-    <div id="header"><h1>Interactive History Map Prototype</h1></div>
+    <div id="header">
+        <span><h1>Interactive History Map Prototype</h1></span>
+        <span>
+            <a href="https://www.youtube.com/watch?v=FA22WNnZPAA">Information</a>
+            <a href="https://www.youtube.com/watch?v=FA22WNnZPAA">How to contribute?</a>
+            <a href="https://www.youtube.com/watch?v=FA22WNnZPAA">Contact info</a>
+        </span>
+    </div>
     <input id="header-button" value="↑" type="button" onclick="hideOrShowPanel('header')">
     <div id="svg-container"></div>
     <input id="historic-info-button" value="=>" type="button" onclick="hideOrShowPanel('historic-info')">
