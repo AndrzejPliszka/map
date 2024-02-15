@@ -1,19 +1,49 @@
 *{margin: 0; padding: 0;}
 :root{
-    --header-height: 10%;
+    --header-height: 5%;
     --historic-info-width: 30%;
     --timeline-height: 10%;
     --settings-width: 10%;
+
+    --color1: #D9BB84;
+    --color2: #F2DBAE;
+    --color3: #A68053;
+    --color4: #735438;
+    --color5: #402319;
 }
 body{
     overflow: hidden;
 }
 #header{
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Courier New', Courier, monospace;
     position: fixed;
-    background-color: cornflowerblue;
+    background-color: var(--color5);
+    color: var(--color2);
     width: 100vw;
     height: var(--header-height);
     z-index: 1;
+    font-size: 1em;
+}
+#header > span:last-of-type{
+    display: flex;
+    justify-content: space-around;
+}
+#header > span{
+    width: 50%;
+}
+#header > span > a{
+    padding: 10px;
+}
+#header > span > a:hover{
+    background-color: var(--color4);
+}
+a:visited, a:link{
+    color: var(--color2);
+    text-decoration: none;
 }
 #settings-button{
     position: absolute;
@@ -41,6 +71,7 @@ body{
 }
 #svg-container{
     width: 100vw;
+    background-color:var(--color2);
     height: 100vh;
     border: 2px solid black;
     overflow: hidden;
@@ -59,9 +90,10 @@ svg{
     top: var(--header-height);
     right: 0;
     height: calc(100vh - (var(--header-height) + var(--timeline-height) + 50px));
-    background-color: burlywood;
+    background-color: #735438;
     opacity: 100%;
     overflow-y: scroll;
+    color: #F2DBAE;
 }
 #political-system, #national-symbols{
     display: flex;
@@ -74,7 +106,7 @@ svg{
     border: 1px solid black;
     width: var(--settings-width);
     height: calc(100vh - (var(--header-height) + var(--timeline-height)));
-    background-color: tomato;
+    background-color: #735438;
 }
 #timeline-div{
     border: 1px solid black;
@@ -85,7 +117,7 @@ svg{
     bottom: 0;
     width: 100vw;
     height: var(--timeline-height);
-    background-color: darkseagreen;
+    background-color: #A68053;
 }
 #end_date, #start_date{
     width: 80px;
