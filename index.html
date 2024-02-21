@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styles.css">
     <script src="mapDownloader.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
 </head>
 <body onload='downloadMap("1914-06-28")'>
     <div id="header">
@@ -24,24 +26,26 @@
         note  that I am using free server, so if you click <br> and nothing happenes it is because server did not turned on yet. If you wait 5-10 seconds <br> and restart website it should load, but if not here is link to server <br> (if you see cannot get / go back to website everything should work): <br>  https://quilled-nervous-leopon.glitch.me<br>  
     </div>
     <div id="buttons">
-        <input type="button" value="Current Events" class="active" onclick="getWorldEvents()"/>
-        <input type="button" value="Country Description" onclick="getCountryDescription()"/>
-        <input type="button" value="Country Info" onclick="getCountryInfo()"/>
+        <input type="button" id="currentEventsButton" value="Current Events" class="active" onclick="getWorldEvents()"/>
+        <input type="button" id="descriptionButton" value="Country Description" class = "locked" onclick="getCountryDescription()"/>
+        <input type="button" id="countryInfoButton" value="Country Info" class="locked" onclick="getCountryInfo()"/>
     </div>
-    <input id="settings-button" value="↓" type="button" onclick="hideOrShowPanel('settings')">
+    <input id="settings-button" value="<=" type="button" onclick="hideOrShowPanel('settings')">
     <div id="settings">
+        <h2>Settings</h2>
+        <h3>Map Visibility</h3>
         <span id="map-display-settings">
             
         </span>
     </div>
     <input id="timeline-div-button" value="↓" type="button" onclick="hideOrShowPanel('timeline-div')">
     <div id="timeline-div">
-        <span>
+        <span id="date_input-span">
             <input type="button" value="<=" onclick="changeTime('day', false)" />
             <input id="date_input" type="text" value="1914-06-28" placeholder="RRRR-MM-DD" onchange=downloadMap()>
             <input type="button" value="=>" onclick="changeTime('day', true)" />
         </span>
-        <span>
+        <span id="timeline-span">
             <input id="start_date" type="text" onchange="setupTimeline()" value="1914-06-28"/>
             <input type="range" id="timeline" onload="setTimelineIntervals()">
             <input id="end_date" type="text" onchange="setupTimeline()" value="1914-06-30"/>
@@ -53,3 +57,4 @@
 <script src="infoDownloader.js"></script>
 <script src="settingsManager.js"></script>
 <script src="layoutManager.js"></script>
+
