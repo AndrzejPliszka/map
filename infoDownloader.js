@@ -6,12 +6,15 @@ function infoboxManager(clickedElement) {
   if(clickedElement !== undefined){currentlyClickedCountry = clickedElement}
   switch(currentInfoboxInfo){
     case "events":
+      
       clickedElement == undefined ? getWorldEvents() : getCountryInfo();
       break;
     case "description":
+      
       getCountryDescription();
       break;
     case "country-info":
+      
       getCountryInfo();
       break;
   }
@@ -21,6 +24,9 @@ function getCountryInfo() {
   currentInfoboxInfo = "country-info";
   if(currentlyClickedCountry == undefined) {
     getWorldEvents(); 
+    document.getElementById("currentEventsButton").className = "active";
+    document.getElementById("countryInfoButton").className = "locked";
+    document.getElementById("descriptionButton").className = "locked";
     return 0;
   }
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-country-info";
@@ -40,7 +46,13 @@ function getCountryInfo() {
       return response.json();
     })
     .then(data => {
-      data.message !== undefined ? displayCountryInfo(data) : getCountryDescription();
+      if(data.message !== undefined){
+        displayCountryInfo(data);} 
+      else{getCountryDescription();
+        document.getElementById("currentEventsButton").className = "available";
+        document.getElementById("countryInfoButton").className = "locked";
+        document.getElementById("descriptionButton").className = "active";
+      }
       
     })
     .catch(error => {
@@ -49,6 +61,9 @@ function getCountryInfo() {
 }
 
 function displayCountryInfo(data){
+    document.getElementById("currentEventsButton").className = "available";
+    document.getElementById("countryInfoButton").className = "active";
+    document.getElementById("descriptionButton").className = "available";
     const resultElement = document.getElementById('historic-info');
     const info = data.message;
     const graphicsUrl = "https://cdn.glitch.global/ba2d6357-bf92-45f0-aa0b-d4c301cb3d49";
@@ -98,15 +113,21 @@ function displayCountryInfo(data){
             <p>Currency: ${info.currency}</p>
             <p>Capital City: ${info.capital}</p>
         </div>
-        
+        <hr/>
     </div>`;
 }
 
 
 function getCountryDescription(){
+  document.getElementById("currentEventsButton").className = "available";
+  document.getElementById("countryInfoButton").className = "available";
+  document.getElementById("descriptionButton").className = "active";
   currentInfoboxInfo = "description";
   console.log(currentlyClickedCountry);
   if(currentlyClickedCountry == undefined) {
+    document.getElementById("currentEventsButton").className = "active";
+    document.getElementById("countryInfoButton").className = "locked";
+    document.getElementById("descriptionButton").className = "locked";
     getWorldEvents(); 
     return 0;
   }
@@ -127,7 +148,14 @@ function getCountryDescription(){
       return response.json();
     })
     .then(data => {
-      data.message !== undefined ? document.getElementById('historic-info').innerHTML = data.message.description : getWorldEvents();
+      if(data.message !== undefined){ 
+        document.getElementById('historic-info').innerHTML = `<span><h1>Country name placeholder</h1></span>
+        <div id="description">${data.message.description}</div>`}
+      else{getWorldEvents()
+        document.getElementById("currentEventsButton").className = "active";
+        document.getElementById("countryInfoButton").className = "locked";
+        document.getElementById("descriptionButton").className = "locked";
+      };
     })
     .catch(error => {
       console.error('Fetch error:', error.message);
@@ -135,6 +163,9 @@ function getCountryDescription(){
 }
 
 function getWorldEvents(){
+  document.getElementById("currentEventsButton").className = "active";
+  if(document.getElementById("countryInfoButton").className === "active") document.getElementById("countryInfoButton").className = "available";
+  if(document.getElementById("descriptionButton").className === "active") document.getElementById("descriptionButton").className = "available";
   currentInfoboxInfo = "events";
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-current-events";
   fetch(apiUrl, {
@@ -160,10 +191,10 @@ function getWorldEvents(){
         <li><ul>${data.events.length !== 0 ? data.events.join("</ul><ul>") : "Nothing interesting happened on this day"}</ul></li>
         <hr>
         <h2>Current Battles</h2>
-        <li><ul>${data.battles.length !== 0 ? data.battles.join("</ul><ul>") : "There was no battles on this day"}</ul></li>
+        <li><ul>${data.battles.length !== 0 ? data.battles.join("</ul><ul>") : "There were no battles on this day"}</ul></li>
         <hr>
         <h2>Current Wars</h2>
-        <li><ul>${data.wars.length !== 0 ? data.wars.join("</ul><ul>") : "There was no wars on this day"}</ul></li>
+        <li><ul>${data.wars.length !== 0 ? data.wars.join("</ul><ul>") : "There were no wars on this day"}</ul></li>
         <hr>`
     })
     .catch(error => {
