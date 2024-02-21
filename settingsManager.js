@@ -55,7 +55,7 @@ function setupMapDisplaySettings(mapTags){
   mapDisplaySettings.innerHTML = "";
   for(let i = 0; i < mapTags.length; i++){
     if(!mapDisplaySettings.hasOwnProperty(mapTags[i])) {mapDisplaySettings[mapTags[i]] = "checked"}
-    mapDisplaySettings.insertAdjacentHTML('beforeend', `<input type="checkbox" value="${mapTags[i]}" ${mapDisplaySettings[mapTags[i]]}> ${mapTags[i]}`);
+    mapDisplaySettings.insertAdjacentHTML('beforeend', `<p><input type="checkbox" value="${mapTags[i]}" ${mapDisplaySettings[mapTags[i]]}> ${mapTags[i]}</p>`);
     console.log(mapDisplaySettings.lastElementChild)
     if(mapDisplaySettings.lastElementChild.checked == false) {document.getElementById(mapTags[i]).style.visibility = "hidden";}
     mapDisplaySettings.lastElementChild.addEventListener("change", (e) => {
