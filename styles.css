@@ -82,9 +82,10 @@ svg{
     position: absolute;
 }
 #historic-info{
+    font-family: "EB Garamond", serif;
+    padding-top: 20px;
     float: right;
     width: var(--historic-info-width);
-    border: 2px solid black;
     text-align: center;
     position: fixed;
     top: var(--header-height);
@@ -92,43 +93,139 @@ svg{
     height: calc(100vh - (var(--header-height) + var(--timeline-height) + 50px));
     background-color: #735438;
     opacity: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
     color: #F2DBAE;
+}
+#historic-info > h1, #historic-info > h2, #historic-info > h3{
+    font-family: 'Courier New', Courier, monospace;
+    margin: 10px 0;
 }
 #political-system, #national-symbols{
     display: flex;
     justify-content:space-evenly;
 }
+#political-system > *{
+    width: calc(100%/3);
+}
+#national-symbols > *{
+    width: calc(100%/2)
+}
+#description{
+    margin: 0 10%;
+}
+audio{
+    background-color: var(--color1);
+    border-radius: 2px;
+    height: 30px;
+}
+audio::-webkit-media-controls-panel {
+    background-color: var(--color1);
+  }
 #settings{
     top: var(--header-height);
     left: 0;
     position: fixed;
-    border: 1px solid black;
     width: var(--settings-width);
     height: calc(100vh - (var(--header-height) + var(--timeline-height)));
-    background-color: #735438;
+    background-color: var(--color4);
+    color: var(--color1);
+    font-family: 'Courier New', Courier, monospace;
+}
+#settings > h2{
+    padding: 15px 0;
+    color: var(--color2);
+    font-size: 2em;
+    text-align: center;
+}
+#settings > h3{
+    text-align: center;
+}
+#settings > span > p{
+    margin-left: 30px;
+    padding-top: 5px;
+    display: flex;
+    align-items: center;
+}
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0 8px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color1);
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
+input[type="checkbox"]:checked {
+    background-color: var(--color5);
+}
+input[type="checkbox"]::before {
+    content: "✓";
+    font-size: 1.2em;
+    font-weight: bolder;
+    position: relative;
+    top: -3px;
+    right: -2px;
+    text-align: center;
+    color: var(--color2);
+    visibility: hidden;
+}
+input[type="checkbox"]:checked::before {
+    visibility: visible;
 }
 #timeline-div{
-    border: 1px solid black;
     clear: both;
     position: fixed;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     bottom: 0;
     width: 100vw;
     height: var(--timeline-height);
     background-color: #A68053;
 }
-#end_date, #start_date{
-    width: 80px;
+#timeline-div > *{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+#timeline{
+    width: 80vw;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: var(--color4);
+    border-radius: 5px;
+    height: 35%;
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: var(--color5);
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+}
+input[type=text]{
+    border: none;
+    background-color: var(--color3);
+    font-size: 20px;
+    font-weight:750;
+}
+input[type=text]:hover{
+    color: var(--color5);
+}
+#end_date, #start_date, #date_input{
+    width: 105px;
+    padding: 0 5px;
 }
 #buttons{
     display: flex;
     float: right;
     width: var(--historic-info-width);
-    border: 1px solid black;
     height: 50px;
-    margin-right: 1px;
     justify-content: space-between;
     position: fixed;
     bottom: var(--timeline-height);
@@ -136,17 +233,46 @@ svg{
 }
 #buttons>*{
     width: calc(100%/3);
+    border: none;
+    
+}
+.available, .active, .locked{
+    font-size: 1.2em;
+}
+.available{
+    background-color: var(--color1);
+    color: var(--color5);
+}
+.available:hover{
+    background-color: var(--color3);
+    cursor: pointer;
+}
+.active{
+    background-color: var(--color4) ;
+    color: var(--color2);
+}
+.locked{
+    background-color: grey ;
+    color: black;
 }
 .Belgium:hover{
     fill: orange;
 }
 img{
     height: 100px;
+    max-width: 100%;
+}
+hr{
+    margin: 10px auto;
+    height: 3px;
+    width: 75%;
+    border: none;
+    background-color: var(--color3);
 }
 ul{
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    margin:5px auto;
+    width: 80%;
 }
 li{
     display: inline;
