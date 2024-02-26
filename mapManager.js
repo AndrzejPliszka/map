@@ -36,6 +36,7 @@ document.addEventListener('pointerup', () => {
 });
 
 container.addEventListener('wheel', (e) => {
+  console.log(isDragging)
   if(!isDragging){
     const delta = e.deltaY;
     const mouseX = e.clientX - container.getBoundingClientRect().left;
