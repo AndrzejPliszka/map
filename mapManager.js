@@ -36,36 +36,37 @@ document.addEventListener('pointerup', () => {
 });
 
 container.addEventListener('wheel', (e) => {
-  const delta = e.deltaY;
-  const mouseX = e.clientX - container.getBoundingClientRect().left;
-  const mouseY = e.clientY - container.getBoundingClientRect().top;
-  if(delta > 0){
-    zoomLevel = 1 - zoomLevel*0.1;
-  } else{
-    zoomLevel = 1 + zoomLevel*0.1;
-  }
-  for(let i = 0; i < draggableElements.length; i++){
-    const width = draggableElements[i].getBoundingClientRect().width;
-    let topDist, leftDist;
-
-    if(draggableElements[i].style.top !== ''){
-      topDist = parseFloat(draggableElements[i].style.top);
-      leftDist = parseFloat(draggableElements[i].style.left);
+  if(!isDragging){
+    const delta = e.deltaY;
+    const mouseX = e.clientX - container.getBoundingClientRect().left;
+    const mouseY = e.clientY - container.getBoundingClientRect().top;
+    if(delta > 0){
+      zoomLevel = 1 - zoomLevel*0.1;
     } else{
-      const computedStyle = getComputedStyle(draggableElements[i]);
-      topDist = parseFloat(computedStyle.getPropertyValue('top'));
-      leftDist = parseFloat(computedStyle.getPropertyValue('left'));
+      zoomLevel = 1 + zoomLevel*0.1;
     }
-    const offsetX = mouseX - leftDist;
-    const offsetY = mouseY - topDist;
+    for(let i = 0; i < draggableElements.length; i++){
+      const width = draggableElements[i].getBoundingClientRect().width;
+      let topDist, leftDist;
 
-    draggableElements[i].style.width = `${width * zoomLevel}px`;
-    const newLeft = mouseX - offsetX * zoomLevel;
-    const newTop = mouseY - offsetY * zoomLevel;
-
-    draggableElements[i].style.left = `${newLeft}px`;
-    draggableElements[i].style.top = `${newTop}px`;
-  }
+      if(draggableElements[i].style.top !== ''){
+        topDist = parseFloat(draggableElements[i].style.top);
+        leftDist = parseFloat(draggableElements[i].style.left);
+      } else{
+        const computedStyle = getComputedStyle(draggableElements[i]);
+        topDist = parseFloat(computedStyle.getPropertyValue('top'));
+        leftDist = parseFloat(computedStyle.getPropertyValue('left'));
+      }
+      const offsetX = mouseX - leftDist;
+      const offsetY = mouseY - topDist;
   
+      draggableElements[i].style.width = `${width * zoomLevel}px`;
+      const newLeft = mouseX - offsetX * zoomLevel;
+      const newTop = mouseY - offsetY * zoomLevel;
+  
+      draggableElements[i].style.left = `${newLeft}px`;
+      draggableElements[i].style.top = `${newTop}px`;
+    } 
+  }
 });
 }
