@@ -313,3 +313,27 @@ ul{
 li{
     display: inline;
 }
+#information{
+    position: absolute;
+    top: var(--header-height);
+    height: calc(100vh - var(--header-height));
+    width: calc(100vw - 40px);
+    padding: 20px;
+    background-color: var(--color4);
+    color: var(--color2);
+    line-height: 1.5;
+    font-size: large;
+}
+#information > h2{
+    color: #F5F5DC;
+}
+em{
+    background-color: var(--color1);
+    color: var(--color5);
+    font-weight: bold;
+    font-style: normal;
+}
+#information > a{
+    color: var(--color5);
+    font-weight: bolder;
+}
