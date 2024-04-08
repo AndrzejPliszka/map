@@ -58,7 +58,7 @@ function hideOrShowPanel(panelName){
             else{
                 console.log(`${currentTimelineHeight} + ${headerHeight}`)
                 panel.style.top = 0;
-                button.style.top = "100px";
+                button.style.top = `${headerHeight}px`;
                 button.value = "↑";
                 document.getElementById("historic-info").style.height = `calc(100vh - (${currentTimelineHeight} + ${headerHeight} + 50px))`;
                 document.getElementById("historic-info").style.top = headerHeight;
