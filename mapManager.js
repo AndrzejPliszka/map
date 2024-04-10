@@ -1,8 +1,11 @@
 let zoomLevel = 1;
 
 function initializeMapManager(){
-  const draggableElements = document.querySelectorAll('svg');
   var container = document.getElementById('svg-container');
+  const draggableElements = Array.prototype.slice.call(document.querySelectorAll('svg'));
+  const imageLayers = Array.prototype.slice.call(container.querySelectorAll('img'));
+  draggableElements.push(...imageLayers);
+  console.log(draggableElements);
   let isDragging = false;
   let offsetsX = [], offsetsY = [];
   for(let i = 0; i <  document.querySelectorAll('svg').length; i++){

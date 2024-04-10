@@ -98,6 +98,16 @@ button > img{
 svg{
     position: absolute;
 }
+#svg-container > img{
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    overflow: hidden;
+    height: auto;
+    max-width: none;
+    left: 0;
+    top: 0;
+}
 #historic-info{
     font-family: "EB Garamond", serif;
     padding-top: 20px;
