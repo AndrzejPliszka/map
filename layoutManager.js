@@ -21,7 +21,6 @@ function hideOrShowPanel(panelName){
             break;
         case "timeline-div":
             let currentHeaderHeight = document.getElementById("header").style.top == 0 || document.getElementById("header").style.top == '0px' ? headerHeight : '0px';
-            console.log(currentHeaderHeight);
             
             if(panel.style.bottom == 0 || panel.style.bottom == "0px"){
                 panel.style.bottom = "-10000px";
@@ -40,9 +39,7 @@ function hideOrShowPanel(panelName){
             break;
         case "header":
             let currentTimelineHeight = document.getElementById("timeline-div").style.bottom == 0 || document.getElementById("timeline-div").style.bottom == '0px' ? timelineHeight : '0px';
-            console.log(currentTimelineHeight);
             if(panel.style.top == 0 || panel.style.top == "0px"){
-                console.log(`${currentTimelineHeight} + ${headerHeight}`)
                 panel.style.top = "-10000px";
                 button.style.top = 0;
                 document.getElementById("historic-info").style.height = `calc(100vh - (${currentTimelineHeight} + 50px))`;
@@ -51,7 +48,6 @@ function hideOrShowPanel(panelName){
                 document.getElementById("settings").style.top = 0;
             }
             else{
-                console.log(`${currentTimelineHeight} + ${headerHeight}`)
                 panel.style.top = 0;
                 button.style.top = headerHeight;
                 document.getElementById("historic-info").style.height = `calc(100vh - (${currentTimelineHeight} + ${headerHeight} + 50px))`;

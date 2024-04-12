@@ -40,7 +40,6 @@ async function saveMapTagInfo(){
 async function saveMapToIndexedDB(data){
     let req = window.indexedDB.open("MapDatabase", 1);
     req.onsuccess = function(event) {
-        console.log("checkin")
         db = event.target.result
         for(let i = 0; i < data.tag.length; i++){
             db.transaction(["Maps"], "readwrite").objectStore("Maps").add({map_tag:data.tag[i], date:data.start_date[i], svg_code:data.svg_code[i]});
@@ -50,7 +49,6 @@ async function saveMapToIndexedDB(data){
 
 function getDataFromLocalStorage(date){
     const tag_data = JSON.parse(localStorage.getItem("mapTagData"));
-    console.log(date, tag_data[0].start_date)
     tag = []
     width = []
     x_pos = []
@@ -68,7 +66,6 @@ function getDataFromLocalStorage(date){
     req.onsuccess = function(event) {
         var db = event.target.result;
         for(let i = 0; i < tag.length; i++){
-            console.log(tag[i], date)
             db.transaction(["Maps"], "readonly").objectStore("Maps").index("map_tag").getAll(tag[i]).onsuccess = (e) => {
                 maxDateElement = null;
                 cursor = e.target.result;
@@ -83,7 +80,6 @@ function getDataFromLocalStorage(date){
                     svg.push(maxDateElement.svg_code);
                 }
                 if (svg.length === tag.length) {
-                    console.log(svg);
                     data = {
                         svg_code: svg,
                         tag: tag,

@@ -2,7 +2,6 @@ let currentlyClickedCountry = undefined;
 let currentInfoboxInfo = "events";
 
 function infoboxManager(clickedElement) {
-  console.log("infobox manager started" + clickedElement);
   if(clickedElement !== undefined){currentlyClickedCountry = clickedElement}
   switch(currentInfoboxInfo){
     case "events":
@@ -123,7 +122,6 @@ function getCountryDescription(){
   document.getElementById("countryInfoButton").className = "available";
   document.getElementById("descriptionButton").className = "active";
   currentInfoboxInfo = "description";
-  console.log(currentlyClickedCountry);
   if(currentlyClickedCountry == undefined) {
     document.getElementById("currentEventsButton").className = "active";
     document.getElementById("countryInfoButton").className = "locked";
@@ -183,9 +181,6 @@ function getWorldEvents(){
       return response.json();
     })
     .then(data => {
-      console.log(data.events)
-      console.log(data.battles)
-      console.log(data.wars)
       document.getElementById('historic-info').innerHTML = `
         <h2>Current Events:</h2>
         <li><ul>${data.events.length !== 0 ? data.events.join("</ul><ul>") : "Nothing interesting happened on this day"}</ul></li>

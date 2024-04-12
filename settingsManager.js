@@ -9,7 +9,6 @@ function changeTime(time_amount, should_increase){
   dateObject.value = date.toISOString().slice(0, 10);
   getMap();
   
-  console.log(time_amount, should_increase);
 }
 
 document.addEventListener("keydown", (event) => {
@@ -49,7 +48,6 @@ function changeTimeline(){
 
 document.addEventListener("DOMContentLoaded", setupTimeline());
 function setupMapDisplaySettings(mapTags){
-  console.log("tu se ustawieniuje")
   let mapDisplaySettingsDiv = document.getElementById("map-display-settings");
   mapDisplaySettingsDiv.innerHTML = "";
   for(let i = 0; i < mapTags.length; i++){
