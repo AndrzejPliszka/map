@@ -1,7 +1,25 @@
+function getMap(){
+  const date = document.getElementById("date_input").value;
+  console.log(JSON.parse(localStorage.getItem("savedDates")), date)
+  if(localStorage.getItem("savedDates") !== null){
+    if (JSON.parse(localStorage.getItem("savedDates")).includes(date)){
+      console.log("TO DO GET MAP FROM LOCAL")
+      getDataFromLocalStorage(date); //this also displays data      
+    }
+    else{
+      downloadMap()
+    }
+  }
+  else{
+    downloadMap()
+  }
+}
+
 function downloadMap() {
   console.log("downloadingMap has begun")
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-map";
   const date = document.getElementById("date_input").value;
+  saveMapTagInfo();
   fetch(apiUrl, {
       method: 'POST',
       headers: {
@@ -17,6 +35,8 @@ function downloadMap() {
       return response.json();
     })
     .then(data => {
+      addDateToStorage(date);
+      saveMapToIndexedDB(data)
       displayMap(data)
     })
     .catch(error => {
@@ -57,7 +77,7 @@ function makeElementsClickable() {
 function displayMap(data){
     const resultElement = document.getElementById('svg-container');
       let offsetX, offsetY, widthOffset;
-    console.log(resultElement.firstElementChild);
+    console.log(data);
     if(resultElement.firstElementChild){
       offsetX = (resultElement.firstElementChild.getBoundingClientRect().left - resultElement.getBoundingClientRect().left - 2);
       offsetY = (resultElement.firstElementChild.getBoundingClientRect().top - resultElement.getBoundingClientRect().top - 2);
@@ -72,6 +92,7 @@ function displayMap(data){
     console.log(offsetX, offsetY);
     resultElement.innerHTML = "";
     for(let i = 0; i < data.tag.length; i++){
+      console.log(data.svg_code.length);
       resultElement.insertAdjacentHTML('beforeend', data.svg_code[i]);
       let svgElement = resultElement.lastChild;
       svgElement.style.left = `${Number(data.x_pos[i])*widthOffset + offsetX}px`;

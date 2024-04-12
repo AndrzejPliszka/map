@@ -7,7 +7,7 @@ function changeTime(time_amount, should_increase){
         break;
   }
   dateObject.value = date.toISOString().slice(0, 10);
-  downloadMap();
+  getMap();
   
   console.log(time_amount, should_increase);
 }
@@ -49,22 +49,23 @@ function changeTimeline(){
 
 document.addEventListener("DOMContentLoaded", setupTimeline());
 
-let mapDisplaySettings = {};
+let savedMapDisplaySettings = {};
 function setupMapDisplaySettings(mapTags){
-  let mapDisplaySettings = document.getElementById("map-display-settings");
-  mapDisplaySettings.innerHTML = "";
+  console.log("tu se ustawieniuje")
+  let mapDisplaySettingsDiv = document.getElementById("map-display-settings");
+  mapDisplaySettingsDiv.innerHTML = "";
   for(let i = 0; i < mapTags.length; i++){
-    if(!mapDisplaySettings.hasOwnProperty(mapTags[i])) {mapDisplaySettings[mapTags[i]] = "checked"}
-    mapDisplaySettings.insertAdjacentHTML('beforeend', `<p><input type="checkbox" value="${mapTags[i]}" ${mapDisplaySettings[mapTags[i]]}> ${mapTags[i]}</p>`);
-    console.log(mapDisplaySettings.lastElementChild)
-    if(mapDisplaySettings.lastElementChild.checked == false) {document.getElementById(mapTags[i]).style.visibility = "hidden";}
-    mapDisplaySettings.lastElementChild.addEventListener("change", (e) => {
+    if(!savedMapDisplaySettings.hasOwnProperty(mapTags[i])) {mapDisplaySettingsDiv[mapTags[i]] = "checked"}
+    mapDisplaySettingsDiv.insertAdjacentHTML('beforeend', `<p><input type="checkbox" value="${mapTags[i]}" ${savedMapDisplaySettings[mapTags[i]]}> ${mapTags[i]}</p>`);
+    console.log(document.getElementById(mapTags[i]))
+    if(mapDisplaySettingsDiv.lastElementChild.checked == false) {document.getElementById(mapTags[i]).style.visibility = "hidden";}
+    mapDisplaySettingsDiv.lastElementChild.addEventListener("change", (e) => {
       if(e.target.checked){
         document.getElementById(e.target.value).style.visibility = "visible";
-        mapDisplaySettings[e.target.value] = "checked";
+        mapDisplaySettingsDiv[e.target.value] = "checked";
       } else{
         document.getElementById(e.target.value).style.visibility = "hidden";
-        mapDisplaySettings[e.target.value] = "";
+        mapDisplaySettingsDiv[e.target.value] = "";
       }
     })
   }

@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
 </head>
-<body onload='downloadMap("1914-06-28")'>
+<body onload='getMap()'>
     <div id="header">
         <span><h1>Interactive History Map Prototype</h1></span>
         <span>
@@ -44,7 +44,7 @@
     <div id="timeline-div">
         <span id="date_input-span">
             <button onclick="changeTime('day', false)"><img src="images/arrow.png"></button>
-            <input id="date_input" type="text" value="1914-06-28" placeholder="RRRR-MM-DD" onchange=downloadMap()>
+            <input id="date_input" type="text" value="1914-06-28" placeholder="RRRR-MM-DD" onchange="getMap()"">
             <button onclick="changeTime('day', true)"><img src="images/arrow.png" class="flip"></button>
         </span>
         <span id="timeline-span">
@@ -59,4 +59,4 @@
 <script src="infoDownloader.js"></script>
 <script src="settingsManager.js"></script>
 <script src="layoutManager.js"></script>
-
+<script src="localDataManager.js"></script>
