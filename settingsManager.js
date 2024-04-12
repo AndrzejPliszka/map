@@ -48,17 +48,14 @@ function changeTimeline(){
 }
 
 document.addEventListener("DOMContentLoaded", setupTimeline());
-
-let savedMapDisplaySettings = {};
 function setupMapDisplaySettings(mapTags){
   console.log("tu se ustawieniuje")
   let mapDisplaySettingsDiv = document.getElementById("map-display-settings");
   mapDisplaySettingsDiv.innerHTML = "";
   for(let i = 0; i < mapTags.length; i++){
-    if(!savedMapDisplaySettings.hasOwnProperty(mapTags[i])) {mapDisplaySettingsDiv[mapTags[i]] = "checked"}
-    mapDisplaySettingsDiv.insertAdjacentHTML('beforeend', `<p><input type="checkbox" value="${mapTags[i]}" ${savedMapDisplaySettings[mapTags[i]]}> ${mapTags[i]}</p>`);
-    console.log(document.getElementById(mapTags[i]))
-    if(mapDisplaySettingsDiv.lastElementChild.checked == false) {document.getElementById(mapTags[i]).style.visibility = "hidden";}
+    if(!mapDisplaySettingsDiv.hasOwnProperty(mapTags[i])) {mapDisplaySettingsDiv[mapTags[i]] = "checked"}
+    mapDisplaySettingsDiv.insertAdjacentHTML('beforeend', `<p><input type="checkbox" value="${mapTags[i]}" ${mapDisplaySettingsDiv[mapTags[i]]}> ${mapTags[i]}</p>`);
+    if(mapDisplaySettingsDiv.lastElementChild.lastElementChild.checked == false) {document.getElementById(mapTags[i]).style.visibility = "hidden";}
     mapDisplaySettingsDiv.lastElementChild.addEventListener("change", (e) => {
       if(e.target.checked){
         document.getElementById(e.target.value).style.visibility = "visible";
