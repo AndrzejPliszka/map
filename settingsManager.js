@@ -43,6 +43,7 @@ function changeTimeline(){
   currentDate = new Date(document.getElementById("date_input").value);
   startDate = new Date(document.getElementById("start_date").value);
   let daysDifference = Math.ceil(Math.abs(currentDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
+  if(currentDate.getTime() - startDate.getTime() < 0){daysDifference *= -1};
   document.getElementById("timeline").value = daysDifference;
 }
 

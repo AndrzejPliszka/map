@@ -55,6 +55,7 @@ function getDataFromLocalStorage(date){
     y_pos = []
     svg = []
     let usedTags = tag_data.filter(tag => tag.start_date <= date && tag.end_date >= date).sort((a, b) => a.z_index - b.z_index)
+    if(usedTags.length === 0){displayMap({tag: [], width: []})}
     for(let i = 0; i < usedTags.length; i++){
         tag.push(usedTags[i].tag_name)
         width.push(usedTags[i].width)
@@ -86,6 +87,7 @@ function getDataFromLocalStorage(date){
                         width: width,
                         x_pos: x_pos,
                         y_pos: y_pos}
+                    console.log(data);
                     displayMap(data);
                 }
             };
