@@ -166,6 +166,8 @@ audio::-webkit-media-controls-panel {
 }
 #settings > h3{
     text-align: center;
+    margin-top: 30px;
+    margin-bottom: 5px;
 }
 #settings > span > p{
     margin-left: 30px;
@@ -201,6 +203,22 @@ input[type="checkbox"]::before {
 }
 input[type="checkbox"]:checked::before {
     visibility: visible;
+}
+#settings > input[type="button"]{
+    display: block;
+    margin: 0 auto;
+    padding: 5px 10px;
+    font-size: 1.2em;
+    background-color: var(--color1);
+    color: var(--color5);
+    border: 1px solid var(--color5)
+}
+#settings > p{
+    font-size: 0.8em;
+    text-align: center;
+}
+#settings > input[type="button"]:hover{
+    background-color: var(--color3);
 }
 #timeline-div{
     clear: both;

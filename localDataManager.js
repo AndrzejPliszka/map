@@ -92,3 +92,10 @@ function getDataFromLocalStorage(date){
         }
     }
 }
+
+function deleteSavedData(){
+    localStorage.removeItem("savedDates");
+    localStorage.removeItem("mapTagData");
+    window.indexedDB.deleteDatabase("MapDatabase");
+    location.reload();
+}
