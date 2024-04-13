@@ -28,16 +28,13 @@ function getCountryInfo() {
     document.getElementById("descriptionButton").className = "locked";
     return 0;
   }
-  const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-country-info";
-  fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        tag: `${currentlyClickedCountry.className.baseVal}`,
-        date: `${document.getElementById("date_input").value}`
-      })
-  })
+  params = {
+    tag: `${currentlyClickedCountry.className.baseVal}`,
+    date: `${document.getElementById("date_input").value}`
+  }
+  params = new URLSearchParams(params).toString();
+  const apiUrl = `https://quilled-nervous-leopon.glitch.me/get-country-info?${params}`;
+  fetch(apiUrl)
     .then(response => {
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.statusText}`);
@@ -129,16 +126,13 @@ function getCountryDescription(){
     getWorldEvents(); 
     return 0;
   }
-  const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-country-description";
-  fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        tag: `${currentlyClickedCountry.className.baseVal}`,
-        date: `${document.getElementById("date_input").value}`
-      })
-  })
+  params = {
+    tag: `${currentlyClickedCountry.className.baseVal}`,
+    date: `${document.getElementById("date_input").value}`
+  }
+  params = new URLSearchParams(params).toString();
+  const apiUrl = `https://quilled-nervous-leopon.glitch.me/get-country-description?${params}`;
+  fetch(apiUrl)
     .then(response => {
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.statusText}`);
@@ -165,15 +159,10 @@ function getWorldEvents(){
   if(document.getElementById("countryInfoButton").className === "active") document.getElementById("countryInfoButton").className = "available";
   if(document.getElementById("descriptionButton").className === "active") document.getElementById("descriptionButton").className = "available";
   currentInfoboxInfo = "events";
-  const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-current-events";
-  fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        date: `${document.getElementById("date_input").value}`
-      })
-  })
+  const date = document.getElementById("date_input").value;
+  let dateParam = new URLSearchParams({"date": date}).toString();
+  const apiUrl = `https://quilled-nervous-leopon.glitch.me/get-current-events?${dateParam}`;
+  fetch(apiUrl)
     .then(response => {
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.statusText}`);

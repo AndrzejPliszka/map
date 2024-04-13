@@ -15,17 +15,11 @@ function getMap(){
 
 function downloadMap() {
   console.log("downloading has begun")
-  const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-map";
   const date = document.getElementById("date_input").value;
+  let dateParam = new URLSearchParams({"date": date}).toString();
+  const apiUrl = `https://quilled-nervous-leopon.glitch.me/download-map?${dateParam}`;
   saveMapTagInfo();
-  fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        date: date
-      })
-  })
+  fetch(apiUrl)
     .then(response => {
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.statusText}`);
@@ -33,6 +27,7 @@ function downloadMap() {
       return response.json();
     })
     .then(data => {
+      console.log(data)
       addDateToStorage(date);
       saveMapToIndexedDB(data)
       displayMap(data)
@@ -43,16 +38,10 @@ function downloadMap() {
 }
 
 function makeElementsClickable() {
-  const apiUrl = "https://quilled-nervous-leopon.glitch.me/download-clickable-countries";
   const date = document.getElementById("date_input").value;
-  fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        date: date
-      })
-  })
+  let dateParam = new URLSearchParams({"date": date}).toString();
+  const apiUrl = `https://quilled-nervous-leopon.glitch.me/get-clickable-countries?${dateParam}`;
+  fetch(apiUrl)
     .then(response => {
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.statusText}`);

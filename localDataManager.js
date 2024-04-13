@@ -25,11 +25,7 @@ function addDateToStorage(date){
 async function saveMapTagInfo(){
     if(!localStorage.getItem("mapTagData")){
         const apiUrl = "https://quilled-nervous-leopon.glitch.me/get-map-tags";
-        fetch(apiUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'}
-        })
+        fetch(apiUrl)
         .then(response => response.json())
         .then((data) => {
             localStorage.setItem("mapTagData", JSON.stringify(data.info))
