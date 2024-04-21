@@ -1,7 +1,11 @@
 const request = window.indexedDB.open("MapDatabase", 1);
 request.onerror = (event) => {console.log(event.target.errorCode)};
-
+request.onsuccess = () => {checkIfDataIsUpToDate()};
 request.onupgradeneeded = (event) => {
+    //store date from which map was taken
+    currentDate = new Date();
+    localStorage.setItem("lastUpdateDate", currentDate);
+    //database creating
     const db = event.target.result;
     const objectStore = db.createObjectStore("Maps", { keyPath: "id", autoIncrement: true});
     objectStore.createIndex("map_tag", "map_tag", { unique: false });
@@ -83,7 +87,6 @@ function getDataFromLocalStorage(date){
                         width: width,
                         x_pos: x_pos,
                         y_pos: y_pos}
-                    console.log(data);
                     displayMap(data);
                 }
             };
@@ -96,4 +99,17 @@ function deleteSavedData(){
     localStorage.removeItem("mapTagData");
     window.indexedDB.deleteDatabase("MapDatabase");
     location.reload();
+}
+
+function checkIfDataIsUpToDate(){
+    const apiUrl = "https://quilled-nervous-leopon.glitch.me/get-last-update-date";
+        fetch(apiUrl)
+        .then(response => response.json())
+        .then((data) => {
+            localUpdateDate = new Date(localStorage.getItem("lastUpdateDate"));
+            serverUpdateDate = new Date(data.date);
+            if(serverUpdateDate > localUpdateDate){
+                deleteSavedData();
+            }
+        })
 }
