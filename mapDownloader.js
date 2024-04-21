@@ -34,6 +34,7 @@ function downloadMap() {
     })
     .catch(error => {
       console.error('Fetch error:', error.message);
+      window.location.reload();
     });
 }
 
@@ -55,6 +56,7 @@ function makeElementsClickable() {
     })
     .catch(error => {
       console.error('Fetch error:', error.message);
+      window.location.reload();
     });
 }
 
