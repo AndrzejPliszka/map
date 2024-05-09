@@ -62,7 +62,8 @@ function displayCountryInfo(data){
     document.getElementById("descriptionButton").className = "available";
     const resultElement = document.getElementById('historic-info');
     const info = data.message;
-    const graphicsUrl = "https://cdn.glitch.global/ba2d6357-bf92-45f0-aa0b-d4c301cb3d49";
+    const filesStartUrl = "https://drive.google.com/thumbnail?id=";
+    const filesEndUrl = "&sz=w1000";
     resultElement.innerHTML = `<div id="country-name">
             <h1>${info.name}</h1>
             <h2>${info.native_name}</h2>
@@ -70,42 +71,39 @@ function displayCountryInfo(data){
         <hr>
         <div id="national-symbols">
             <div id="flag">
-                <img src="${graphicsUrl}/${info.tag}_Flag.png">
+                <img src="${filesStartUrl}${info.flag_file_id}${filesEndUrl}">
                 <p>Flag</p>
             </div>
             <div id="coat">
-                <img src="${graphicsUrl}/${info.tag}_CoA.png">
+                <img src="${filesStartUrl}${info.coa_file_id}${filesEndUrl}">
                 <p>Coat of Arms</p>
             </div>
         </div>
         <hr>
         <div id="anthem">
             <audio controls>
-              <source type="audio/ogg" src="https://upload.wikimedia.org/wikipedia/commons/f/f5/United_States_Navy_Band_-_Het_Wilhelmus_%28tempo_corrected%29.ogg">
+              <source type="audio/ogg" src="${filesStartUrl}${info.anthem_file_id}${filesEndUrl}">
             </audio>
-            <p>Anthem "${info.anthem}"  (does not come from serv)</p>
+            <p>Anthem "${info.anthem_name}"</p>
         </div>
         <hr>
         <h3>${info.goverment_type}</h3>
         <div id="political-system">
             <div id="leader">
-                <img src="${graphicsUrl}/${info.tag}_Leader.png"><br>
+                <img src="${filesStartUrl}${info.leader_file_id}${filesEndUrl}"><br>
                 <p>${info.leader_position}<br>${info.leader_name}</p>
-                
             </div>
             <div id="secondary-leader">
-                <img src="${graphicsUrl}/${info.tag}_SecondLeader.png"><br>
-                <p>${info.second_leader_position}<br>${info.second_leader_name}</p>
-                
+                <img src="${filesStartUrl}${info.secondary_leader_file_id}${filesEndUrl}"><br>
+                <p>${info.secondary_leader_position}<br>${info.secondary_leader_name}</p>
             </div>
             <div id="parliament">
-                <img src="${graphicsUrl}/${info.tag}_Parliament.png"><br>
-                <p>${info.parlament}</p>
+                <img src="${filesStartUrl}${info.parliament_file_id}${filesEndUrl}"><br>
+                <p>${info.parliament_name}</p>
             </div>
         </div>
         <hr>
         <div id="other-info">
-            <p>Official Language: ${info.official_language}</p>
             <p>Currency: ${info.currency}</p>
             <p>Capital City: ${info.capital}</p>
         </div>
