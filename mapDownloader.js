@@ -27,7 +27,10 @@ function downloadMap() {
       return response.json();
     })
     .then(data => {
-      console.log(data)
+      for(let i = 0; i < data.svg_code.length; i++){
+        data.svg_code[i] = data.svg_code[i].replace("<svg", `<svg preserveAspectRatio='none'`)
+      }
+      console.log(data);
       addDateToStorage(date);
       saveMapToIndexedDB(data)
       displayMap(data)
@@ -37,7 +40,6 @@ function downloadMap() {
       window.location.reload();
     });
 }
-
 function makeElementsClickable() {
   const date = document.getElementById("date_input").value;
   let dateParam = new URLSearchParams({"date": date}).toString();
@@ -88,3 +90,4 @@ function displayMap(data){
     setupMapDisplaySettings(data.tag);
     makeElementsClickable();
 }
+
