@@ -62,8 +62,6 @@ function displayCountryInfo(data){
     document.getElementById("descriptionButton").className = "available";
     const resultElement = document.getElementById('historic-info');
     const info = data.message;
-    const filesStartUrl = "https://drive.google.com/thumbnail?id=";
-    const filesEndUrl = "&sz=w1000";
     resultElement.innerHTML = `<div id="country-name">
             <h1>${info.name}</h1>
             <h2>${info.native_name}</h2>
@@ -71,18 +69,18 @@ function displayCountryInfo(data){
         <hr>
         <div id="national-symbols">
             <div id="flag">
-                <img src="${filesStartUrl}${info.flag_file_id}${filesEndUrl}">
+                <img src="${info.flag_file_id}">
                 <p>Flag</p>
             </div>
             <div id="coat">
-                <img src="${filesStartUrl}${info.coa_file_id}${filesEndUrl}">
+                <img src="${info.coa_file_id}">
                 <p>Coat of Arms</p>
             </div>
         </div>
         <hr>
         <div id="anthem">
             <audio controls>
-              <source type="audio/ogg" src="${filesStartUrl}${info.anthem_file_id}${filesEndUrl}">
+              <source type="audio/ogg" src="${info.anthem_file_id}">
             </audio>
             <p>Anthem "${info.anthem_name}"</p>
         </div>
@@ -90,15 +88,15 @@ function displayCountryInfo(data){
         <h3>${info.goverment_type}</h3>
         <div id="political-system">
             <div id="leader">
-                <img src="${filesStartUrl}${info.leader_file_id}${filesEndUrl}"><br>
+                <img src="${info.leader_file_id}"><br>
                 <p>${info.leader_position}<br>${info.leader_name}</p>
             </div>
             <div id="secondary-leader">
-                <img src="${filesStartUrl}${info.secondary_leader_file_id}${filesEndUrl}"><br>
+                <img src="${info.secondary_leader_file_id}"><br>
                 <p>${info.secondary_leader_position}<br>${info.secondary_leader_name}</p>
             </div>
             <div id="parliament">
-                <img src="${filesStartUrl}${info.parliament_file_id}${filesEndUrl}"><br>
+                <img src="${info.parliament_file_id}"><br>
                 <p>${info.parliament_name}</p>
             </div>
         </div>
