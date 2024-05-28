@@ -1,83 +1,94 @@
-*{margin: 0; padding: 0;}
+*{margin: 0; padding: 0}
 :root{
     --header-height: 5%;
     --historic-info-width: 30%;
     --timeline-height: 10%;
     --settings-width: 10%;
 
-    --color1: #D9BB84;
-    --color2: #F2DBAE;
-    --color3: #A68053;
-    --color4: #735438;
-    --color5: #402319;
+    --mapColor: #D9BB84;
+    --textColor: #F2DBAE;
+    --specialColor: #F87060;
+    --bgColor2: #735438;
+    --bgColor1: #402319;
+    --disabled: grey;
 }
 body{
     overflow: hidden;
 }
 #header{
+    font-family: 'Cinzel';
     padding: 0 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-family: 'Courier New', Courier, monospace;
     position: fixed;
-    background-color: var(--color5);
-    color: var(--color2);
+    background-color: var(--bgColor1);
+    color: var(--textColor);
     width: 100vw;
     height: var(--header-height);
     z-index: 1;
-    font-size: 1em;
+    font-size: clamp(5px, 1rem, 1vw);
+    overflow: hidden;
 }
 #header > span:last-of-type{
     display: flex;
     justify-content: space-around;
 }
 #header > span{
+    font-family: 'Merriweather';
     width: 50%;
 }
 #header > span > a{
-    padding: 10px;
+    padding: 5px 10px;
+    font-size: clamp(10px, 1.3rem, 2vw);
+    overflow: hidden;
+}
+h1 > a:hover{
+    color:var(--specialColor);
 }
 #header > span > a:hover{
-    background-color: var(--color4);
+    color: var(--bgColor1);
+    background-color: var(--specialColor);
 }
 a:visited, a:link{
-    color: var(--color2);
+    color: var(--textColor);
     text-decoration: none;
 }
 #settings-button{
     position: absolute;
     left: var(--settings-width);
-    bottom: 20%;
+    bottom: 50%;
     z-index: 2;
-    background-color: var(--color4);
+    background-color: var(--bgColor2);
     border: none;
 }
 #historic-info-button{
     position: absolute;
     margin-right: -5px;
     right: var(--historic-info-width);
-    bottom: 80%;
+    bottom: 50%;
     z-index: 2;
-    background-color: var(--color4);
+    background-color: var(--bgColor2);
     border: none;
 }
 #timeline-div-button{
     position: absolute;
-    left: 15%;
+    left: 50%;
     margin-bottom: -5px;
     bottom: var(--timeline-height);
     z-index: 2;
-    background-color: var(--color3);
+    background-color: var(--bgColor1);
     border: none;
 }
 #header-button{
     position: absolute;
-    left: 65%;
+    left: 50%;
     top: var(--header-height);
     z-index: 2;
-    background-color: var(--color5);
+    background-color: var(--bgColor1);
     border: none;
+    color: var(--textColor)
+    
 }
 button > img{
     height: 40px;
@@ -88,7 +99,7 @@ button > img{
 }
 #svg-container{
     width: 100vw;
-    background-color:var(--color2);
+    background-color:var(--mapColor);
     height: 100vh;
     border: 2px solid black;
     overflow: hidden;
@@ -118,10 +129,10 @@ svg{
     top: var(--header-height);
     right: 0;
     height: calc(100vh - (var(--header-height) + var(--timeline-height) + 50px));
-    background-color: #735438;
+    background-color: var(--bgColor2);
     opacity: 100%;
     overflow-y: auto;
-    color: #F2DBAE;
+    color: var(--textColor);
 }
 #historic-info > h1, #historic-info > h2, #historic-info > h3{
     font-family: 'Courier New', Courier, monospace;
@@ -141,12 +152,12 @@ svg{
     margin: 0 10%;
 }
 audio{
-    background-color: var(--color1);
+    background-color: var(--textColor);
     border-radius: 2px;
     height: 30px;
 }
 audio::-webkit-media-controls-panel {
-    background-color: var(--color1);
+    background-color: var(--textColor);
   }
 #settings{
     top: var(--header-height);
@@ -154,13 +165,13 @@ audio::-webkit-media-controls-panel {
     position: fixed;
     width: var(--settings-width);
     height: calc(100vh - (var(--header-height) + var(--timeline-height)));
-    background-color: var(--color4);
-    color: var(--color1);
+    background-color: var(--bgColor2);
+    color: var(--textColor);
     font-family: 'Courier New', Courier, monospace;
 }
 #settings > h2{
     padding: 15px 0;
-    color: var(--color2);
+    color: var(--textColor);
     font-size: 2em;
     text-align: center;
 }
@@ -182,13 +193,13 @@ input[type="checkbox"] {
     margin: 0 8px;
     width: 20px;
     height: 20px;
-    border: 2px solid var(--color1);
+    border: 2px solid var(--textColor);
     border-radius: 4px;
     outline: none;
     cursor: pointer;
 }
 input[type="checkbox"]:checked {
-    background-color: var(--color5);
+    background-color: var(--bgColor1);
 }
 input[type="checkbox"]::before {
     content: "✓";
@@ -198,7 +209,7 @@ input[type="checkbox"]::before {
     top: -3px;
     right: -2px;
     text-align: center;
-    color: var(--color2);
+    color: var(--textColor);
     visibility: hidden;
 }
 input[type="checkbox"]:checked::before {
@@ -209,9 +220,9 @@ input[type="checkbox"]:checked::before {
     margin: 0 auto;
     padding: 5px 10px;
     font-size: 1.1em;
-    background-color: var(--color1);
-    color: var(--color5);
-    border: 1px solid var(--color5);
+    background-color: var(--textColor);
+    color: var(--bgColor1);
+    border: 1px solid var(--bgColor1);
     width: 70%;
 }
 #settings > p{
@@ -219,7 +230,7 @@ input[type="checkbox"]:checked::before {
     text-align: center;
 }
 #settings > input[type="button"]:hover{
-    background-color: var(--color3);
+    background-color: var(--specialColor);
 }
 #timeline-div{
     clear: both;
@@ -231,7 +242,7 @@ input[type="checkbox"]:checked::before {
     bottom: 0;
     width: 100vw;
     height: var(--timeline-height);
-    background-color: #A68053;
+    background-color: var(--bgColor1);
 }
 #timeline-div > *{
     display: flex;
@@ -242,30 +253,40 @@ input[type="checkbox"]:checked::before {
     width: 80vw;
     -webkit-appearance: none;
     appearance: none;
-    background-color: var(--color4);
+    background-color: var(--bgColor2);
     border-radius: 5px;
     height: 35%;
 }
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    background-color: var(--color5);
+    background-color: var(--textColor);
     height: 15px;
     width: 15px;
     border-radius: 50%;
 }
 input[type=text]{
     border: none;
-    background-color: var(--color3);
+    color: var(--textColor);
+    background-color: var(--bgColor1);
     font-size: 20px;
     font-weight:750;
     text-align: center;
 }
 input[type=text]:hover{
-    color: var(--color5);
+    color: var(--specialColor);
+}
+.reversed{
+    transform: scale(-1, 1);
+}
+.date_change_button{
+    color: var(--textColor);
+    font-size: 1.2rem;
+}
+.date_change_button:hover{
+    color: var(--specialColor);
 }
 #date_input-span > button{
-    margin: 0 10px;
     margin-bottom: 5px;
     width: 20px;
     height: 20px;
@@ -305,20 +326,20 @@ input[type=text]:hover{
     font-size: 1.2em;
 }
 .available{
-    background-color: var(--color1);
-    color: var(--color5);
+    background-color: var(--textColor);
+    color: var(--bgColor1);
 }
 .available:hover{
-    background-color: var(--color3);
+    background-color: var(--specialColor);
     cursor: pointer;
 }
 .active{
-    background-color: var(--color4) ;
-    color: var(--color2);
+    background-color: var(--bgColor2) ;
+    color: var(--textColor);
 }
 .locked{
-    background-color: grey ;
-    color: black;
+    background-color: var(--disabled) ;
+    color: var(--textColor);
 }
 .Belgium:hover{
     fill: orange;
@@ -332,7 +353,7 @@ hr{
     height: 3px;
     width: 75%;
     border: none;
-    background-color: var(--color3);
+    background-color: var(--textColor);
 }
 ul{
     list-style-type: none;
@@ -348,8 +369,8 @@ li{
     height: calc(100vh - var(--header-height));
     width: calc(100vw - 40px);
     padding: 20px;
-    background-color: var(--color4);
-    color: var(--color2);
+    background-color: var(--bgColor2);
+    color: var(--textColor);
     line-height: 1.5;
     font-size: large;
 }
@@ -358,11 +379,11 @@ li{
 }
 em{
     background-color: var(--color1);
-    color: var(--color5);
+    color: var(--bgColor1);
     font-weight: bold;
     font-style: normal;
 }
 #information > a{
-    color: var(--color5);
+    color: var(--bgColor1);
     font-weight: bolder;
 }

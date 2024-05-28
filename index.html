@@ -8,22 +8,27 @@
     <script src="mapDownloader.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
 </head>
 <body onload='getMap()'>
     <div id="header">
-        <span><h1>Interactive History Map Prototype</h1></span>
+        <span><h1><a href="index.html">Full World Map</a></h1></span>
         <span>
             <a href="information.html">Information</a>
             <a href="contribution.html">How you can help</a>
             <a href="credits.html">Credits & Sources</a>
         </span>
     </div>
-    <button id="header-button" onclick="hideOrShowPanel('header')"><img src="images/header.png"></button>
+    <button id="header-button" onclick="hideOrShowPanel('header')"></button>
     <div id="svg-container">
         
     </div>
-    <button id="historic-info-button" onclick="hideOrShowPanel('historic-info')"><img src="images/info.png"></button>
+    <button id="historic-info-button" onclick="hideOrShowPanel('historic-info')"></button>
     <div id="historic-info">
         note  that I am using free server, so if you click <br> and nothing happenes it is because server did not turned on yet. If you wait 5-10 seconds <br> and restart website it should load, but if not here is link to server <br> (if you see cannot get / go back to website everything should work): <br>  https://quilled-nervous-leopon.glitch.me<br>  
     </div>
@@ -32,7 +37,7 @@
         <input type="button" id="descriptionButton" value="Country Description" class = "locked" onclick="getCountryDescription()"/>
         <input type="button" id="countryInfoButton" value="Country Info" class="locked" onclick="getCountryInfo()"/>
     </div>
-    <button id="settings-button" onclick="hideOrShowPanel('settings')"><img src="images/settings.png"></button>
+    <button id="settings-button" onclick="hideOrShowPanel('settings')"></button>
     <div id="settings">
         <h2>Settings</h2>
         <h3>Map Visibility</h3>
@@ -43,12 +48,12 @@
         <input type="button" value="Delete Cache" onclick="deleteSavedData()">
         <p>Click this button to see up to date maps</p>
     </div>
-    <button id="timeline-div-button" onclick="hideOrShowPanel('timeline-div')"><img src="images/timeline.png"></button>
+    <button id="timeline-div-button" onclick="hideOrShowPanel('timeline-div')"></button>
     <div id="timeline-div">
         <span id="date_input-span">
-            <button onclick="changeTime('day', false)"><img src="images/arrow.png"></button>
+            <button onclick="changeTime('day', false)" class="date_change_button reversed">▶</button>
             <input id="date_input" type="text" value="1914-06-28" placeholder="RRRR-MM-DD" onchange="getMap()"">
-            <button onclick="changeTime('day', true)"><img src="images/arrow.png" class="flip"></button>
+            <button onclick="changeTime('day', true)" class="date_change_button">▶</button>
         </span>
         <span id="timeline-span">
             <input id="start_date" type="text" onchange="setupTimeline()" value="1914-06-28"/>
