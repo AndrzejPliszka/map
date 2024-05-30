@@ -11,12 +11,96 @@
     --bgColor2: #735438;
     --bgColor1: #402319;
     --disabled: grey;
+
+    --headerFont: 'Cinzel';
+    --textFont: 'EB Garamond';
+    /*--specialFont: 'Courier New'; maybe use this some day*/
 }
 body{
     overflow: hidden;
 }
+#greyedOutScreen{
+    position: absolute;
+    background-color: black;
+    opacity: 0.3;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 10;
+    user-select: none;
+}
+#settingsButton{
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 10;
+    font-size: 3rem;
+    color: var(--bgColor2);
+    background-color: var(--textColor);
+    border: 5px solid var(--bgColor1);
+    vertical-align: middle;
+    line-height: 1;
+    text-align: center;
+    box-shadow: 0 0 5px 5px var(--bgColor1);
+    border-radius: 20%;
+}
+#settingsButton:hover{
+    color: var(--specialColor);
+    background-color: var(--bgColor1);
+    border: 5px solid var(--textColor);
+    box-shadow: 0 0 5px 5px var(--textColor);
+    cursor: pointer;
+}
+#informationWindow{
+    position: absolute;
+    overflow: auto;
+    top: 25%;
+    left: 30%;
+    width: 20%;
+    height: 40%;
+    z-index: 11;
+    background-color: var(--bgColor2);
+    border: 5px solid var(--bgColor1);
+    border-radius: 2%;
+    color: var(--textColor);
+    box-shadow: 0 0 5px 5px var(--bgColor1);
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+#serverStatus{
+    margin-top: auto;
+}
+#informationWindowSmallText{
+    font-size: 0.8rem;
+    margin-top: auto;
+}
+#informationWindow > h2{
+    margin-top: -10px;
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+#informationWindow > h3{
+    margin-top: 10px;
+}
+#informationWindow > input[type="button"]{
+    display: block;
+    margin: 0 auto;
+    padding: 5px 10px;
+    font-size: 1.1em;
+    background-color: var(--textColor);
+    color: var(--bgColor1);
+    border: 1px solid var(--bgColor1);
+    width: 50%;
+}
+#informationWindow > input[type="button"]:hover{
+    background-color: var(--specialColor);
+    cursor: pointer;
+}
 #header{
-    font-family: 'Cinzel';
     padding: 0 20px;
     display: flex;
     align-items: center;
@@ -33,9 +117,10 @@ body{
 #header > span:last-of-type{
     display: flex;
     justify-content: space-around;
+    margin-right: 60px;
 }
 #header > span{
-    font-family: 'Merriweather';
+    font-family: var(--headerFont);
     width: 50%;
 }
 #header > span > a{
@@ -53,42 +138,6 @@ h1 > a:hover{
 a:visited, a:link{
     color: var(--textColor);
     text-decoration: none;
-}
-#settings-button{
-    position: absolute;
-    left: var(--settings-width);
-    bottom: 50%;
-    z-index: 2;
-    background-color: var(--bgColor2);
-    border: none;
-}
-#historic-info-button{
-    position: absolute;
-    margin-right: -5px;
-    right: var(--historic-info-width);
-    bottom: 50%;
-    z-index: 2;
-    background-color: var(--bgColor2);
-    border: none;
-}
-#timeline-div-button{
-    position: absolute;
-    left: 50%;
-    margin-bottom: -5px;
-    bottom: var(--timeline-height);
-    z-index: 2;
-    background-color: var(--bgColor1);
-    border: none;
-}
-#header-button{
-    position: absolute;
-    left: 50%;
-    top: var(--header-height);
-    z-index: 2;
-    background-color: var(--bgColor1);
-    border: none;
-    color: var(--textColor)
-    
 }
 button > img{
     height: 40px;
@@ -120,7 +169,7 @@ svg{
     top: 0;
 }
 #historic-info{
-    font-family: "EB Garamond", serif;
+    font-family: var(--textFont);
     padding-top: 20px;
     float: right;
     width: var(--historic-info-width);
@@ -135,7 +184,7 @@ svg{
     color: var(--textColor);
 }
 #historic-info > h1, #historic-info > h2, #historic-info > h3{
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--headerFont);
     margin: 10px 0;
 }
 #political-system, #national-symbols{
@@ -167,7 +216,7 @@ audio::-webkit-media-controls-panel {
     height: calc(100vh - (var(--header-height) + var(--timeline-height)));
     background-color: var(--bgColor2);
     color: var(--textColor);
-    font-family: 'Courier New', Courier, monospace;
+    font-family: var(--textFont);
 }
 #settings > h2{
     padding: 15px 0;

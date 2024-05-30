@@ -16,6 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
 </head>
 <body onload='getMap()'>
+    <input type="button" id="settingsButton" value=🛠 onclick="showInformationWindow('settings')">
     <div id="header">
         <span><h1><a href="index.html">Full World Map</a></h1></span>
         <span>
@@ -24,11 +25,9 @@
             <a href="credits.html">Credits & Sources</a>
         </span>
     </div>
-    <button id="header-button" onclick="hideOrShowPanel('header')"></button>
     <div id="svg-container">
         
     </div>
-    <button id="historic-info-button" onclick="hideOrShowPanel('historic-info')"></button>
     <div id="historic-info">
         note  that I am using free server, so if you click <br> and nothing happenes it is because server did not turned on yet. If you wait 5-10 seconds <br> and restart website it should load, but if not here is link to server <br> (if you see cannot get / go back to website everything should work): <br>  https://quilled-nervous-leopon.glitch.me<br>  
     </div>
@@ -37,18 +36,12 @@
         <input type="button" id="descriptionButton" value="Country Description" class = "locked" onclick="getCountryDescription()"/>
         <input type="button" id="countryInfoButton" value="Country Info" class="locked" onclick="getCountryInfo()"/>
     </div>
-    <button id="settings-button" onclick="hideOrShowPanel('settings')"></button>
     <div id="settings">
-        <h2>Settings</h2>
         <h3>Map Visibility</h3>
         <span id="map-display-settings">
             
         </span>
-        <h3>Other Settings</h3>
-        <input type="button" value="Delete Cache" onclick="deleteSavedData()">
-        <p>Click this button to see up to date maps</p>
     </div>
-    <button id="timeline-div-button" onclick="hideOrShowPanel('timeline-div')"></button>
     <div id="timeline-div">
         <span id="date_input-span">
             <button onclick="changeTime('day', false)" class="date_change_button reversed">▶</button>

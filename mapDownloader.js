@@ -1,4 +1,13 @@
 function getMap(){
+  if(checkIfOnPhone()){
+    showInformationWindow("phone")
+  }
+  else{
+    if(!sessionStorage.getItem('startingInformationShown')){
+      showInformationWindow("information");
+    }
+    
+  }
   const date = document.getElementById("date_input").value;
   if(localStorage.getItem("savedDates") !== null){
     if (JSON.parse(localStorage.getItem("savedDates")).includes(date)){
@@ -12,7 +21,6 @@ function getMap(){
     downloadMap()
   }
 }
-
 function downloadMap() {
   console.log("downloading has begun")
   const date = document.getElementById("date_input").value;
@@ -52,6 +60,7 @@ function makeElementsClickable() {
       return response.json();
     })
     .then(data => {
+      updateServerStatus();
       for(let i = 0; i < data.countries.length; i++){
         document.getElementById(data.countries[i].tag).addEventListener("click", () => {infoboxManager(document.getElementById(data.countries[i].tag))});
       }
