@@ -219,12 +219,14 @@ audio::-webkit-media-controls-panel {
     font-family: var(--textFont);
 }
 #settings > h2{
+    font-family: var(--headerFont);
     padding: 15px 0;
     color: var(--textColor);
     font-size: 2em;
     text-align: center;
 }
 #settings > h3{
+    font-family: var(--headerFont);
     text-align: center;
     margin-top: 30px;
     margin-bottom: 5px;

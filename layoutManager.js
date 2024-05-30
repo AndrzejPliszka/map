@@ -29,10 +29,10 @@ function showInformationWindow(typeOfWindow){
     switch(typeOfWindow){
         case "settings":
             let visibilityButtons = "";
-            visibilityButtons += layout.contentExplorer === "shown" ? `<input id="contentExplorerButton" type=button value="Hide Content Explorer" onclick="hideOrShowPanel('settings')">` : `<input id="contentExplorerButton" type=button value="Show Content Explorer" onclick="hideOrShowPanel('settings')">`
             visibilityButtons += layout.header === "shown" ? `<input id="headerButton" type=button value="Hide Header" onclick="hideOrShowPanel('header')">` : `<input id="headerButton" type=button value="Show Header" onclick="hideOrShowPanel('header')">`
-            visibilityButtons += layout.timeline === "shown" ? `<input id="timelineButton" type=button value="Hide Timeline" onclick="hideOrShowPanel('timeline-div')">` : `<input id="timelineButton" type=button value="Show Timeline" onclick="hideOrShowPanel('timeline-div')">`
+            visibilityButtons += layout.contentExplorer === "shown" ? `<input id="contentExplorerButton" type=button value="Hide Content Explorer" onclick="hideOrShowPanel('settings')">` : `<input id="contentExplorerButton" type=button value="Show Content Explorer" onclick="hideOrShowPanel('settings')">`
             visibilityButtons += layout.historicInfo === "shown" ? `<input id="infoButton" type=button value="Hide Info" onclick="hideOrShowPanel('historic-info')">` : `<input id="infoButton" type=button value="Show Info" onclick="hideOrShowPanel('historic-info')">`
+            visibilityButtons += layout.timeline === "shown" ? `<input id="timelineButton" type=button value="Hide Timeline" onclick="hideOrShowPanel('timeline-div')">` : `<input id="timelineButton" type=button value="Show Timeline" onclick="hideOrShowPanel('timeline-div')">`
             infoWindow.setAttribute("id", "informationWindow")
             infoWindow.innerHTML = `
             <h2>Settings</h2>

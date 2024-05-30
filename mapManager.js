@@ -1,5 +1,5 @@
 let zoomLevel = 1;
-
+let widthRatio = 1;
 function initializeMapManager(){
   var container = document.getElementById('svg-container');
   const draggableElements = Array.prototype.slice.call(document.querySelectorAll('svg'));
@@ -70,5 +70,53 @@ container.addEventListener('wheel', (e) => {
       draggableElements[i].style.top = `${newTop}px`;
     } 
   }
+  widthRatio = draggableElements[0].getBoundingClientRect().width/startingWidth;
+  console.log(widthRatio);
 });
+}
+
+
+function moveMapByOffset(offset, isCentered, sizeRatio){
+  const containerRect = document.getElementById('svg-container').getBoundingClientRect();
+  let currentObjectX = document.querySelectorAll('svg')[0].getBoundingClientRect().left - containerRect.left - 2;
+  let currentObjectY = document.querySelectorAll('svg')[0].getBoundingClientRect().top - containerRect.top - 2;
+  const currentMapOffset = [currentObjectX-firstObjectStartingPosition[0], currentObjectY-firstObjectStartingPosition[1]]
+  let movementVector;
+  let sizeMultiplier;
+  if(sizeRatio){
+    sizeMultiplier = sizeRatio/widthRatio;
+    console.log(sizeMultiplier, sizeRatio, widthRatio);
+    movementVector = [offset[0]*sizeRatio - currentMapOffset[0], offset[1]*sizeRatio - currentMapOffset[1]];
+  }else{
+    movementVector = [offset[0]*widthRatio - currentMapOffset[0], offset[1]*widthRatio - currentMapOffset[1]];
+  }
+  
+
+  const draggableElements = Array.prototype.slice.call(document.querySelectorAll('svg'));
+  const imageLayers = Array.prototype.slice.call(document.getElementById('svg-container').querySelectorAll('img'));
+  draggableElements.push(...imageLayers);
+
+  for(let i = 0; i < draggableElements.length; i++){
+    if(isCentered){
+      draggableElements[i].style.left = draggableElements[i].getBoundingClientRect().left + movementVector[0] + window.innerWidth/2 -2;
+      draggableElements[i].style.top = draggableElements[i].getBoundingClientRect().top + movementVector[1] + window.innerHeight/2 -2;
+    }else{
+    draggableElements[i].style.left = draggableElements[i].getBoundingClientRect().left + movementVector[0] -2;
+    draggableElements[i].style.top = draggableElements[i].getBoundingClientRect().top + movementVector[1] -2;}
+
+    if(sizeRatio){
+      let xDifference = draggableElements[i].getBoundingClientRect().left -2;
+      let yDifference = draggableElements[i].getBoundingClientRect().top -2;
+      let xOffsetedPos = sizeMultiplier * xDifference;
+      let yOffsetedPos = sizeMultiplier * yDifference;
+      draggableElements[i].style.left = xOffsetedPos;
+      draggableElements[i].style.top = yOffsetedPos;
+      draggableElements[i].style.setProperty('width', `${draggableElements[i].getBoundingClientRect().width * sizeMultiplier}px`);
+      widthRatio = draggableElements[0].getBoundingClientRect().width/startingWidth;
+    }
+  }
+  if(sizeRatio){
+    moveMapByOffset(offset, isCentered)
+  }
+  
 }

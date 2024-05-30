@@ -1,3 +1,6 @@
+const firstObjectStartingPosition = [];
+let startingWidth = null;
+
 function getMap(){
   if(checkIfOnPhone()){
     showInformationWindow("phone")
@@ -73,17 +76,11 @@ function makeElementsClickable() {
 
 function displayMap(data){
     const resultElement = document.getElementById('svg-container');
-      let offsetX, offsetY, widthOffset;
-    if(resultElement.firstElementChild){
-      offsetX = (resultElement.firstElementChild.getBoundingClientRect().left - resultElement.getBoundingClientRect().left - 2);
-      offsetY = (resultElement.firstElementChild.getBoundingClientRect().top - resultElement.getBoundingClientRect().top - 2);
-      widthOffset = resultElement.firstElementChild.getBoundingClientRect().width / Number(data.width[0]);
-    }
-    else{
-      offsetX = 0;
-      offsetY = 0;
-      widthOffset = 1;
-    }
+    let offsetX, offsetY, widthOffset;
+    console.log(resultElement.firstElementChild)
+    offsetX = 0;
+    offsetY = 0;
+    widthOffset = 1;
     resultElement.innerHTML = "";
     for(let i = 0; i < data.tag.length; i++){
       resultElement.insertAdjacentHTML('beforeend', data.svg_code[i]);
@@ -92,7 +89,10 @@ function displayMap(data){
       svgElement.style.top = `${Number(data.y_pos[i])*widthOffset + offsetY}px`;
       svgElement.style.width = `${data.width[i] * widthOffset}px`;
     }
-
+    
+    firstObjectStartingPosition.push(Number(data.x_pos[0]));
+    firstObjectStartingPosition.push(Number(data.y_pos[0]));
+    startingWidth = data.width[0];
     initializeMapManager();
     infoboxManager();
     changeTimeline();
