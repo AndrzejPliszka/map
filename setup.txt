@@ -1,1 +1,0 @@
-mapa2.svg 0 0 1000;5k.svg 200 200 100;Europe.svg 0 0 2000;
