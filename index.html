@@ -44,9 +44,15 @@
     </div>
     <div id="timeline-div">
         <span id="date_input-span">
-            <button onclick="changeTime('day', false)" class="date_change_button reversed">▶</button>
-            <input id="date_input" type="text" value="1914-06-28" placeholder="RRRR-MM-DD" onchange="getMap()"">
-            <button onclick="changeTime('day', true)" class="date_change_button">▶</button>
+            <span>
+                <button onclick="changeTime('day', false)" class="date_change_button reversed">▶</button>
+                <input id="date_input" type="text" value="1914-06-28" placeholder="RRRR-MM-DD" onchange="getMap()">
+                <button onclick="changeTime('day', true)" class="date_change_button">▶</button>
+            </span>
+            <span>
+                <button id="playVideo">▶</button>
+                <button id="stopVideo">▐▐</button>
+            </span>
         </span>
         <span id="timeline-span">
             <input id="start_date" type="text" onchange="setupTimeline()" value="1914-06-28"/>

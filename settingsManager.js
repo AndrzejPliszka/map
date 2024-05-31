@@ -1,3 +1,5 @@
+let lastDateOnTimeline = document.getElementById("end_date").value;
+
 function changeTime(time_amount, should_increase){
   const dateObject = document.getElementById("date_input");
   let date = new Date(dateObject.value);
@@ -7,8 +9,33 @@ function changeTime(time_amount, should_increase){
         break;
   }
   dateObject.value = date.toISOString().slice(0, 10);
+  console.log(dateObject.value >= lastDateOnTimeline, dateObject.value, lastDateOnTimeline);
+  if(dateObject.value >= lastDateOnTimeline){
+    stopVideoPlaying();
+  }
   getMap();
   
+}
+
+let intervalId;
+
+document.getElementById('playVideo').addEventListener('click', () => {
+    document.getElementById("playVideo").style.display = "none";
+    document.getElementById("stopVideo").style.display = "initial";
+    if (!intervalId) {
+        intervalId = setInterval(changeTime, 1000, "day", true);
+    }
+});
+
+document.getElementById('stopVideo').addEventListener('click', stopVideoPlaying);
+
+function stopVideoPlaying(){
+  document.getElementById("playVideo").style.display = "initial";
+  document.getElementById("stopVideo").style.display = "none";
+  if (intervalId) {
+    clearInterval(intervalId);
+    intervalId = null;
+}
 }
 
 document.addEventListener("keydown", (event) => {
@@ -23,7 +50,7 @@ document.addEventListener("keydown", (event) => {
 function setupTimeline() {
   let timelineStartDate = document.getElementById("start_date").value;
   let timelineEndDate = document.getElementById("end_date").value;
-
+  lastDateOnTimeline = timelineEndDate;
   const timelineInput = document.getElementById("timeline");
   var startDate = new Date(timelineStartDate);
   var endDate = new Date(timelineEndDate);

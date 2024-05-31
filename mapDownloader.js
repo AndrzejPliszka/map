@@ -77,10 +77,16 @@ function makeElementsClickable() {
 function displayMap(data){
     const resultElement = document.getElementById('svg-container');
     let offsetX, offsetY, widthOffset;
-    console.log(resultElement.firstElementChild)
-    offsetX = 0;
-    offsetY = 0;
-    widthOffset = 1;
+    if(resultElement.firstElementChild){
+      offsetX = (resultElement.firstElementChild.getBoundingClientRect().left - resultElement.getBoundingClientRect().left - 2);
+      offsetY = (resultElement.firstElementChild.getBoundingClientRect().top - resultElement.getBoundingClientRect().top - 2);
+      widthOffset = resultElement.firstElementChild.getBoundingClientRect().width / Number(data.width[0]);
+    }
+    else{
+      offsetX = 0;
+      offsetY = 0;
+      widthOffset = 1;
+    }
     resultElement.innerHTML = "";
     for(let i = 0; i < data.tag.length; i++){
       resultElement.insertAdjacentHTML('beforeend', data.svg_code[i]);

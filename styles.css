@@ -327,6 +327,15 @@ input[type=text]{
 input[type=text]:hover{
     color: var(--specialColor);
 }
+#stopVideo{
+    color: var(--textColor);
+    display: none;
+}
+#playVideo{
+    vertical-align: middle;
+    font-size: 1.1rem;
+    color: var(--textColor);
+}
 .reversed{
     transform: scale(-1, 1);
 }
@@ -337,17 +346,22 @@ input[type=text]:hover{
 .date_change_button:hover{
     color: var(--specialColor);
 }
-#date_input-span > button{
+#date_input-span{
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+}
+#date_input-span > span > button{
     margin-bottom: 5px;
     width: 20px;
     height: 20px;
     background: transparent;
     border: none;
 }
-#date_input-span > button:hover{
+#date_input-span >span > button:hover{
     cursor:pointer;
 }
-#date_input-span > button > img{
+#date_input-span >span > button > img{
     width: 100%;
     height: auto;
 }

@@ -38,14 +38,25 @@ document.addEventListener('pointerup', () => {
 });
 
 container.addEventListener('wheel', (e) => {
+  widthRatio = draggableElements[0].getBoundingClientRect().width/startingWidth;
   if(!isDragging){
     const delta = e.deltaY;
     const mouseX = e.clientX - container.getBoundingClientRect().left;
     const mouseY = e.clientY - container.getBoundingClientRect().top;
     if(delta > 0){
-      zoomLevel = 1 - zoomLevel*0.1;
+      if(widthRatio < 0.1){
+        zoomLevel = 1;
+      }
+      else{
+        zoomLevel = 1 - zoomLevel*0.1;
+      }
     } else{
-      zoomLevel = 1 + zoomLevel*0.1;
+      if(widthRatio > 10){
+        zoomLevel = 1;
+      }
+      else{
+        zoomLevel = 1 + zoomLevel*0.1;
+      }
     }
     for(let i = 0; i < draggableElements.length; i++){
       const width = draggableElements[i].getBoundingClientRect().width;
@@ -70,8 +81,6 @@ container.addEventListener('wheel', (e) => {
       draggableElements[i].style.top = `${newTop}px`;
     } 
   }
-  widthRatio = draggableElements[0].getBoundingClientRect().width/startingWidth;
-  console.log(widthRatio);
 });
 }
 
@@ -85,7 +94,6 @@ function moveMapByOffset(offset, isCentered, sizeRatio){
   let sizeMultiplier;
   if(sizeRatio){
     sizeMultiplier = sizeRatio/widthRatio;
-    console.log(sizeMultiplier, sizeRatio, widthRatio);
     movementVector = [offset[0]*sizeRatio - currentMapOffset[0], offset[1]*sizeRatio - currentMapOffset[1]];
   }else{
     movementVector = [offset[0]*widthRatio - currentMapOffset[0], offset[1]*widthRatio - currentMapOffset[1]];
