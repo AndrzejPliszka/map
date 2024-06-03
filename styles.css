@@ -1,9 +1,9 @@
-*{margin: 0; padding: 0; font-family: var(--textFont)}
+*{margin: 0; padding: 0;}
 :root{
     --header-height: 5%;
-    --historic-info-width: 30%;
+    --historic-info-width: clamp(200px, 30%, 30%);
     --timeline-height: 10%;
-    --settings-width: 10%;
+    --settings-width: clamp(100px, 10%, 10%);
 
     --mapColor: #D9BB84;
     --textColor: #F2DBAE;
@@ -195,6 +195,9 @@ svg{
     font-family: var(--headerFont);
     margin: 10px 0;
 }
+#historic-info > div >  h2{
+    font-size: 1.1rem;   
+}
 #political-system, #national-symbols{
     display: flex;
     justify-content:space-evenly;
@@ -209,6 +212,7 @@ svg{
     margin: 0 10%;
 }
 audio{
+    width: 70%;
     background-color: var(--textColor);
     border-radius: 2px;
     height: 30px;
@@ -239,13 +243,9 @@ audio::-webkit-media-controls-panel {
     margin-top: 30px;
     margin-bottom: 5px;
 }
-#settings > span > p > input[type="checkbox"]{
-    width: clamp(1.1vw, 1rem, 3vw);
-    height: clamp(1.1vw, 1rem, 3vw);
-    font-size: clamp(0.55vw, 0.75rem, 1vw);
-}
 #settings > span > p{
-    font-size: clamp(0.5vw, 1rem, 1.5vw);
+    font-size: 1rem;
+    text-wrap: wrap;
     margin-left: 1vw;
     padding-top: 5px;
     display: flex;
@@ -450,7 +450,7 @@ input[type=text]:hover{
 .locked{
     box-shadow: inset 0 0 2px 2px var(--bgColor2);
     background-color: var(--disabled) ;
-    color: var(--textColor);
+    color: var(--bgColor1);
 }
 .Belgium:hover{
     fill: orange;
