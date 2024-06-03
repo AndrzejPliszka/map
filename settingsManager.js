@@ -1,5 +1,5 @@
 let lastDateOnTimeline = document.getElementById("end_date").value;
-
+let playingDelay = 1000;
 function changeTime(time_amount, should_increase){
   const dateObject = document.getElementById("date_input");
   let date = new Date(dateObject.value);
@@ -23,7 +23,7 @@ document.getElementById('playVideo').addEventListener('click', () => {
     document.getElementById("playVideo").style.display = "none";
     document.getElementById("stopVideo").style.display = "initial";
     if (!intervalId) {
-        intervalId = setInterval(changeTime, 1000, "day", true);
+        intervalId = setInterval(changeTime, playingDelay, "day", true);
     }
 });
 
@@ -93,3 +93,7 @@ function setupMapDisplaySettings(mapTags){
     })
   }
 }
+
+function changeDelay(delay){
+  playingDelay = delay;
+} 

@@ -38,6 +38,8 @@ function showInformationWindow(typeOfWindow){
             <h2>Settings</h2>
             <h3>Window Visibility</h3>
             ${visibilityButtons}
+            <h3>Change delay of map playing</h3><p>(in miliseconds)</p>
+            <input type=text name=delay value=${playingDelay} onChange="changeDelay(this.value)">
             <h3>Other Settings</h3>
             <input type="button" value="Delete Cache" onclick="deleteSavedData()">
             <p>Click this button to see up to date maps</p>
