@@ -55,7 +55,7 @@ function showInformationWindow(typeOfWindow){
              This website uses free server, so you may need to wait up to 30 seconds for it to turn on.
              I know that this website is not very visually appealing, but hey at least I tried! Thanks for reading and happy discovering history!
              </p>
-             <p id=serverStatus>Server is starting</p>
+             <p id=serverStatus class=red>Server is starting. Please wait.</p>
                         <p id=informationWindowSmallText>Click outside this box to close it</p>`;
             document.body.appendChild(infoWindow)
             break;
@@ -76,6 +76,7 @@ function showInformationWindow(typeOfWindow){
 function updateServerStatus(){
     if(document.getElementById('serverStatus')){
         document.getElementById('serverStatus').innerHTML = "Server is up and running";
+        document.getElementById('serverStatus').className = '';
     }
 }
 

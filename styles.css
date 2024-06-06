@@ -107,6 +107,9 @@ h1, h2, h3{
     background-color: var(--specialColor);
     cursor: pointer;
 }
+.red{
+    color: var(--specialColor);
+}
 #header{
     padding: 0 20px;
     display: flex;
