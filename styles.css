@@ -62,6 +62,7 @@ h1, h2, h3{
     overflow: auto;
     top: 25%;
     left: 30%;
+    min-width: 300px;
     width: 20%;
     height: 40%;
     z-index: 11;
@@ -237,14 +238,13 @@ audio::-webkit-media-controls-panel {
     font-family: var(--headerFont);
     padding: 15px 0;
     color: var(--textColor);
-    font-size: 2em;
+    font-size: clamp(17px, 1.5em, 2vw);
     text-align: center;
 }
-#settings > h3{
+#settings > span > h3{
+    font-size: 1.2em;
     font-family: var(--headerFont);
     text-align: center;
-    margin-top: 30px;
-    margin-bottom: 5px;
 }
 #settings > span > p{
     font-size: 1rem;
@@ -470,9 +470,22 @@ hr{
     background-color: var(--textColor);
 }
 ul{
+    clear:both;
     list-style-type: none;
     margin:5px auto;
-    width: 80%;
+    width: 60%;
+}
+ul > span:first-of-type{
+    float: left;
+    text-align: left;
+    width: 40%;
+    margin-left: 5%
+}
+ul > span:last-of-type{
+    float: right;
+    text-align: right;
+    width: 40%;
+    margin-right: 5%;
 }
 li{
     display: inline;

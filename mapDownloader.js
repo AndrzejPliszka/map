@@ -102,7 +102,7 @@ function displayMap(data){
     initializeMapManager();
     infoboxManager();
     changeTimeline();
-    setupMapDisplaySettings(data.tag);
+    setupMapDisplaySettings();
     makeElementsClickable();
 }
 

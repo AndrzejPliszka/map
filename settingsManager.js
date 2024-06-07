@@ -75,23 +75,51 @@ function changeTimeline(){
 }
 
 document.addEventListener("DOMContentLoaded", setupTimeline());
-function setupMapDisplaySettings(mapTags){
-  let mapDisplaySettingsDiv = document.getElementById("map-display-settings");
-  mapDisplaySettingsDiv.innerHTML = "";
-  for(let i = 0; i < mapTags.length; i++){
-    if(!mapDisplaySettingsDiv.hasOwnProperty(mapTags[i])) {mapDisplaySettingsDiv[mapTags[i]] = "checked"}
-    mapDisplaySettingsDiv.insertAdjacentHTML('beforeend', `<p><input type="checkbox" value="${mapTags[i]}" ${mapDisplaySettingsDiv[mapTags[i]]}> ${mapTags[i]}</p>`);
-    if(mapDisplaySettingsDiv.lastElementChild.lastElementChild.checked == false) {document.getElementById(mapTags[i]).style.visibility = "hidden";}
-    mapDisplaySettingsDiv.lastElementChild.addEventListener("change", (e) => {
-      if(e.target.checked){
-        document.getElementById(e.target.value).style.visibility = "visible";
-        mapDisplaySettingsDiv[e.target.value] = "checked";
-      } else{
-        document.getElementById(e.target.value).style.visibility = "hidden";
-        mapDisplaySettingsDiv[e.target.value] = "";
+
+//[0] is tag [1] is category
+function setupMapDisplaySettings(){
+  const apiUrl = "https://quilled-nervous-leopon.glitch.me/get-map-tags";
+  fetch(apiUrl)
+  .then(response => response.json())
+  .then((mapTags) => {
+    console.log(mapTags);
+    let mapDisplaySettingsDiv = document.getElementById("map-display-settings");
+    let lastCategory;
+    mapDisplaySettingsDiv.innerHTML = "";
+    for(let i = 0; i < Object.keys(mapTags).length; i++){
+      console.log(mapTags[i].category, typeof mapTags[i])
+      if(mapTags[i].category !== undefined){
+        if(mapTags[i].category !== lastCategory){
+          mapDisplaySettingsDiv.insertAdjacentHTML('beforeend', `<h3>${mapTags[i].category}</h3>`);
+          lastCategory = mapTags[i].category;
+        }
       }
-    })
+
+
+      if(!mapDisplaySettingsDiv.hasOwnProperty(mapTags[i].tag)) {mapDisplaySettingsDiv[mapTags[i].tag_name] = "checked"}
+      mapDisplaySettingsDiv.insertAdjacentHTML('beforeend', `<p><input type="checkbox" value="${mapTags[i].tag_name}" ${mapDisplaySettingsDiv[mapTags[i].tag_name]}> ${mapTags[i].tag_name}</p>`);
+      if(mapDisplaySettingsDiv.lastElementChild.lastElementChild.checked == false) {document.getElementById(mapTags[i].tag_name).style.visibility = "hidden";}
+      mapDisplaySettingsDiv.lastElementChild.addEventListener("change", (e) => {
+        if(e.target.checked){
+          document.getElementById(e.target.value).style.visibility = "visible";
+          mapDisplaySettingsDiv[e.target.value] = "checked";
+        } else{
+          document.getElementById(e.target.value).style.visibility = "hidden";
+          mapDisplaySettingsDiv[e.target.value] = "";
+        }
+      })
   }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  })
 }
 
 function changeDelay(delay){

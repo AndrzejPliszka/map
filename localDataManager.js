@@ -32,7 +32,7 @@ async function saveMapTagInfo(){
         fetch(apiUrl)
         .then(response => response.json())
         .then((data) => {
-            localStorage.setItem("mapTagData", JSON.stringify(data.info))
+            localStorage.setItem("mapTagData", JSON.stringify(data))
         })
     }
 }
@@ -48,7 +48,8 @@ async function saveMapToIndexedDB(data){
 }
 
 function getDataFromLocalStorage(date){
-    const tag_data = JSON.parse(localStorage.getItem("mapTagData"));
+    const tag_data = Object.values(JSON.parse(localStorage.getItem("mapTagData")));
+    console.log(tag_data);
     tag = []
     width = []
     x_pos = []
@@ -57,6 +58,7 @@ function getDataFromLocalStorage(date){
     let usedTags = tag_data.filter(tag => tag.start_date <= date && tag.end_date >= date).sort((a, b) => a.z_index - b.z_index)
     if(usedTags.length === 0){displayMap({tag: [], width: []})}
     for(let i = 0; i < usedTags.length; i++){
+        console.log(usedTags[i].tag_name)
         tag.push(usedTags[i].tag_name)
         width.push(usedTags[i].width)
         x_pos.push(usedTags[i].x_pos)

@@ -136,9 +136,9 @@ function getCountryDescription(){
       return response.json();
     })
     .then(data => {
-      if(data.message !== undefined){ 
-        document.getElementById('historic-info').innerHTML = `<span><h1>Country name placeholder</h1></span>
-        <div id="description">${data.message.description}</div>`}
+      if(data !== undefined){ 
+        document.getElementById('historic-info').innerHTML = `<span><h1>${data.name}</h1></span>
+        <div id="description">${data.description}</div>`}
       else{getWorldEvents()
         document.getElementById("currentEventsButton").className = "active";
         document.getElementById("countryInfoButton").className = "locked";
@@ -166,6 +166,13 @@ function getWorldEvents(){
       return response.json();
     })
     .then(data => {
+      let warFormat = "";
+      console.log(data.wars.length)
+      for(let i = 0; i < data.wars.length; i++){
+        console.log(data.warCountries[i][1])
+        warFormat += `<ul><p>${data.wars[i]}</p><span>${data.warCountries[i][0].map((object) => `<p>${object}</p>`).join('')}</span>vs<span>${data.warCountries[i][1].map((object) => `<p>${object}</p>`).join('')}</ul></span>`
+      }
+
       document.getElementById('historic-info').innerHTML = `
         <h2>Current Events:</h2>
         <li><ul>${data.events.length !== 0 ? data.events.join("</ul><ul>") : "Nothing interesting happened on this day"}</ul></li>
@@ -174,7 +181,7 @@ function getWorldEvents(){
         <li><ul>${data.battles.length !== 0 ? data.battles.join("</ul><ul>") : "There were no battles on this day"}</ul></li>
         <hr>
         <h2>Current Wars</h2>
-        <li><ul>${data.wars.length !== 0 ? data.wars.join("</ul><ul>") : "There were no wars on this day"}</ul></li>
+        <li>${warFormat === '' ? "There were no wars during this day" : warFormat}</li>
         <hr>`
     })
     .catch(error => {
