@@ -75,7 +75,7 @@ function changeTimeline(){
 
 document.addEventListener("DOMContentLoaded", setupTimeline());
 
-//[0] is tag [1] is category
+//TO DO: use local map tags
 function setupMapDisplaySettings(){
   const apiUrl = "https://quilled-nervous-leopon.glitch.me/get-map-tags";
   fetch(apiUrl)
@@ -91,7 +91,7 @@ function setupMapDisplaySettings(){
           lastCategory = mapTags[i].category;
         }
       }
-      if(!mapDisplaySettingsDiv.hasOwnProperty(mapTags[i].tag)) {mapDisplaySettingsDiv[mapTags[i].tag_name] = "checked"}
+      if(!mapDisplaySettingsDiv.hasOwnProperty(mapTags[i].tag_name)) {mapDisplaySettingsDiv[mapTags[i].tag_name] = "checked"}
       mapDisplaySettingsDiv.insertAdjacentHTML('beforeend', `<p><input type="checkbox" value="${mapTags[i].tag_name}" ${mapDisplaySettingsDiv[mapTags[i].tag_name]}> ${mapTags[i].tag_name}</p>`);
       if(mapDisplaySettingsDiv.lastElementChild.lastElementChild.checked == false) {document.getElementById(mapTags[i].tag_name).style.visibility = "hidden";}
       mapDisplaySettingsDiv.lastElementChild.addEventListener("change", (e) => {
