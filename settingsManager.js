@@ -9,7 +9,6 @@ function changeTime(time_amount, should_increase){
         break;
   }
   dateObject.value = date.toISOString().slice(0, 10);
-  console.log(dateObject.value >= lastDateOnTimeline, dateObject.value, lastDateOnTimeline);
   if(dateObject.value >= lastDateOnTimeline){
     stopVideoPlaying();
   }
@@ -82,20 +81,16 @@ function setupMapDisplaySettings(){
   fetch(apiUrl)
   .then(response => response.json())
   .then((mapTags) => {
-    console.log(mapTags);
     let mapDisplaySettingsDiv = document.getElementById("map-display-settings");
     let lastCategory;
     mapDisplaySettingsDiv.innerHTML = "";
     for(let i = 0; i < Object.keys(mapTags).length; i++){
-      console.log(mapTags[i].category, typeof mapTags[i])
       if(mapTags[i].category !== undefined){
         if(mapTags[i].category !== lastCategory){
           mapDisplaySettingsDiv.insertAdjacentHTML('beforeend', `<h3>${mapTags[i].category}</h3>`);
           lastCategory = mapTags[i].category;
         }
       }
-
-
       if(!mapDisplaySettingsDiv.hasOwnProperty(mapTags[i].tag)) {mapDisplaySettingsDiv[mapTags[i].tag_name] = "checked"}
       mapDisplaySettingsDiv.insertAdjacentHTML('beforeend', `<p><input type="checkbox" value="${mapTags[i].tag_name}" ${mapDisplaySettingsDiv[mapTags[i].tag_name]}> ${mapTags[i].tag_name}</p>`);
       if(mapDisplaySettingsDiv.lastElementChild.lastElementChild.checked == false) {document.getElementById(mapTags[i].tag_name).style.visibility = "hidden";}

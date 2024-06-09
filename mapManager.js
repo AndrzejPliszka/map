@@ -125,6 +125,16 @@ function moveMapByOffset(offset, isCentered, sizeRatio){
   }
   if(sizeRatio){
     moveMapByOffset(offset, isCentered)
-  }
-  
+  } 
+}
+
+function displaySvgInCords(coordinates, svgCode, offset, width, widthOffset, className){
+  console.log(coordinates)
+  console.log(offset)
+  const resultElement = document.getElementById('svg-container');
+  resultElement.insertAdjacentHTML('beforeend', `${svgCode.slice(0, 4)} class='${className}' ${svgCode.slice(4)}`);
+  let svgElement = resultElement.lastChild;
+  svgElement.style.left = `${coordinates[0]*widthOffset - width*widthOffset/2 + offset[0]}px`;
+  svgElement.style.top = `${coordinates[1]*widthOffset - width*widthOffset/2 + offset[1]}px`;
+  svgElement.style.width = `${width*widthOffset}px`;
 }

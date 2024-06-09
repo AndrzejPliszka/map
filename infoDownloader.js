@@ -167,9 +167,7 @@ function getWorldEvents(){
     })
     .then(data => {
       let warFormat = "";
-      console.log(data.wars.length)
       for(let i = 0; i < data.wars.length; i++){
-        console.log(data.warCountries[i][1])
         warFormat += `<ul><p>${data.wars[i]}</p><span>${data.warCountries[i][0].map((object) => `<p>${object}</p>`).join('')}</span>vs<span>${data.warCountries[i][1].map((object) => `<p>${object}</p>`).join('')}</ul></span>`
       }
 
