@@ -37,6 +37,31 @@ async function saveMapTagInfo(){
     }
 }
 
+async function saveBattles(){
+    if(!localStorage.getItem("battleData")){
+        params = new URLSearchParams({dataToDownload: "CurrentBattles"}).toString();
+        const apiUrl = `https://quilled-nervous-leopon.glitch.me/get-data-from-database?${params}`;
+        fetch(apiUrl)
+        .then(response => response.json())
+        .then((data) => {
+            localStorage.setItem("battleData", JSON.stringify(data))
+        })
+    }
+}
+
+async function saveSvgIcons(){
+    if(!localStorage.getItem("BattleIcon")){
+        const apiUrl = "https://quilled-nervous-leopon.glitch.me/get-svg-icons";
+        fetch(apiUrl)
+        .then(response => response.json())
+        .then((data) => {
+            for(let i = 0; i < Object.keys(data).length; i++){
+                localStorage.setItem(`${data[i].icon_name}Icon`, data[i].svg_code);
+            }
+        })
+    }
+}
+
 async function saveMapToIndexedDB(data){
     let req = window.indexedDB.open("MapDatabase", 1);
     req.onsuccess = function(event) {

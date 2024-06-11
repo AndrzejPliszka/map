@@ -128,13 +128,24 @@ function moveMapByOffset(offset, isCentered, sizeRatio){
   } 
 }
 
-function displaySvgInCords(coordinates, svgCode, offset, width, widthOffset, className){
-  console.log(coordinates)
-  console.log(offset)
+function displaySvgInCords(coordinates, svgCode, offset, width, widthOffset, className, id){
+  console.log("Sigma znaleziona");
   const resultElement = document.getElementById('svg-container');
-  resultElement.insertAdjacentHTML('beforeend', `${svgCode.slice(0, 4)} class='${className}' ${svgCode.slice(4)}`);
+  resultElement.insertAdjacentHTML('beforeend', `${svgCode.slice(0, 4)} class='${className}' id='${id}' ${svgCode.slice(4)}`);
+  console.log(resultElement);
   let svgElement = resultElement.lastChild;
   svgElement.style.left = `${coordinates[0]*widthOffset - width*widthOffset/2 + offset[0]}px`;
   svgElement.style.top = `${coordinates[1]*widthOffset - width*widthOffset/2 + offset[1]}px`;
   svgElement.style.width = `${width*widthOffset}px`;
+}
+
+function displayBattles(offset, widthOffset){
+  let battleData = JSON.parse(localStorage.getItem("battleData"));
+  console.log(battleData);
+  console.log(document.getElementById("date_input").value)
+  let data = battleData.filter((element)=>element.x_pos && element.start_date >= document.getElementById("date_input").value && element.end_date <= document.getElementById("date_input").value);
+  console.log(data);
+  for(let i = 0; i < Object.keys(data).length; i++){
+      displaySvgInCords([data[i].x_pos, data[i].y_pos], localStorage.getItem("BattleIcon"), offset, 50, widthOffset, "Battle",data[i].battle_name)
+  }
 }

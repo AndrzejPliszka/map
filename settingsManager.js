@@ -1,5 +1,6 @@
 let lastDateOnTimeline = document.getElementById("end_date").value;
 let playingDelay = 1000;
+let mapDisplaySettings = {};
 function changeTime(time_amount, should_increase){
   const dateObject = document.getElementById("date_input");
   let date = new Date(dateObject.value);
@@ -75,12 +76,19 @@ function changeTimeline(){
 
 document.addEventListener("DOMContentLoaded", setupTimeline());
 
-//TO DO: use local map tags
 function setupMapDisplaySettings(){
-  const apiUrl = "https://quilled-nervous-leopon.glitch.me/get-map-tags";
-  fetch(apiUrl)
-  .then(response => response.json())
-  .then((mapTags) => {
+  if(localStorage.getItem("mapTagData")){
+    let mapTags = JSON.parse(localStorage.getItem("mapTagData"));
+    tagsOnThisDay = [];
+    for(i in mapTags){
+      if(mapTags[i].start_date <= document.getElementById("date_input").value && mapTags[i].end_date >= document.getElementById("date_input").value){
+        tagsOnThisDay.push(mapTags[i]);
+      }
+    }
+    mapTags = tagsOnThisDay;
+    if(document.getElementsByClassName("Battle")){
+      mapTags.push({category: "Other", tag_name: "Battle"});
+    }
     let mapDisplaySettingsDiv = document.getElementById("map-display-settings");
     let lastCategory;
     mapDisplaySettingsDiv.innerHTML = "";
@@ -91,31 +99,47 @@ function setupMapDisplaySettings(){
           lastCategory = mapTags[i].category;
         }
       }
-      if(!mapDisplaySettingsDiv.hasOwnProperty(mapTags[i].tag_name)) {mapDisplaySettingsDiv[mapTags[i].tag_name] = "checked"}
-      mapDisplaySettingsDiv.insertAdjacentHTML('beforeend', `<p><input type="checkbox" value="${mapTags[i].tag_name}" ${mapDisplaySettingsDiv[mapTags[i].tag_name]}> ${mapTags[i].tag_name}</p>`);
-      if(mapDisplaySettingsDiv.lastElementChild.lastElementChild.checked == false) {document.getElementById(mapTags[i].tag_name).style.visibility = "hidden";}
+      if(!mapDisplaySettings.hasOwnProperty(mapTags[i].tag_name)) {mapDisplaySettings[mapTags[i].tag_name] = "checked";}
+      mapDisplaySettingsDiv.insertAdjacentHTML('beforeend', `<p><input type="checkbox" value="${mapTags[i].tag_name}" ${mapDisplaySettings[mapTags[i].tag_name]}> ${mapTags[i].tag_name}</p>`);
+      if(mapDisplaySettings[mapTags[i].tag_name] == false) {
+        if(document.getElementById(mapTags[i].tag_name)){
+          document.getElementById(mapTags[i].tag_name).style.visibility = "hidden";
+        }
+        else{
+          for(let element of document.getElementsByClassName(mapTags[i].tag_name)){
+            element.style.visibility = "hidden";
+          }
+        }
+      }
       mapDisplaySettingsDiv.lastElementChild.addEventListener("change", (e) => {
         if(e.target.checked){
-          document.getElementById(e.target.value).style.visibility = "visible";
-          mapDisplaySettingsDiv[e.target.value] = "checked";
+          if(document.getElementById(e.target.value)){
+            document.getElementById(e.target.value).style.visibility = "visible";
+          }
+          else{
+            for(let element of document.getElementsByClassName(e.target.value)){
+              element.style.visibility = "visible";
+            }
+          }
+          mapDisplaySettings[e.target.value] = "checked";
         } else{
-          document.getElementById(e.target.value).style.visibility = "hidden";
-          mapDisplaySettingsDiv[e.target.value] = "";
+          if(document.getElementById(e.target.value)){
+            document.getElementById(e.target.value).style.visibility = "hidden";
+          }
+          else{
+            for(element of document.getElementsByClassName(e.target.value)){
+              element.style.visibility = "hidden";
+            }
+          }
+          mapDisplaySettings[e.target.value] = "";
         }
+        console.log(mapDisplaySettings);
       })
+    }
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  })
+  else{setupMapDisplaySettings(); console.log("FAIL (problem)");}
 }
+
 
 function changeDelay(delay){
   playingDelay = delay;
