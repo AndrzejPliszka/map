@@ -81,7 +81,7 @@ h1, h2, h3{
 }
 #informationWindowSmallText{
     font-size: 0.8rem;
-    margin-top: auto;
+    margin-top: 10px;
 }
 #informationWindow > h2{
     font-family: var(--headerFont);
@@ -107,6 +107,13 @@ h1, h2, h3{
 #informationWindow > input[type="button"]:hover{
     background-color: var(--specialColor);
     cursor: pointer;
+}
+#informationWindow > label > input{
+    width: 50%;
+    margin-left: 10px;
+}
+#informationWindow > label{
+    text-align: right;
 }
 .red{
     color: var(--specialColor);

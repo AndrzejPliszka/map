@@ -140,6 +140,10 @@ function setupMapDisplaySettings(){
   else{setupMapDisplaySettings(); console.log("FAIL (problem)");}
 }
 
+function changeCssVariable(value, variableName){
+  document.querySelector(':root').style.setProperty(variableName, value);
+}
+
 
 function changeDelay(delay){
   playingDelay = delay;

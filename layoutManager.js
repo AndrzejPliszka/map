@@ -40,6 +40,12 @@ function showInformationWindow(typeOfWindow){
             ${visibilityButtons}
             <h3>Change delay of map playing</h3><p>(in miliseconds)</p>
             <input type=text name=delay value=${playingDelay} onChange="changeDelay(this.value)">
+            <h3>Change color</h3>
+            <label>Map Color: <input type=text value=${getComputedStyle(document.body).getPropertyValue("--mapColor")} onchange="changeCssVariable(this.value, '--mapColor')"></label>
+            <label>1st BG Color: <input type=text value=${getComputedStyle(document.body).getPropertyValue("--bgColor1")} onchange="changeCssVariable(this.value, '--bgColor1')"></label>
+            <label>2nd BG Color: <input type=text value=${getComputedStyle(document.body).getPropertyValue("--bgColor2")} onchange="changeCssVariable(this.value, '--bgColor2')"></label>
+            <label>Text Color: <input type=text value=${getComputedStyle(document.body).getPropertyValue("--textColor")} onchange="changeCssVariable(this.value, '--textColor')"></label>
+            <label>Special Color: <input type=text value=${getComputedStyle(document.body).getPropertyValue("--specialColor")} onchange="changeCssVariable(this.value, '--specialColor')"></label>
             <h3>Other Settings</h3>
             <input type="button" value="Delete Cache" onclick="deleteSavedData()">
             <p>Click this button to see up to date maps</p>
