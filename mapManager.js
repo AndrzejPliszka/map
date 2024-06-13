@@ -140,12 +140,12 @@ function displaySvgInCords(coordinates, svgCode, offset, width, widthOffset, cla
 }
 
 function displayBattles(offset, widthOffset){
-  let battleData = JSON.parse(localStorage.getItem("battleData"));
-  console.log(battleData);
-  console.log(document.getElementById("date_input").value)
-  let data = battleData.filter((element)=>element.x_pos && element.start_date >= document.getElementById("date_input").value && element.end_date <= document.getElementById("date_input").value);
-  console.log(data);
-  for(let i = 0; i < Object.keys(data).length; i++){
-      displaySvgInCords([data[i].x_pos, data[i].y_pos], localStorage.getItem("BattleIcon"), offset, 50, widthOffset, "Battle",data[i].battle_name)
+  if(JSON.parse(localStorage.getItem("battleData"))){
+     let battleData = JSON.parse(localStorage.getItem("battleData"));
+    let data = battleData.filter((element)=>element.x_pos && element.start_date >= document.getElementById("date_input").value && element.end_date <= document.getElementById("date_input").value);
+    for(let i = 0; i < Object.keys(data).length; i++){
+        displaySvgInCords([data[i].x_pos, data[i].y_pos], localStorage.getItem("BattleIcon"), offset, 50, widthOffset, "Battle",data[i].battle_name)
+    }
   }
+  else{displayBattles(offset, widthOffset); console.log("something is wrong (this function was called before battleData was initialized)")};
 }
