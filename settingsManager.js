@@ -62,7 +62,7 @@ function setupTimeline() {
       var currentDate = new Date(startDate);
       currentDate.setDate(startDate.getDate() + parseInt(timelineInput.value));
       document.getElementById("date_input").value = currentDate.toISOString().slice(0, 10);
-      downloadMap();
+      getMap();
   });
 }
 

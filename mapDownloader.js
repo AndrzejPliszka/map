@@ -66,12 +66,13 @@ function makeElementsClickable() {
     .then(data => {
       updateServerStatus();
       for(let i = 0; i < data.countries.length; i++){
-        document.getElementById(data.countries[i].tag).addEventListener("click", () => {infoboxManager(document.getElementById(data.countries[i].tag))});
+        if(document.getElementById(data.countries[i].tag)){
+          document.getElementById(data.countries[i].tag).addEventListener("click", () => {infoboxManager(document.getElementById(data.countries[i].tag))});
+        }
       }
     })
     .catch(error => {
       console.error('Fetch error:', error.message);
-      window.location.reload();
     });
 }
 
@@ -92,7 +93,6 @@ function displayMap(data){
     for(let i = 0; i < data.tag.length; i++){
       resultElement.insertAdjacentHTML('beforeend', data.svg_code[i]);
       let svgElement = resultElement.lastChild;
-      console.log(data.x_pos[i], widthOffset, offsetX)
       svgElement.style.left = `${Number(data.x_pos[i])*widthOffset + offsetX}px`;
       svgElement.style.top = `${Number(data.y_pos[i])*widthOffset + offsetY}px`;
       svgElement.style.width = `${data.width[i] * widthOffset}px`;

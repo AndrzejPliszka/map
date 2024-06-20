@@ -42,7 +42,7 @@ function getCountryInfo() {
       return response.json();
     })
     .then(data => {
-      if(data.message !== undefined){
+      if(data.name !== undefined){
         displayCountryInfo(data);} 
       else{getCountryDescription();
         document.getElementById("currentEventsButton").className = "available";
@@ -61,49 +61,48 @@ function displayCountryInfo(data){
     document.getElementById("countryInfoButton").className = "active";
     document.getElementById("descriptionButton").className = "available";
     const resultElement = document.getElementById('historic-info');
-    const info = data.message;
     resultElement.innerHTML = `<div id="country-name">
-            <h1>${info.name}</h1>
-            <h2>${info.native_name}</h2>
+            <h1>${data.name}</h1>
+            <h2>${data.native_name}</h2>
         </div>
         <hr>
         <div id="national-symbols">
             <div id="flag">
-                <img src="${info.flag_file_id}">
+                <img src="${data.flag_file_id}">
                 <p>Flag</p>
             </div>
             <div id="coat">
-                <img src="${info.coa_file_id}">
+                <img src="${data.coa_file_id}">
                 <p>Coat of Arms</p>
             </div>
         </div>
         <hr>
         <div id="anthem">
             <audio controls>
-              <source type="audio/ogg" src="${info.anthem_file_id}">
+              <source type="audio/ogg" src="${data.anthem_file_id}">
             </audio>
-            <p>Anthem "${info.anthem_name}"</p>
+            <p>Anthem "${data.anthem_name}"</p>
         </div>
         <hr>
-        <h3>${info.goverment_type}</h3>
+        <h3>${data.goverment_type}</h3>
         <div id="political-system">
             <div id="leader">
-                <img src="${info.leader_file_id}"><br>
-                <p>${info.leader_position}<br>${info.leader_name}</p>
+                <img src="${data.leader_file_id}"><br>
+                <p>${data.leader_position}<br>${data.leader_name}</p>
             </div>
             <div id="secondary-leader">
-                <img src="${info.secondary_leader_file_id}"><br>
-                <p>${info.secondary_leader_position}<br>${info.secondary_leader_name}</p>
+                <img src="${data.secondary_leader_file_id}"><br>
+                <p>${data.secondary_leader_position}<br>${data.secondary_leader_name}</p>
             </div>
             <div id="parliament">
-                <img src="${info.parliament_file_id}"><br>
-                <p>${info.parliament_name}</p>
+                <img src="${data.parliament_file_id}"><br>
+                <p>${data.parliament_name}</p>
             </div>
         </div>
         <hr>
         <div id="other-info">
-            <p>Currency: ${info.currency}</p>
-            <p>Capital City: ${info.capital}</p>
+            <p>Currency: ${data.currency}</p>
+            <p>Capital City: ${data.capital}</p>
         </div>
         <hr/>
     </div>`;
@@ -112,7 +111,7 @@ function displayCountryInfo(data){
 
 function getCountryDescription(){
   document.getElementById("currentEventsButton").className = "available";
-  document.getElementById("countryInfoButton").className = "available";
+  document.getElementById("countryInfoButton").className = "active";
   document.getElementById("descriptionButton").className = "active";
   currentInfoboxInfo = "description";
   if(currentlyClickedCountry == undefined) {

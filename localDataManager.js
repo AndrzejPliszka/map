@@ -72,51 +72,91 @@ async function saveMapToIndexedDB(data){
     }
 }
 
-function getDataFromLocalStorage(date){
-    const tag_data = Object.values(JSON.parse(localStorage.getItem("mapTagData")));
-    tag = []
-    width = []
-    x_pos = []
-    y_pos = []
-    svg = []
-    let usedTags = tag_data.filter(tag => tag.start_date <= date && tag.end_date >= date).sort((a, b) => a.z_index - b.z_index)
-    if(usedTags.length === 0){displayMap({tag: [], width: []})}
-    for(let i = 0; i < usedTags.length; i++){
-        tag.push(usedTags[i].tag_name)
-        width.push(usedTags[i].width)
-        x_pos.push(usedTags[i].x_pos)
-        y_pos.push(usedTags[i].y_pos)
+function getDataFromLocalStorage(date) {
+    // Fetch and parse tag data from localStorage
+    const tagData = JSON.parse(localStorage.getItem("mapTagData"));
+    if (!tagData) {
+        console.error("No tag data found in localStorage");
+        return;
     }
-    let req = window.indexedDB.open("MapDatabase", 1);
-    maxDateElement = null;
+
+    const tag = [];
+    const width = [];
+    const xPos = [];
+    const yPos = [];
+    const svg = [];
+
+    const usedTags = Object.values(tagData).filter(tag => tag.start_date <= date && tag.end_date >= date).sort((a, b) => a.z_index - b.z_index);
+    if (usedTags.length === 0) {
+        displayMap({ tag: [], width: [] });
+        return;
+    }
+
+    usedTags.forEach(tagData => {
+        tag.push(tagData.tag_name);
+        width.push(tagData.width);
+        xPos.push(tagData.x_pos);
+        yPos.push(tagData.y_pos);
+    });
+
+    const req = window.indexedDB.open("MapDatabase", 1);
+    req.onerror = function(event) {
+        console.error("Error opening IndexedDB:", event.target.errorCode);
+    };
+
     req.onsuccess = function(event) {
-        var db = event.target.result;
-        for(let i = 0; i < tag.length; i++){
-            db.transaction(["Maps"], "readonly").objectStore("Maps").index("map_tag").getAll(tag[i]).onsuccess = (e) => {
-                maxDateElement = null;
-                cursor = e.target.result;
-                cursor.forEach(element => {
-                    if(element.date <= date){
-                        if (!maxDateElement || element.date > maxDateElement.date) {
-                            maxDateElement = element;
+        const db = event.target.result;
+
+        const transactions = tag.map(tagName => {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(["Maps"], "readonly");
+                const objectStore = transaction.objectStore("Maps");
+                const index = objectStore.index("map_tag");
+                const request = index.getAll(tagName);
+
+                request.onerror = function(event) {
+                    reject(event.target.errorCode);
+                };
+
+                request.onsuccess = function(event) {
+                    const cursor = event.target.result;
+                    let maxDateElement = null;
+
+                    cursor.forEach(element => {
+                        if (element.date <= date) {
+                            if (!maxDateElement || element.date > maxDateElement.date) {
+                                maxDateElement = element;
+                            }
                         }
-                    }
-                });
-                if (maxDateElement) {
-                    svg.push(maxDateElement.svg_code);
+                    });
+
+                    resolve(maxDateElement ? maxDateElement.svg_code : null);
+                };
+            });
+        });
+        Promise.all(transactions).then(results => {
+            results.forEach(result => {
+                if (result) {
+                    svg.push(result);
                 }
-                if (svg.length === tag.length) {
-                    data = {
-                        svg_code: svg,
-                        tag: tag,
-                        width: width,
-                        x_pos: x_pos,
-                        y_pos: y_pos}
-                    displayMap(data);
-                }
-            };
-        }
-    }
+            });
+
+            if (svg.length > 0) {
+                const data = {
+                    svg_code: svg,
+                    tag: tag,
+                    width: width,
+                    x_pos: xPos,
+                    y_pos: yPos
+                };
+                displayMap(data);
+            } else {
+                displayMap({ tag: [], width: [] });
+            }
+        }).catch(error => {
+            console.error("Error fetching map data:", error);
+        });
+    };
 }
 
 function deleteSavedData(){
