@@ -111,7 +111,7 @@ function displayCountryInfo(data){
 
 function getCountryDescription(){
   document.getElementById("currentEventsButton").className = "available";
-  document.getElementById("countryInfoButton").className = "active";
+  document.getElementById("countryInfoButton").className = "available";
   document.getElementById("descriptionButton").className = "active";
   currentInfoboxInfo = "description";
   if(currentlyClickedCountry == undefined) {

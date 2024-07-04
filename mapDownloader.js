@@ -66,8 +66,14 @@ function makeElementsClickable() {
     .then(data => {
       updateServerStatus();
       for(let i = 0; i < data.countries.length; i++){
-        if(document.getElementById(data.countries[i].tag)){
-          document.getElementById(data.countries[i].tag).addEventListener("click", () => {infoboxManager(document.getElementById(data.countries[i].tag))});
+        if(document.getElementsByClassName(data.countries[i].tag)){
+          let elements = document.getElementsByClassName(data.countries[i].tag);
+          for (j = 0; j < elements.length; j++){
+            console.log(document.getElementsByClassName(data.countries[i].tag));
+            console.log(j)
+            console.log(document.getElementsByClassName(data.countries[i].tag)[j])
+            document.getElementsByClassName(data.countries[i].tag)[j].addEventListener("click", () => {infoboxManager(document.getElementsByClassName(data.countries[i].tag)[0])});
+          }
         }
       }
     })

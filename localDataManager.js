@@ -67,6 +67,7 @@ async function saveMapToIndexedDB(data){
     req.onsuccess = function(event) {
         db = event.target.result
         for(let i = 0; i < data.tag.length; i++){
+            console.log(data.start_date[i]);
             db.transaction(["Maps"], "readwrite").objectStore("Maps").add({map_tag:data.tag[i], date:data.start_date[i], svg_code:data.svg_code[i]});
         }
     }

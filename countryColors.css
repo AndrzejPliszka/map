@@ -1,0 +1,171 @@
+:root{
+    --belgium: #c1ab08;
+    --britain: #c9385d;
+    --france: #1d2aa7;
+    --germany: #292938;
+    --spain: #f2cd5e;
+    --andorra: #b194cd;
+    --switzerland: #e00505;
+    --italy: #437f3f;
+    --hungary: #f97e62;
+    --austria: #c0c6d7;
+    --bavaria: #98b8d5;
+    --netherlands: #cb8a4a;
+    --denmark: #99745d;
+    --sweden: #238cdd;
+    --germany-belgium: #797554;
+    --germany-france: #44465d;
+    --baden: #c99a29;
+    --oldenburg: #4c9337;
+    --mecklenburg: #2f2d82;
+    --wurttemberg: #6f2434;
+    --saxony: #506d33;
+    --waldeck: #1f799b;
+    --coburg-gotha: #256fa8;
+    --sondersh: #1db17b;
+    --schwarzburg-rudolstadt: #cfbb4f;
+    --sachsen-altenburg: #6ca137;
+    --reuss-gera: #5fadae;
+    --reuss-greiz: #38a070;
+    --lippe: #aa6720;
+    --schaumburg-lippe: #ad5a35;
+    --anhalt: #346d33;
+    --monaco: #df8ec0;
+    --san-marino: #dedf8e;
+    --liechtenstein: #4f00a8;
+}
+.Belgium {
+    fill: var(--belgium);
+  }
+  
+  .UK {
+    fill: var(--britain);
+  }
+  
+  .France, .FrenchArmy {
+    fill: var(--france);
+  }
+  
+  .Germany, .GermanArmy {
+    fill: var(--germany);
+  }
+  
+  .Spain {
+    fill: var(--spain);
+  }
+  
+  .Andorra {
+    fill: var(--andorra);
+  }
+  
+  .Switzerland {
+    fill: var(--switzerland);
+  }
+  
+  .Italy {
+    fill: var(--italy);
+  }
+  
+  .Hungary {
+    fill: var(--hungary);
+  }
+  
+  .Austria {
+    fill: var(--austria);
+  }
+  
+  .Bavaria {
+    fill: var(--bavaria);
+  }
+  
+  .Netherlands {
+    fill: var(--netherlands);
+  }
+  
+  .Denmark {
+    fill: var(--denmark);
+  }
+  
+  .Sweden {
+    fill: var(--sweden);
+  }
+  
+  .Germany-Belgium {
+    fill: var(--germany-belgium);
+  }
+  
+  .Germany-France {
+    fill: var(--germany-france);
+  }
+  
+  .Baden {
+    fill: var(--baden);
+  }
+  
+  .Oldenburg {
+    fill: var(--oldenburg);
+  }
+  
+  .Mecklenburg {
+    fill: var(--mecklenburg);
+  }
+  
+  .Wurttemberg {
+    fill: var(--wurttemberg);
+  }
+  
+  .Saxony {
+    fill: var(--saxony);
+  }
+  
+  .Waldeck {
+    fill: var(--waldeck);
+  }
+  
+  .Coburg-Gotha {
+    fill: var(--coburg-gotha);
+  }
+  
+  .Sondersh {
+    fill: var(--sondersh);
+  }
+  
+  .Schwarzburg-Rudolstadt {
+    fill: var(--schwarzburg-rudolstadt);
+  }
+  
+  .Sachsen-Altenburg {
+    fill: var(--sachsen-altenburg);
+  }
+  
+  .Reuss-Gera {
+    fill: var(--reuss-gera);
+  }
+  
+  .Reuss-Greiz {
+    fill: var(--reuss-greiz);
+  }
+  
+  .Lippe {
+    fill: var(--lippe);
+  }
+  
+  .Schaumburg-Lippe {
+    fill: var(--schaumburg-lippe);
+  }
+  
+  .Anhalt {
+    fill: var(--anhalt);
+  }
+  
+  .Monaco {
+    fill: var(--monaco);
+  }
+  
+  .SanMarino {
+    fill: var(--san-marino);
+  }
+  
+  .Liechtenstein {
+    fill: var(--liechtenstein);
+}
