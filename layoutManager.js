@@ -34,12 +34,14 @@ function showInformationWindow(typeOfWindow){
             visibilityButtons += layout.historicInfo === "shown" ? `<input id="infoButton" type=button value="Hide Info" onclick="hideOrShowPanel('historic-info')">` : `<input id="infoButton" type=button value="Show Info" onclick="hideOrShowPanel('historic-info')">`
             visibilityButtons += layout.timeline === "shown" ? `<input id="timelineButton" type=button value="Hide Timeline" onclick="hideOrShowPanel('timeline-div')">` : `<input id="timelineButton" type=button value="Show Timeline" onclick="hideOrShowPanel('timeline-div')">`
             infoWindow.setAttribute("id", "informationWindow")
+            console.log(playingBackward);
             infoWindow.innerHTML = `
             <h2>Settings</h2>
             <h3>Window Visibility</h3>
             ${visibilityButtons}
             <h3>Change delay of map playing</h3><p>(in miliseconds)</p>
             <input type=text name=delay value=${playingDelay} onChange="changeDelay(this.value)">
+            <label>Play video backwards: <input type="checkbox" ${playingBackward ? "checked" : ""} onChange="changePlayingDirection(this.checked)"></label>
             <h3>Change color</h3>
             <label>Map Color: <input type=text value=${getComputedStyle(document.body).getPropertyValue("--mapColor")} onchange="changeCssVariable(this.value, '--mapColor')"></label>
             <label>1st BG Color: <input type=text value=${getComputedStyle(document.body).getPropertyValue("--bgColor1")} onchange="changeCssVariable(this.value, '--bgColor1')"></label>

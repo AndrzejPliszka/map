@@ -1,7 +1,9 @@
 let currentlyClickedCountry = undefined;
 let currentInfoboxInfo = "events";
+let currentrlyClickedCountryHasInfo = false;
 
-function infoboxManager(clickedElement) {
+function infoboxManager(clickedElement, hasInfo) {
+  currentrlyClickedCountryHasInfo = hasInfo;
   if(clickedElement !== undefined){currentlyClickedCountry = clickedElement}
   switch(currentInfoboxInfo){
     case "events":
@@ -20,6 +22,8 @@ function infoboxManager(clickedElement) {
 }
 
 function getCountryInfo() {
+  console.log("country info is downloaded")
+  console.log(currentlyClickedCountry.className)
   currentInfoboxInfo = "country-info";
   if(currentlyClickedCountry == undefined) {
     getWorldEvents(); 
@@ -110,8 +114,9 @@ function displayCountryInfo(data){
 
 
 function getCountryDescription(){
+  console.log("country description is downloaded")
   document.getElementById("currentEventsButton").className = "available";
-  document.getElementById("countryInfoButton").className = "available";
+  currentrlyClickedCountryHasInfo ? document.getElementById("countryInfoButton").className = "available" : document.getElementById("countryInfoButton").className = "locked";
   document.getElementById("descriptionButton").className = "active";
   currentInfoboxInfo = "description";
   if(currentlyClickedCountry == undefined) {

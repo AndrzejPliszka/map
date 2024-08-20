@@ -49,7 +49,6 @@ function downloadMap() {
     })
     .catch(error => {
       console.error('Fetch error:', error.message);
-      window.location.reload();
     });
 }
 function makeElementsClickable() {
@@ -64,15 +63,28 @@ function makeElementsClickable() {
       return response.json();
     })
     .then(data => {
+      console.log(data)
       updateServerStatus();
-      for(let i = 0; i < data.countries.length; i++){
-        if(document.getElementsByClassName(data.countries[i].tag)){
-          let elements = document.getElementsByClassName(data.countries[i].tag);
+      for(let i = 0; i < data.countriesWithInfo.length; i++){
+        if(document.getElementsByClassName(data.countriesWithInfo[i])){
+          let elements = document.getElementsByClassName(data.countriesWithInfo[i]);
           for (j = 0; j < elements.length; j++){
-            console.log(document.getElementsByClassName(data.countries[i].tag));
-            console.log(j)
-            console.log(document.getElementsByClassName(data.countries[i].tag)[j])
-            document.getElementsByClassName(data.countries[i].tag)[j].addEventListener("click", () => {infoboxManager(document.getElementsByClassName(data.countries[i].tag)[0])});
+            let clickedElement = document.getElementsByClassName(data.countriesWithInfo[i])[j];
+            clickedElement.addEventListener("click", () => {infoboxManager(clickedElement, true)});
+            clickedElement.addEventListener("mouseover", () => {Array.from(document.getElementsByClassName(clickedElement.className.baseVal)).forEach(element => element.setAttribute("filter", "brightness(80%)"))});
+            clickedElement.addEventListener("mouseout", () => {Array.from(document.getElementsByClassName(clickedElement.className.baseVal)).forEach(element => element.setAttribute("filter", "none"))});
+          }
+        }
+      }
+      for(let i = 0; i < data.countriesWithoutInfo.length; i++){
+        if(document.getElementsByClassName(data.countriesWithoutInfo[i])){
+          let elements = document.getElementsByClassName(data.countriesWithoutInfo[i]);
+          for (j = 0; j < elements.length; j++){
+            let clickedElement = document.getElementsByClassName(data.countriesWithoutInfo[i])[j];
+            clickedElement.addEventListener("click", () => {infoboxManager(clickedElement, false)});
+            console.log(clickedElement.className);
+            clickedElement.addEventListener("mouseover", () => {Array.from(document.getElementsByClassName(clickedElement.className.baseVal)).forEach(element => element.setAttribute("filter", "brightness(90%)"))});
+            clickedElement.addEventListener("mouseout", () => {Array.from(document.getElementsByClassName(clickedElement.className.baseVal)).forEach(element => element.setAttribute("filter", "none"))});
           }
         }
       }
@@ -115,3 +127,11 @@ function displayMap(data){
     makeElementsClickable();
 }
 
+function downloadMapRange(){
+  let dateParam = new URLSearchParams({"startDate": "1914-07-28", "endDate": "1918-11-11"}).toString();
+  const apiUrl = `https://quilled-nervous-leopon.glitch.me/download-map-range?${dateParam}`;
+  fetch(apiUrl)
+    .then(res => {return res.json()})
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
+}

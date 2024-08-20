@@ -1,5 +1,7 @@
 let lastDateOnTimeline = document.getElementById("end_date").value;
+let startDateOnTimeline = document.getElementById("start_date").value;
 let playingDelay = 1000;
+let playingBackward = false;
 let mapDisplaySettings = {};
 function changeTime(time_amount, should_increase){
   const dateObject = document.getElementById("date_input");
@@ -10,20 +12,23 @@ function changeTime(time_amount, should_increase){
         break;
   }
   dateObject.value = date.toISOString().slice(0, 10);
-  if(dateObject.value >= lastDateOnTimeline){
+  if(!playingBackward && dateObject.value >= lastDateOnTimeline){
+    stopVideoPlaying();
+  }
+  else if(playingBackward && dateObject.value <= startDateOnTimeline){
     stopVideoPlaying();
   }
   getMap();
   
 }
 
-let intervalId;
+let videoInterval;
 
 document.getElementById('playVideo').addEventListener('click', () => {
     document.getElementById("playVideo").style.display = "none";
     document.getElementById("stopVideo").style.display = "initial";
-    if (!intervalId) {
-        intervalId = setInterval(changeTime, playingDelay, "day", true);
+    if (!videoInterval) {
+        videoInterval = setInterval(changeTime, playingDelay, "day", !playingBackward);
     }
 });
 
@@ -32,9 +37,9 @@ document.getElementById('stopVideo').addEventListener('click', stopVideoPlaying)
 function stopVideoPlaying(){
   document.getElementById("playVideo").style.display = "initial";
   document.getElementById("stopVideo").style.display = "none";
-  if (intervalId) {
-    clearInterval(intervalId);
-    intervalId = null;
+  if (videoInterval) {
+    clearInterval(videoInterval);
+    videoInterval = null;
 }
 }
 
@@ -144,7 +149,10 @@ function changeCssVariable(value, variableName){
   document.querySelector(':root').style.setProperty(variableName, value);
 }
 
-
 function changeDelay(delay){
   playingDelay = delay;
+}
+
+function changePlayingDirection(toBackward){
+  playingBackward = toBackward;
 } 

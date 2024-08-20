@@ -112,7 +112,13 @@ h1, h2, h3{
     width: 50%;
     margin-left: 10px;
 }
+#informationWindow > label > input[type="checkbox"]{
+    margin-top: 10px;
+    width: 20px;
+    margin-right: calc(25% - 20px);
+}
 #informationWindow > label{
+    margin-top: 3px;
     text-align: right;
 }
 .red{
@@ -176,6 +182,10 @@ button > img{
 }
 svg{
     position: absolute;
+    pointer-events: none;
+}
+svg * {
+   pointer-events: auto;
 }
 #svg-container > img{
     position: absolute;
@@ -461,9 +471,6 @@ input[type=text]:hover{
     box-shadow: inset 0 0 2px 2px var(--bgColor2);
     background-color: var(--disabled) ;
     color: var(--bgColor1);
-}
-.Belgium:hover{
-    fill: orange;
 }
 img{
     height: 100px;
