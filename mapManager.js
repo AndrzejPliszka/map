@@ -81,22 +81,24 @@ container.addEventListener('wheel', (e) => {
       draggableElements[i].style.top = `${newTop}px`;
     } 
   }
+  widthRatio = draggableElements[0].getBoundingClientRect().width/startingWidth;
 });
 }
 
-
 function moveMapByOffset(offset, isCentered, sizeRatio){
   const containerRect = document.getElementById('svg-container').getBoundingClientRect();
-  let currentObjectX = document.querySelectorAll('svg')[0].getBoundingClientRect().left - containerRect.left - 2;
-  let currentObjectY = document.querySelectorAll('svg')[0].getBoundingClientRect().top - containerRect.top - 2;
-  const currentMapOffset = [currentObjectX-firstObjectStartingPosition[0], currentObjectY-firstObjectStartingPosition[1]]
+  let currentObjectX = (document.querySelectorAll('svg')[0].getBoundingClientRect().left - containerRect.left - 2);
+  let currentObjectY = (document.querySelectorAll('svg')[0].getBoundingClientRect().top - containerRect.top - 2);
+  const currentMapOffset = [currentObjectX-leftMapOffset*widthRatio, currentObjectY-topMapOffset*widthRatio]
+  console.log(leftMapOffset*widthRatio)
   let movementVector;
   let sizeMultiplier;
   if(sizeRatio){
     sizeMultiplier = sizeRatio/widthRatio;
     movementVector = [offset[0]*sizeRatio - currentMapOffset[0], offset[1]*sizeRatio - currentMapOffset[1]];
   }else{
-    movementVector = [offset[0]*widthRatio - currentMapOffset[0], offset[1]*widthRatio - currentMapOffset[1]];
+    console.log(1/widthRatio);
+    movementVector = [offset[0] * widthRatio - currentMapOffset[0], offset[1] * widthRatio- currentMapOffset[1]];
   }
   
 

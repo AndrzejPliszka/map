@@ -3,6 +3,8 @@ let startDateOnTimeline = document.getElementById("start_date").value;
 let playingDelay = 1000;
 let playingBackward = false;
 let mapDisplaySettings = {};
+
+
 function changeTime(time_amount, should_increase){
   const dateObject = document.getElementById("date_input");
   let date = new Date(dateObject.value);
@@ -22,6 +24,12 @@ function changeTime(time_amount, should_increase){
   
 }
 
+
+function setDate(date){
+  const dateObject = document.getElementById("date_input");
+  dateObject.value = date;
+  getMap();
+}
 let videoInterval;
 
 document.getElementById('playVideo').addEventListener('click', () => {
@@ -71,6 +79,12 @@ function setupTimeline() {
   });
 }
 
+function setTimeline(startDate, endDate){
+  document.getElementById("start_date").value = startDate;
+  document.getElementById("end_date").value = endDate;
+  setupTimeline()
+}
+
 function changeTimeline(){
   currentDate = new Date(document.getElementById("date_input").value);
   startDate = new Date(document.getElementById("start_date").value);
@@ -81,7 +95,7 @@ function changeTimeline(){
 
 document.addEventListener("DOMContentLoaded", setupTimeline());
 
-function setupMapDisplaySettings(){
+/*function setupMapDisplaySettings(){
   if(localStorage.getItem("mapTagData")){
     let mapTags = JSON.parse(localStorage.getItem("mapTagData"));
     tagsOnThisDay = [];
@@ -143,7 +157,7 @@ function setupMapDisplaySettings(){
     }
   }
   else{setupMapDisplaySettings(); console.log("FAIL (problem)");}
-}
+}*/
 
 function changeCssVariable(value, variableName){
   document.querySelector(':root').style.setProperty(variableName, value);
@@ -156,3 +170,10 @@ function changeDelay(delay){
 function changePlayingDirection(toBackward){
   playingBackward = toBackward;
 } 
+
+async function loadParticularScenario(startDate, endDate, currentDate, xPos, yPos, sizeRatio){
+  await downloadMapRange(startDate, endDate);
+  setDate(currentDate);
+  setTimeline(startDate, endDate);
+  moveMapByOffset([xPos, yPos], true, sizeRatio ? sizeRatio : undefined)
+}

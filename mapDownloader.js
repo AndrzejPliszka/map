@@ -1,7 +1,7 @@
 const firstObjectStartingPosition = [];
 let startingWidth = null;
 
-function getMap(){
+async function getMap(){
   if(checkIfOnPhone()){
     showInformationWindow("phone")
   }
@@ -14,7 +14,8 @@ function getMap(){
   const date = document.getElementById("date_input").value;
   if(localStorage.getItem("savedDates") !== null){
     if (JSON.parse(localStorage.getItem("savedDates")).includes(date)){
-      getDataFromLocalStorage(date); //this also displays data      
+      let sigmus = await getCountryShapes(date); //this also displays data 
+      displayMap(sigmus);
     }
     else{
       downloadMap()
@@ -29,6 +30,7 @@ function downloadMap() {
   const date = document.getElementById("date_input").value;
   let dateParam = new URLSearchParams({"date": date}).toString();
   const apiUrl = `https://quilled-nervous-leopon.glitch.me/download-map?${dateParam}`;
+  saveClickableElements();
   saveMapTagInfo();
   saveBattles();
   saveSvgIcons();
@@ -40,18 +42,16 @@ function downloadMap() {
       return response.json();
     })
     .then(data => {
-      for(let i = 0; i < data.svg_code.length; i++){
-        data.svg_code[i] = data.svg_code[i].replace("<svg", `<svg preserveAspectRatio='none'`)
-      }
       addDateToStorage(date);
-      saveMapToIndexedDB(data)
+      saveCountryShapesToIndexedDB(data);
       displayMap(data)
     })
     .catch(error => {
-      console.error('Fetch error:', error.message);
+      console.error('Fetch error:', error);
     });
 }
-function makeElementsClickable() {
+function downloadClickableElements() {
+  console.log("anty sigma");
   const date = document.getElementById("date_input").value;
   let dateParam = new URLSearchParams({"date": date}).toString();
   const apiUrl = `https://quilled-nervous-leopon.glitch.me/get-clickable-countries?${dateParam}`;
@@ -63,44 +63,53 @@ function makeElementsClickable() {
       return response.json();
     })
     .then(data => {
-      console.log(data)
       updateServerStatus();
-      for(let i = 0; i < data.countriesWithInfo.length; i++){
-        if(document.getElementsByClassName(data.countriesWithInfo[i])){
-          let elements = document.getElementsByClassName(data.countriesWithInfo[i]);
-          for (j = 0; j < elements.length; j++){
-            let clickedElement = document.getElementsByClassName(data.countriesWithInfo[i])[j];
-            clickedElement.addEventListener("click", () => {infoboxManager(clickedElement, true)});
-            clickedElement.addEventListener("mouseover", () => {Array.from(document.getElementsByClassName(clickedElement.className.baseVal)).forEach(element => element.setAttribute("filter", "brightness(80%)"))});
-            clickedElement.addEventListener("mouseout", () => {Array.from(document.getElementsByClassName(clickedElement.className.baseVal)).forEach(element => element.setAttribute("filter", "none"))});
-          }
-        }
-      }
-      for(let i = 0; i < data.countriesWithoutInfo.length; i++){
-        if(document.getElementsByClassName(data.countriesWithoutInfo[i])){
-          let elements = document.getElementsByClassName(data.countriesWithoutInfo[i]);
-          for (j = 0; j < elements.length; j++){
-            let clickedElement = document.getElementsByClassName(data.countriesWithoutInfo[i])[j];
-            clickedElement.addEventListener("click", () => {infoboxManager(clickedElement, false)});
-            console.log(clickedElement.className);
-            clickedElement.addEventListener("mouseover", () => {Array.from(document.getElementsByClassName(clickedElement.className.baseVal)).forEach(element => element.setAttribute("filter", "brightness(90%)"))});
-            clickedElement.addEventListener("mouseout", () => {Array.from(document.getElementsByClassName(clickedElement.className.baseVal)).forEach(element => element.setAttribute("filter", "none"))});
-          }
-        }
-      }
+      saveClickableElements()
+      makeElementsClickable();
     })
     .catch(error => {
       console.error('Fetch error:', error.message);
     });
 }
 
+function makeElementsClickable(){
+  data = JSON.parse(localStorage.getItem("ClickableCountries"));
+  for(let i = 0; i < data.countriesWithInfo.length; i++){
+    if(document.getElementsByClassName(data.countriesWithInfo[i])){
+      let elements = document.getElementsByClassName(data.countriesWithInfo[i]);
+      for (j = 0; j < elements.length; j++){
+        let clickedElement = document.getElementsByClassName(data.countriesWithInfo[i])[j];
+        clickedElement.addEventListener("click", () => {infoboxManager(clickedElement, true)});
+        clickedElement.addEventListener("mouseover", () => {Array.from(document.getElementsByClassName(clickedElement.className.baseVal)).forEach(element => element.setAttribute("filter", "brightness(80%)"))});
+        clickedElement.addEventListener("mouseout", () => {Array.from(document.getElementsByClassName(clickedElement.className.baseVal)).forEach(element => element.setAttribute("filter", "none"))});
+      }
+    }
+  }
+  for(let i = 0; i < data.countriesWithoutInfo.length; i++){
+    if(document.getElementsByClassName(data.countriesWithoutInfo[i])){
+      let elements = document.getElementsByClassName(data.countriesWithoutInfo[i]);
+      for (j = 0; j < elements.length; j++){
+        let clickedElement = document.getElementsByClassName(data.countriesWithoutInfo[i])[j];
+        clickedElement.addEventListener("click", () => {infoboxManager(clickedElement, false)});
+        clickedElement.addEventListener("mouseover", () => {Array.from(document.getElementsByClassName(clickedElement.className.baseVal)).forEach(element => element.setAttribute("filter", "brightness(90%)"))});
+        clickedElement.addEventListener("mouseout", () => {Array.from(document.getElementsByClassName(clickedElement.className.baseVal)).forEach(element => element.setAttribute("filter", "none"))});
+      }
+    }
+  }
+}
+const leftMapOffset = -18000;
+const topMapOffset = -9000;
+const mapWidth = 36000;
+const mapHeight = 18000;
+
+
 function displayMap(data){
     const resultElement = document.getElementById('svg-container');
     let offsetX, offsetY, widthOffset;
     if(resultElement.firstElementChild){
-      offsetX = (resultElement.firstElementChild.getBoundingClientRect().left - resultElement.getBoundingClientRect().left - 2);
-      offsetY = (resultElement.firstElementChild.getBoundingClientRect().top - resultElement.getBoundingClientRect().top - 2);
-      widthOffset = resultElement.firstElementChild.getBoundingClientRect().width / Number(data.width[0]);
+      widthOffset = resultElement.firstElementChild.getBoundingClientRect().width / mapWidth;
+      offsetX = (resultElement.firstElementChild.getBoundingClientRect().left - resultElement.getBoundingClientRect().left - 2) - leftMapOffset*widthOffset;
+      offsetY = (resultElement.firstElementChild.getBoundingClientRect().top - resultElement.getBoundingClientRect().top - 2) - topMapOffset*widthOffset;
     }
     else{
       offsetX = 0;
@@ -108,30 +117,40 @@ function displayMap(data){
       widthOffset = 1;
     }
     resultElement.innerHTML = "";
-    for(let i = 0; i < data.tag.length; i++){
-      resultElement.insertAdjacentHTML('beforeend', data.svg_code[i]);
-      let svgElement = resultElement.lastChild;
-      svgElement.style.left = `${Number(data.x_pos[i])*widthOffset + offsetX}px`;
-      svgElement.style.top = `${Number(data.y_pos[i])*widthOffset + offsetY}px`;
-      svgElement.style.width = `${data.width[i] * widthOffset}px`;
+    let svgElementCode = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 1000' preserveAspectRatio='none'>";
+    for(let i = 0; i < data.length; i++){
+      for(let j = 0; j < data[i].svg_code.length; j++){
+        svgElementCode += `<polygon class="${data[i].name}" points="${data[i].svg_code[j]}"> </polygon>`;
+      }
     }
-    
-    firstObjectStartingPosition.push(Number(data.x_pos[0]));
-    firstObjectStartingPosition.push(Number(data.y_pos[0]));
-    startingWidth = data.width[0];
+    svgElementCode += "</svg>";
+    resultElement.insertAdjacentHTML('beforeend', svgElementCode);
+    let svgElement = resultElement.lastChild;
+    svgElement.style.left = `${leftMapOffset*widthOffset + offsetX}px`;
+    svgElement.style.top = `${topMapOffset*widthOffset + offsetY}px`;
+    svgElement.style.width = `${mapWidth * widthOffset}px`;
+    firstObjectStartingPosition.push(leftMapOffset);
+    firstObjectStartingPosition.push(topMapOffset);
+    startingWidth = mapWidth;
     displayBattles([offsetX, offsetY], widthOffset);
     initializeMapManager();
     infoboxManager();
     changeTimeline();
-    setupMapDisplaySettings();
     makeElementsClickable();
 }
 
-function downloadMapRange(){
-  let dateParam = new URLSearchParams({"startDate": "1914-07-28", "endDate": "1918-11-11"}).toString();
+async function downloadMapRange(startDate, endDate){
+  if(!isUnsavedDayBetween(startDate, endDate)){
+    return;
+  }
+  let dateParam = new URLSearchParams({"startDate": startDate, "endDate": endDate}).toString();
   const apiUrl = `https://quilled-nervous-leopon.glitch.me/download-map-range?${dateParam}`;
   fetch(apiUrl)
     .then(res => {return res.json()})
-    .then(data => console.log(data))
+    .then(data => {
+      console.log("SIMGA SIE WYKONUJE !!!")
+      saveCountryShapesToIndexedDB(data)
+      saveAllDatesBetween(startDate, endDate)
+    })
     .catch(err => console.log(err));
 }

@@ -1,18 +1,3 @@
-const request = window.indexedDB.open("MapDatabase", 1);
-request.onerror = (event) => {console.log(event.target.errorCode)};
-request.onsuccess = () => {checkIfDataIsUpToDate()};
-request.onupgradeneeded = (event) => {
-    //store date from which map was taken
-    currentDate = new Date();
-    localStorage.setItem("lastUpdateDate", currentDate);
-    //database creating
-    const db = event.target.result;
-    const objectStore = db.createObjectStore("Maps", { keyPath: "id", autoIncrement: true});
-    objectStore.createIndex("map_tag", "map_tag", { unique: false });
-    objectStore.createIndex("date", "date", { unique: false });
-    objectStore.createIndex("svg_code", "svg_code", { unique: true });
-    objectStore.createIndex('map_tag&date', ['map_tag', 'date']);
-  };
 function addDateToStorage(date){
     if(!localStorage.getItem("savedDates")){
         localStorage.setItem("savedDates", JSON.stringify([date]));
@@ -25,7 +10,6 @@ function addDateToStorage(date){
         }
     }
 }
-
 async function saveMapTagInfo(){
     if(!localStorage.getItem("mapTagData")){
         const apiUrl = "https://quilled-nervous-leopon.glitch.me/get-map-tags";
@@ -62,108 +46,120 @@ async function saveSvgIcons(){
     }
 }
 
-async function saveMapToIndexedDB(data){
-    let req = window.indexedDB.open("MapDatabase", 1);
-    req.onsuccess = function(event) {
-        db = event.target.result
-        for(let i = 0; i < data.tag.length; i++){
-            console.log(data.start_date[i]);
-            db.transaction(["Maps"], "readwrite").objectStore("Maps").add({map_tag:data.tag[i], date:data.start_date[i], svg_code:data.svg_code[i]});
+async function saveClickableElements(){
+    if(!localStorage.getItem("ClickableCountries")){
+        const apiUrl = "https://quilled-nervous-leopon.glitch.me/get-clickable-countries";
+        fetch(apiUrl)
+        .then(response => response.json())
+        .then((data) => {
+            localStorage.setItem("ClickableCountries", JSON.stringify(data));
+        })
+    }
+}
+
+function initDatabase() {
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open('CountryShapeDatabase', 1);
+
+        request.onupgradeneeded = (event) => {
+            const db = event.target.result;
+            if (!db.objectStoreNames.contains('CountryShapes')) {
+                db.createObjectStore('CountryShapes', { keyPath: 'auto_id', autoIncrement: true });
+            }
+        };
+
+        request.onsuccess = (event) => {
+            resolve(event.target.result);
+        };
+
+        request.onerror = (event) => {
+            reject(event.target.errorCode);
+        };
+    });
+}
+
+function objectExists(store, obj) {
+    return new Promise((resolve, reject) => {
+        const request = store.openCursor();
+        let exists = false;
+
+        request.onsuccess = (event) => {
+            const cursor = event.target.result;
+            if (cursor) {
+                const existingObj = cursor.value;
+                // Sprawdzamy czy obiekt bez id jest taki sam jak istniejący
+                const { auto_id: existingId, ...existingData } = existingObj;
+                if (JSON.stringify(existingData) === JSON.stringify(obj)) {
+                    exists = true;
+                    resolve(true);
+                } else {
+                    cursor.continue();
+                }
+            } else {
+                resolve(exists);
+            }
+        };
+
+        request.onerror = (event) => {
+            reject(event.target.errorCode);
+        };
+    });
+}
+
+async function saveCountryShapesToIndexedDB(objects) {
+    const db = await initDatabase();
+    const transaction = db.transaction('CountryShapes', 'readwrite');
+    const store = transaction.objectStore('CountryShapes');
+
+    for (const obj of objects) {
+        const { _id, ...rest } = obj;
+        const exists = await objectExists(store, rest);
+        if (!exists) {
+            store.add(rest);
         }
     }
+
+    return transaction.complete;
 }
 
-function getDataFromLocalStorage(date) {
-    // Fetch and parse tag data from localStorage
-    const tagData = JSON.parse(localStorage.getItem("mapTagData"));
-    if (!tagData) {
-        console.error("No tag data found in localStorage");
-        return;
-    }
+async function getCountryShapes(date) {
+    const db = await initDatabase();
+    const transaction = db.transaction('CountryShapes', 'readonly');
+    const store = transaction.objectStore('CountryShapes');
 
-    const tag = [];
-    const width = [];
-    const xPos = [];
-    const yPos = [];
-    const svg = [];
+    const objects = [];
+    const dateValue = date;
 
-    const usedTags = Object.values(tagData).filter(tag => tag.start_date <= date && tag.end_date >= date).sort((a, b) => a.z_index - b.z_index);
-    if (usedTags.length === 0) {
-        displayMap({ tag: [], width: [] });
-        return;
-    }
+    return new Promise((resolve, reject) => {
+        store.openCursor().onsuccess = (event) => {
+            const cursor = event.target.result;
+            if (cursor) {
+                const record = cursor.value;
+                const startDate = record.start_date;
+                const endDate = record.end_date;
 
-    usedTags.forEach(tagData => {
-        tag.push(tagData.tag_name);
-        width.push(tagData.width);
-        xPos.push(tagData.x_pos);
-        yPos.push(tagData.y_pos);
-    });
-
-    const req = window.indexedDB.open("MapDatabase", 1);
-    req.onerror = function(event) {
-        console.error("Error opening IndexedDB:", event.target.errorCode);
-    };
-
-    req.onsuccess = function(event) {
-        const db = event.target.result;
-
-        const transactions = tag.map(tagName => {
-            return new Promise((resolve, reject) => {
-                const transaction = db.transaction(["Maps"], "readonly");
-                const objectStore = transaction.objectStore("Maps");
-                const index = objectStore.index("map_tag");
-                const request = index.getAll(tagName);
-
-                request.onerror = function(event) {
-                    reject(event.target.errorCode);
-                };
-
-                request.onsuccess = function(event) {
-                    const cursor = event.target.result;
-                    let maxDateElement = null;
-
-                    cursor.forEach(element => {
-                        if (element.date <= date) {
-                            if (!maxDateElement || element.date > maxDateElement.date) {
-                                maxDateElement = element;
-                            }
-                        }
-                    });
-
-                    resolve(maxDateElement ? maxDateElement.svg_code : null);
-                };
-            });
-        });
-        Promise.all(transactions).then(results => {
-            results.forEach(result => {
-                if (result) {
-                    svg.push(result);
+                if (startDate <= dateValue && dateValue <= endDate) {
+                    objects.push(record);
                 }
-            });
-
-            if (svg.length > 0) {
-                const data = {
-                    svg_code: svg,
-                    tag: tag,
-                    width: width,
-                    x_pos: xPos,
-                    y_pos: yPos
-                };
-                displayMap(data);
+                cursor.continue();
             } else {
-                displayMap({ tag: [], width: [] });
+                // Sortowanie wyników według z_index rosnąco
+                objects.sort((a, b) => a.z_index - b.z_index);
+                resolve(objects);
             }
-        }).catch(error => {
-            console.error("Error fetching map data:", error);
-        });
-    };
-}
+        };
 
+        store.openCursor().onerror = (event) => {
+            reject(event.target.errorCode);
+        };
+    });
+}
 function deleteSavedData(){
     localStorage.removeItem("savedDates");
     localStorage.removeItem("mapTagData");
+    localStorage.removeItem("clickableCountries");
     window.indexedDB.deleteDatabase("MapDatabase");
+    window.indexedDB.deleteDatabase("CountryShapeDatabase");
     location.reload();
 }
 
@@ -178,4 +174,38 @@ function checkIfDataIsUpToDate(){
                 deleteSavedData();
             }
         })
+}
+
+function isUnsavedDayBetween(startDate, endDate){
+    let start = new Date(startDate);
+    let end = new Date(endDate);
+    const savedDates = JSON.parse(localStorage.getItem("savedDates"))
+    while (start <= end) {
+        date = new Date(start).toISOString().split('T')[0]
+        if(!savedDates.includes(date)){
+            return true;
+        }
+        start.setDate(start.getDate() + 1);
+    }
+    return false;
+}
+
+function saveAllDatesBetween(startDate, endDate) {
+    let start = new Date(startDate);
+    let end = new Date(endDate);
+    let dates = [];
+    const savedDates = JSON.parse(localStorage.getItem("savedDates"))
+    while (start <= end) {
+        date = new Date(start).toISOString().split('T')[0]
+        if(savedDates.includes(date)){
+            start.setDate(start.getDate() + 1);
+            continue;
+        }
+        dates.push(date);
+        start.setDate(start.getDate() + 1);
+    }
+
+    let currentDateArr = savedDates
+    currentDateArr.push(...dates)
+    localStorage.setItem("savedDates", JSON.stringify(currentDateArr))
 }
